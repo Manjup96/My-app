@@ -1,8 +1,8 @@
 // Meals.js
-import React from 'react';
-import Sidebar from '../../shared/Sidebar';
-import { useMeals } from '../../hooks/useMeals';
-import MealsTable from './MealsTable'; // Adjust the import path as necessary
+import React from "react";
+import Sidebar from "../../shared/Sidebar";
+import { useMeals } from "../../hooks/useMeals";
+import MealsTable from "./MealsTable"; // Adjust the import path as necessary
 
 const Meals = () => {
   const { data: mealsData, isLoading, isError, error } = useMeals();
