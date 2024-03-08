@@ -1,0 +1,158 @@
+@import '../base/variables'; // Adjust path as necessary
+@import '../base/mixins'; // Adjust path as necessary
+
+
+$primary-color: #007bff;
+$secondary-color: #0056b3;
+$background-color: #f4f7f6;
+$input-border-color: rgb(212, 191, 191);
+$input-border-radius: 4px;
+$button-border-radius: 4px;
+$button-transition: background-color 0.2s;
+
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $background-color;
+  font-family: $base-font-family;
+  color: $dark-color;
+
+  thead {
+    tr {
+      background-color: $primary-color;
+      color: $white-color;
+
+      th {
+        padding: $spacing-sm $spacing-md;
+        text-align: left;
+        border-right: 1px solid $input-border-color; // Adding vertical lines
+
+        @include desktop {
+          text-align: center;
+        }
+
+        &:last-child {
+          border-right: none; // Remove border for the last cell
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: $white-color;
+      }
+
+      &:hover {
+        background-color: $info-color;
+        color: $white-color;
+        cursor: pointer;
+      }
+
+      td {
+        padding: $spacing-sm;
+        border-top: 1px solid $secondary-color;
+        border-right: 1px solid $input-border-color; // Adding vertical lines
+
+        @include mobile {
+          padding: $spacing-xs;
+          font-size: 0.8em;
+        }
+
+        &:last-child {
+          border-right: none; // Remove border for the last cell
+        }
+      }
+    }
+  }
+
+  td, th {
+    @include tablet {
+      padding: $spacing-xs;
+      text-align: left;
+    }
+
+    @include mobile {
+      padding: $spacing-xs $spacing-sm;
+      text-align: left;
+    }
+  }
+
+  .actions {
+    button {
+      margin-right: $spacing-xs;
+      padding: $spacing-xs $spacing-sm;
+      border: none;
+      border-radius: $button-border-radius;
+      transition: $button-transition;
+      cursor: pointer;
+
+      &:first-child {
+        background-color: $success-color;
+        color: $white-color;
+      }
+
+      &:last-child {
+        background-color: $danger-color;
+        color: $white-color;
+      }
+
+      @include mobile {
+        padding: $spacing-xs;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include desktop {
+  .table {
+    th, td {
+      padding: $spacing-md;
+    }
+  }
+}
+
+@include tablet {
+  .table {
+    th, td {
+      padding: $spacing-sm;
+    }
+  }
+}
+
+@include mobile {
+  .table {
+    font-size: 0.9em;
+
+    thead {
+      display: none; // Optionally hide the header on very small screens
+    }
+
+    tbody {
+      tr {
+        display: block;
+        margin-bottom: $spacing-md;
+      }
+
+      td {
+        display: block;
+        text-align: right;
+        &:before {
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
