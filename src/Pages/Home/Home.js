@@ -21,7 +21,7 @@ const Home = () => {
         <main className="col-md-10 ms-sm-auto col-lg-10 px-md-4">
           {" "}
           {/* This is your main content */}
-          <div className="container mt-5">
+          <div className="container" style={{ marginTop: "150px" }}>
             <WelcomeMessage />
             <Logout />
             <UserDetails />

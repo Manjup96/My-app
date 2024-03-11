@@ -1,7 +1,13 @@
-@import '../base/mixins';
+@import "../base/mixins";
 
+.sidebar-toggle {
+  margin-left: 70%;
+  font-size: 20px;
+}
 
-
+.Title {
+  margin-left: 30px;
+}
 
 .sidebar {
   position: fixed;
@@ -13,9 +19,10 @@
   transition: width 0.3s ease;
   overflow-y: auto;
   padding-top: 20px;
-  width: 300px; // Initial width
+  width: 250px; // Initial width
   z-index: 100;
 
+  
   &.collapsed {
     width: 50px; // Collapsed width
   }
@@ -55,9 +62,18 @@
     margin-right: 10px;
   }
 
+  // .link_text {
+  //   display: none;
+  // }
+
   .link_text {
-    display: none;
+    display: inline-block;
+    margin-left: 10px; /* Adjust this as needed */
+    font-size: 16px; /* Adjust this as needed */
+    color: #000; /* Adjust this as needed */
+  }
+
+  .nav-item.active {
+    background-color: #f0f0f0;
   }
 }
-
-  

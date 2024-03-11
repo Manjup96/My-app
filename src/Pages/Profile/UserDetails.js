@@ -1,13 +1,15 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
+import '../../styles/components/Profile.scss';
 
 const UserDetails = () => {
     const { user } = useAuth();
 
   return (
-        <div className="card mt-3">
+        <div className="Profile-card">
+                  
                   <div className="card-header">
-                    <h3 className="mb-0">User Details</h3>
+                  <h2 className="Profile-Title">Profile Details</h2>
                   </div>
                   <div className="card-body" >
       <ul className="list-group list-group-flush">

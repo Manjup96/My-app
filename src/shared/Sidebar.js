@@ -1,82 +1,100 @@
-
 import React, { useState } from "react";
-import '../styles/components/Sidebar.scss';
-import { NavLink } from "react-router-dom"; 
-import { FaBars, FaHome, FaUserAlt, FaUtensils, FaNewspaper, FaExclamationCircle } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import {
+  FaHome,
+  FaUtensils,
+  FaNewspaper,
+  FaExclamationCircle,
+  FaMoneyBill,
+  FaUser,
+  FaBars,
+} from "react-icons/fa"; 
 import logo from "../Asset/images/logo.png";
- import Header from "../shared/Header";
+import '../styles/components/Sidebar.scss';
+import Header from "../shared/Header";
 
-const Sidebar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleSidebar = () => setIsOpen(!isOpen);
-  const menuItem = [
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: <FaHome />,
-    },
-    {
-     
-      path: "/meals",
-      name: "Meals",
-      icon: <FaUtensils />,
-    },
-    {
-      
-      path: "/news",
-      name: "News",
-      icon: <FaNewspaper />,
-    },
-    {
-      
-      path: "/complaints",
-      name: "Complaints",
-      icon: <FaExclamationCircle />,
-    },
-    {
-         path: "/profile",
-       name: "My Profile",
-        icon: <FaUserAlt />,
-    },
-   
-  ];
+const Sidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
+
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
-    <div className="container">
-      <Header /> 
-      <div style={{ width: isOpen ? "250px" : "50px" }} className="sidebar">
-        <div className="top_section">
-          <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
-          <img src={logo} alt="Logo" style={{ width: '100px', height: '100px' }} />
-      <h4>PG Tenant</h4>
-          </h1>
-          <div className="bars">
-            <FaBars
-              className={isOpen ? "toggle-btn open" : "toggle-btn"}
-              onClick={toggleSidebar}
-            />
+    <>
+      <Header />
+      <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+        {!collapsed && (
+          <div className="Title">
+            <img src={logo} alt="Logo" style={{ width: '100px', height: '100px' }} />
+            <h4>PG Tenant</h4>
           </div>
+        )}
+  
+        <div className="position-sticky">
+          <ul className="nav flex-column">
+            <FaBars className="sidebar-toggle" onClick={toggleSidebar} />
+            <li className={`nav-item ${location.pathname === '/dashboard' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/dashboard"
+              >
+                <FaHome className="nav-icon" />
+                {!collapsed && <span className="link_text">Dashboard</span>}
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/meals' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/meals"
+              >
+                <FaUtensils className="nav-icon" />
+                {!collapsed && <span className="link_text">Meals</span>}
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/news' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/news"
+              >
+                <FaNewspaper className="nav-icon" />
+                {!collapsed && <span className="link_text">News</span>}
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/complaints' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/complaints"
+              >
+                <FaExclamationCircle className="nav-icon" />
+                {!collapsed && <span className="link_text">Complaints</span>}
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/payments' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/payments"
+              >
+                <FaMoneyBill className="nav-icon" />
+                {!collapsed && <span className="link_text">Payments</span>}
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>
+              <Link
+                className="nav-link"
+                to="/profile"
+              >
+                <FaUser className="nav-icon" />
+                {!collapsed && <span className="link_text">Profile</span>}
+              </Link>
+            </li>
+          </ul>
         </div>
-        {menuItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link"
-            activeClassName="active"
-          >
-            <div className="icon">{item.icon}</div>
-            <div
-              style={{ display: isOpen ? "block" : "none" }}
-              className="link_text"
-            >
-              {item.name}
-            </div>
-          </NavLink>
-        ))}
       </div>
-      <main>{children}</main>
-    </div>
+    </>
   );
+  
 };
 
 export default Sidebar;

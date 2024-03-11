@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <div className="row">
           <div className="col-md-3">
             <Sidebar />
@@ -16,7 +16,16 @@ const Profile = () => {
             <UserDetails />
           </div>
         </div>
+      </div> */}
+
+      <Sidebar />
+      <div className="Profile-Title">
+        {/* <h2>Profile Details</h2> */}
+        <div className="col-md-9">
+            <UserDetails />
+          </div>
       </div>
+    
     </div>
   );
 };
