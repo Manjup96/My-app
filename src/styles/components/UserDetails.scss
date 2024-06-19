@@ -1,0 +1,74 @@
+
+.user-details-container {
+  display: flex;
+  // justify-content: space-between;
+  text-align: left;
+
+  .card-container {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    margin-top: 140px;
+    margin-left: -30px;
+  }
+
+  .card {
+    flex: 1;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .card-header {
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    &:nth-child(1) .card-header {
+      background-color: #584df5;
+    }
+
+    &:nth-child(2) .card-header {
+      background-color: #459dfc;
+    }
+
+    &:nth-child(3) .card-header {
+      background-color: #584df5;
+    }
+
+    .card-body {
+      padding: 1rem;
+
+      .list-group-item {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        
+
+        &:nth-child(even) {
+          background-color: #f8f9fa;
+        }
+        
+        .key {
+          min-width: 120px; // Adjust the width as needed
+          font-weight: bold;
+          text-align: right;
+          margin-right: 10px; // Adjust the margin as needed
+        }
+
+        b {
+          margin-right: 200px;
+        }
+      }
+    }
+  }
+}

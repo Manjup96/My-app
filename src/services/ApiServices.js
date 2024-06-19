@@ -1,6 +1,6 @@
 // apiServices.js
 import { TENANAT_LOGIN_URL } from './ApiUrls';
-// import { TENANAT_NEWS_URL } from './ApiUrls';
+
 
 
 export const loginUser = async (username, password, loginCallback, errorCallback, navigate) => {
@@ -44,18 +44,4 @@ export const loginUser = async (username, password, loginCallback, errorCallback
 };
 
 
-// export const NewsData = async (successCallback, errorCallback) => {
-//   try {
-//     const response = await fetch(
-//       "TENANAT_LOGIN_URL"
-//     );
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-//     const data = await response.json();
-//     successCallback(data);
-//   } catch (error) {
-//     console.error('Error:', error);
-//     errorCallback("An error occurred while fetching news data. Please try again later.");
-//   }
-// };
+

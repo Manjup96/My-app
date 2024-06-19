@@ -5,8 +5,10 @@ import { TENANAT_NEWS_URL } from "../../services/ApiUrls";
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +27,7 @@ const News = () => {
         }
         const data = await response.json();
         setNewsData(data);
+        setFilteredData(data); // Initialize filteredData with all news data
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,18 +39,44 @@ const News = () => {
     fetchData();
   }, []);
 
+  const handleSearchInputChange = (e) => {
+    const searchValue = e.target.value;
+    setSearchInput(searchValue);
+
+    // Filter newsData based on searchValue for type, ID, description, and created date
+    const filteredNews = newsData.filter(
+      (news) =>
+        news.news_type.toLowerCase().includes(searchValue.toLowerCase()) ||
+        news.id.toString().includes(searchValue) ||
+        news.news_description.toLowerCase().includes(searchValue.toLowerCase()) ||
+        new Date(news.created_at).toLocaleDateString("en-IN").includes(searchValue)
+    );
+    setFilteredData(filteredNews);
+  };
+
   return (
     <div>
       <Sidebar />
       <div className="News-Title">
         <h2>News Details</h2>
       </div>
+      <div className="SearchContainer">
+        <input
+          type="text"
+          placeholder="Search news..."
+          className="search-input"
+          value={searchInput}
+          onChange={handleSearchInputChange} 
+          style={{ marginLeft: '80%' }} 
+        />
+      </div>
+
       <div className="TableContainer">
         {loading && <div>Loading...</div>}
         {error && <div>Error: {error}</div>}
         {!loading && !error && (
           <div className="card-row">
-            {newsData.map((news, index) => (
+            {filteredData.map((news, index) => (
               <div key={index} className="card">
                 <div className="card-header" style={{ textAlign: "center" }}>
                   ID: {news.id}
