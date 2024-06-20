@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../../shared/Sidebar";
-import PaymentForm from "./Payments";
+import PaymentForm from "./Payments_old";
 import "../../styles/components/PaymentsDetails.scss";
 
 const PaymentsDetails = () => {

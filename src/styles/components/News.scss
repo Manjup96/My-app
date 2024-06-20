@@ -9,6 +9,13 @@
   width: 80%;
   margin: 3% 18%;
 
+  // .card {
+  //   border: 1px solid #ccc;
+  //   border-radius: 5px;
+  //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  //   padding: 20px;
+
+  // }
 
   .card-header {
     background-color: #f0f0f0;
@@ -29,7 +36,7 @@
   }
 
   .card {
-    width: calc(25% - 20px); 
+    width: calc(25% - 20px); /* Adjust card width as needed */
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -58,4 +65,36 @@
 
 .search-input:focus {
   border-color: blue; // Example of changing border color on focus
+}
+
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 560px;
+
+}
+
+
+// .SearchContainer {
+//   display: flex;
+//   justify-content: flex-end; /* Aligns search bar to the right */
+//   margin-top: 20px;
+//   //margin-right: 10%;
+  
+// }
+
+.export-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  align-items: flex-end;
+  &:hover {
+    background-color:blue;
+  }
 }
