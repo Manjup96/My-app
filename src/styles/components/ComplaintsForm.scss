@@ -146,9 +146,14 @@
 }
 
 .complaint-form-popup-container button.close-button {
-  margin-top: 10px;
+  // margin-top: 10px;
+  padding: 8px 16px;
   background-color: #dc3545; /* Red color for close button */
   margin-left:200px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
   
 }
 
@@ -182,7 +187,19 @@
   .complaint-form-popup-container button.close-button {
     margin-top: 10px;
     background-color: #dc3545; /* Red color for close button */
-    margin-left:200px;
+    margin-left:90px;
+    font-size: 15px;
     
   }
   }
+
+
+
+  .alert {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 0.75rem 1.25rem;
+    margin-top: 1rem;
+  }
+  

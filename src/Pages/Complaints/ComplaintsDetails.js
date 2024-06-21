@@ -1,24 +1,24 @@
+
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import ComplaintsForm from "./ComplaintsForm";
-import { TENANAT_COMPLAINT_URL } from "../../services/ApiUrls";
+import { TENANAT_COMPLAINT_URL, TENANAT_COMPLAINT_UPDATE_URL, TENANAT_COMPLAINT_DELETE_URL } from "../../services/ApiUrls";
 import "../../styles/components/ComplaintsDetails.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
-import { TENANAT_COMPLAINT_UPDATE_URL } from "../../services/ApiUrls";
-import { faFileExport } from '@fortawesome/free-solid-svg-icons';
-import { TENANAT_COMPLAINT_DELETE_URL } from "../../services/ApiUrls";
-
+import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { useAuth } from './../../context/AuthContext';
 
 const ComplaintsDetails = () => {
   const [showForm, setShowForm] = useState(false);
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false); // State to track sidebar
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [complaintsPerPage] = useState(8); // Number of complaints per page
+  const [complaintsPerPage] = useState(9);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +27,9 @@ const ComplaintsDetails = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            manager_email: 'ssy.balu@gmail.com',
-            building_name: 'Building 1',
-            tenant_mobile: '9876543217',
+            manager_email: user.manager_email,
+            building_name: user.building_name,
+            tenant_mobile: user.mobile,
           }),
         };
         const response = await fetch(TENANAT_COMPLAINT_URL, requestOptions);
@@ -67,9 +67,7 @@ const ComplaintsDetails = () => {
         }),
       };
 
-      const url = selectedComplaint
-        ? TENANAT_COMPLAINT_UPDATE_URL
-        : TENANAT_COMPLAINT_URL;
+      const url = selectedComplaint ? TENANAT_COMPLAINT_UPDATE_URL : TENANAT_COMPLAINT_URL;
 
       const response = await fetch(url, requestOptions);
       if (!response.ok) {
@@ -102,11 +100,7 @@ const ComplaintsDetails = () => {
           body: JSON.stringify({ id }),
         };
 
-        const response = await fetch(
-          TENANAT_COMPLAINT_DELETE_URL,
-          requestOptions
-        );
-
+        const response = await fetch(TENANAT_COMPLAINT_DELETE_URL, requestOptions);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -121,56 +115,167 @@ const ComplaintsDetails = () => {
   const filteredComplaints = complaints.filter((complaint) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
-      complaint.id.toString().includes(lowerSearchTerm) ||
-      complaint.complaint_type.toLowerCase().includes(lowerSearchTerm) ||
-      complaint.complaint_description.toLowerCase().includes(lowerSearchTerm) ||
-      complaint.created_date.toLowerCase().includes(lowerSearchTerm) ||
-      complaint.resolve_date.toLowerCase().includes(lowerSearchTerm)
+      (complaint.id && complaint.id.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.tenant_name && complaint.tenant_name.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.complaint_type && complaint.complaint_type.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.complaint_description && complaint.complaint_description.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.created_date && complaint.created_date.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.resolve_date && complaint.resolve_date.toLowerCase().includes(lowerSearchTerm))
     );
   });
 
-  const MyDocument = () => (
+  const styles = StyleSheet.create({
+    table: {
+      display: "table",
+      width: "auto",
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+    },
+    tableRow: {
+      flexDirection: "row",
+    },
+    tableCol: {
+      width: "20%", // Default width for most columns
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+    },
+    idCol: {
+      width: "10%", // Reduced width for ID column
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+    },
+    descriptionCol: {
+      width: "50%", // Increased width for Description column
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+    },
+    tableCell: {
+      margin: "auto",
+      marginTop: 5,
+      fontSize: 10,
+    },
+  });
+
+  const MyDocument = ({ complaints }) => (
     <Document>
-      <Page>
-        {complaints.map((complaint, index) => (
-          <Text key={index}>
-            Id: {complaint.id}, TenantName: {complaint.tenant_name}, Complaint Type: {complaint.complaint_type}, Description: {complaint.complaint_description}, Created Date: {complaint.created_date}, Resolved Date: {complaint.resolve_date}
-          </Text>
-        ))}
+      <Page style={{ padding: 10 }}>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={styles.idCol}>
+              <Text style={styles.tableCell}>Id</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Tenant Name</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Complaint Type</Text>
+            </View>
+            <View style={styles.descriptionCol}>
+              <Text style={styles.tableCell}>Description</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Created Date</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Resolved Date</Text>
+            </View>
+          </View>
+          {complaints.map((complaint, index) => (
+            <View key={index} style={styles.tableRow}>
+              <View style={styles.idCol}>
+                <Text style={styles.tableCell}>{complaint.id}</Text>
+              </View>
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
+              </View>
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>{complaint.complaint_type}</Text>
+              </View>
+              <View style={styles.descriptionCol}>
+                <Text style={styles.tableCell}>{complaint.complaint_description}</Text>
+              </View>
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>{complaint.created_date}</Text>
+              </View>
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
       </Page>
     </Document>
   );
 
-  // Function to render individual complaint PDF
   const IndividualComplaintDocument = ({ complaint }) => (
     <Document>
-      <Page>
-        <Text>
-          Id: {complaint.id}, TenantName: {complaint.tenant_name}, Complaint Type: {complaint.complaint_type}, Description: {complaint.complaint_description}, Created Date: {complaint.created_date}, Resolved Date: {complaint.resolve_date}
-        </Text>
+      <Page style={{ padding: 10 }}>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={styles.idCol}>
+              <Text style={styles.tableCell}>Id</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Tenant Name</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Complaint Type</Text>
+            </View>
+            <View style={styles.descriptionCol}>
+              <Text style={styles.tableCell}>Description</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Created Date</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>Resolved Date</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.idCol}>
+              <Text style={styles.tableCell}>{complaint.id}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>{complaint.complaint_type}</Text>
+            </View>
+            <View style={styles.descriptionCol}>
+              <Text style={styles.tableCell}>{complaint.complaint_description}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>{complaint.created_date}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+            </View>
+          </View>
+        </View>
       </Page>
     </Document>
   );
 
-  // Pagination calculations
   const indexOfLastComplaint = currentPage * complaintsPerPage;
   const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage;
-  const currentComplaints = filteredComplaints.slice(
-    indexOfFirstComplaint,
-    indexOfLastComplaint
-  );
+  const currentComplaints = filteredComplaints.slice(indexOfFirstComplaint, indexOfLastComplaint);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Previous page handler
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Next page handler
   const nextPage = () => {
     if (currentPage < Math.ceil(filteredComplaints.length / complaintsPerPage)) {
       setCurrentPage(currentPage + 1);
@@ -179,13 +284,12 @@ const ComplaintsDetails = () => {
 
   return (
     <div>
-      <Sidebar onToggle={setSidebarCollapsed} /> {/* Pass function to handle sidebar state */}
-      <div className={`content ${sidebarCollapsed ? 'collapsed' : ''}`}> {/* Apply class based on sidebar state */}
+      <Sidebar onToggle={setSidebarCollapsed} />
+      <div className={`content ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <div><h1 style={{ marginTop: '30px' }} className="text-center flex-grow-1">Complaints Details</h1></div>
         <div className="container mt-4">
-          <div className="d-flex justify-content-between mb-4">
-            {/* Export All button aligned to the left */}
-            <PDFDownloadLink document={<MyDocument />} fileName="complaints.pdf">
+          <div style={{display:'flex',justifyContent:'space-between',marginBottom:'40px'}} className=" ">
+            <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
               {({ blob, url, loading, error }) =>
                 loading ? "Loading document..." : (
                   <button className="e_button">
@@ -195,15 +299,12 @@ const ComplaintsDetails = () => {
               }
             </PDFDownloadLink>
 
-            {/* Add Complaint button aligned to the right */}
             <button className="complaint_button_style" onClick={() => handleOpenForm()}>
               Add Complaint
             </button>
           </div>
 
-
-          {/* Search bar */}
-          <div className="d-flex justify-content-end mb-4">
+          <div style={{display:'flex',justifyContent:'flex-end',marginBottom:'40px'}}  className="">
             <input
               type="text"
               placeholder="Search complaints"
@@ -212,6 +313,7 @@ const ComplaintsDetails = () => {
               className="form-control w-25 search-bar"
             />
           </div>
+
           {showForm && (
             <ComplaintsForm
               onSubmit={handleFormSubmit}
@@ -219,19 +321,19 @@ const ComplaintsDetails = () => {
               initialData={selectedComplaint}
             />
           )}
+
           <div className="complaints-list mt-4">
             <h2 style={{ marginBottom: '30px' }}>Complaints List</h2>
-            <div className="row">
+            <div className="row complaints-cards">
               {currentComplaints.map((complaint, index) => (
                 <div key={index} className="col-lg-3 col-md-4 col-sm-6 mb-4">
                   <div className="complaint-card p-3">
-                    
                     <div className="complaint-card-content">
-                    <div className="card-header" style={{ textAlign: "center" }}>
-                  ID: {complaint.id}
-                </div>
+                      <div className="card-header" style={{ textAlign: "center" }}>
+                        ID: {complaint.id}
+                      </div>
                       <br />
-                      <strong>TenantName:</strong> {complaint.tenant_name}
+                      <strong>Tenant Name:</strong> {complaint.tenant_name}
                       <br />
                       <strong>Complaint Type:</strong> {complaint.complaint_type}
                       <br />
@@ -240,10 +342,11 @@ const ComplaintsDetails = () => {
                       <strong>Created Date:</strong> {complaint.created_date}
                       <br />
                       <strong>Resolved Date:</strong> {complaint.resolve_date}
+                      <br />
+                      <strong>Comments:</strong> {complaint.comments}
                     </div>
                     <div className="complaint-card-actions mt-2">
                       <div className="complaint-card-icons">
-                        {/* Individual export button */}
                         <PDFDownloadLink
                           document={<IndividualComplaintDocument complaint={complaint} />}
                           fileName={`complaint_${complaint.id}.pdf`}
@@ -252,11 +355,12 @@ const ComplaintsDetails = () => {
                             loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
                           }
                         </PDFDownloadLink>
+
                         <button className="btn btn-secondary me-2" onClick={() => handleOpenForm(complaint)}>
-                          <FontAwesomeIcon icon={faEdit} /> {/* Edit Icon */}
+                          <FontAwesomeIcon icon={faEdit} />
                         </button>
                         <button className="btn btn-danger" onClick={() => handleDeleteComplaint(complaint.id)}>
-                          <FontAwesomeIcon icon={faTrash} /> {/* Trash Icon */}
+                          <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </div>
                     </div>
@@ -264,7 +368,7 @@ const ComplaintsDetails = () => {
                 </div>
               ))}
             </div>
-            {/* Pagination controls */}
+
             <nav className="mt-4">
               <ul className="pagination justify-content-center">
                 <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>

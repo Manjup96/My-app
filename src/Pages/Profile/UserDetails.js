@@ -92,7 +92,7 @@ const UserDetails = () => {
         }
 
         try {
-            const response = await fetch('https://iiiqbets.com/pg-management/update-POST-API-tenant-details-profile.php', {
+            const response = await fetch('https://iiiqbets.com/pg-management/update-PUT-API-tenant-details-profile.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

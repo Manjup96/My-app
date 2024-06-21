@@ -158,7 +158,7 @@ const News = () => {
       <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
                 {({ loading, error }) =>
                   loading ? "Loading document..." : (
-                    <button style={{marginLeft:'300px',backgroundColor:'blue'}} className="export-button">
+                    <button  className="export-button">
                       Export as Pdf
                     </button>
                   )
