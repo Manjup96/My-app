@@ -1,215 +1,186 @@
-.News-Title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+// .container1 {
+//   display: flex;
+//   justify-content: center;
+//   margin-top: 5rem;
+// }
+
+// .card {
+//   padding: 2rem;
+//   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+//   width: 60%;
+// }
+
+// .card-title {
+//   color: #07a291db;
+//   margin-bottom: 1rem;
+//   text-align: center;
+// }
+
+// .form {
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+// }
+
+// .cartcontainer {
+//   display: flex;
+//   flex-wrap: wrap;
+//   margin: -0.5rem;
+// }
+
+// .cart1 {
+//   flex: 0 0 50%;
+//   max-width: 100%;
+//   padding: 0.5rem;
+// }
+
+// .cart3 {
+//   flex: 0 0 100%;
+//   width: 100%;
+//   padding: 0.5rem;
+// }
+
+// .cart2 {
+//   margin-bottom: 1rem;
+//   width: 100%;
+// }
+
+// .form-control {
+//   width: 100%;
+//   padding: 0.375rem 0.75rem;
+//   font-size: 1rem;
+//   line-height: 1.5;
+//   color: #495057;
+//   background-color: #fff;
+//   background-clip: padding-box;
+//   border: 1px solid #ced4da;
+//   border-radius: 0.25rem;
+//   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+// }
+
+
+
+// .checkout-button {
+//   background-color: #07a291db;
+//   border-color: #07a291db;
+//   font-size: 19px;
+//   color: #fff;
+//   border: 1px solid transparent;
+//   padding: 0.375rem 0.75rem;
+//   border-radius: 0.25rem;
+// }
+
+
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 3rem; // Adjust margin for smaller screens
   }
-  
-  .TableContainer {
-    width: 80%;
-    margin: 3% 18%;
-  
-    // .card {
-    //   border: 1px solid #ccc;
-    //   border-radius: 5px;
-    //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    //   padding: 20px;
-  
-    // }
-  
-    
-    .news-container {
-      position: relative;
-    }
-    
-    .news-container.overlay {
-      background-color: rgba(0, 0, 0, 0.5);
-      pointer-events: none; // Disable interaction with the background
-    }
-    
-    .news-container.overlay *:not(.modal-overlay) {
-      filter: blur(5px); // Add a blur effect to the background content
-    }
-    
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); // Dark overlay background
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000; // Ensure the modal is on top
-      pointer-events: auto; // Enable interaction with the modal
-    }
-    
-    .modal-content {
-      background-color: #fff; // Light color for the modal content
-      padding: 20px;
-      border-radius: 5px;
-      width: 50%; // Adjust the width as needed
-      position: relative;
-    }
-    
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    
-    
-    .Payments-Title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 40px;
-    }
-    
-    .Payments_button {
-      display: flex;
-      justify-content: flex-end; /* Change to flex-end to move the button to the right */
-      margin-top: 10px;
-       padding-left:400px ;
-       
-    }
-    
-    .payments_button_style {
-      align-items: end;
-      // padding: 8px 16px;
-      background-color: #007bff;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 400px;
-      width:88%;
-    
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-    
-    .complaint-form-popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000; /* Ensure the overlay is on top of other content */
-    }
-    
-    /* Style for the popup container */
-    .complaint-form-popup-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
-      max-width: 400px; /* Adjust as needed */
-      width: 100%;
-    }
-    
-    /* Style for the form elements inside the popup */
-    .complaint-form-popup-container form {
-      margin-bottom: 10px;
-    }
-    
-    .complaint-form-popup-container label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    .complaint-form-popup-container input,
-    .complaint-form-popup-container textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    
-    .complaint-form-popup-container button {
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    .complaint-form-popup-container button.close-button {
-      margin-top: 10px;
-      background-color: #dc3545; /* Red color for close button */
-      margin: 10px;
-    }
-    
-    /* Media query for responsiveness */
-    @media (max-width: 768px) {
-      .complaint-form-popup-container {
-        max-width: 100%; /* Adjust for smaller screens */
-      }
-    }
-    
-  
-    .card-header {
-      background-color: #f0f0f0;
-      border-bottom: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 5px 5px 0 0;
-      margin-bottom: 10px;
-    }
-  
-    .card-body {
-      padding: 0;
-    }
-  
-    .card-row {
-      display: flex;
-      flex-wrap: wrap;
-      margin: -10px; /* Adjust margin as needed */
-    }
-  
-    .card {
-      width: calc(25% - 20px); /* Adjust card width as needed */
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-    .card-text {
-      font-size: 18px;
-    }
-   
-  }
-  .search-input {
-    //width: 20%;
-    max-width: 269px; // Adjust the maximum width as needed
-    margin: 0 auto; // Centers the input horizontally
-    display: block;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top:15px;
-  }
-  
-  .search-input::placeholder {
-    color: #999;
-  }
-  
-  .search-input:focus {
-    border-color: blue; // Example of changing border color on focus
+}
+
+.card {
+  padding: 2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  width: 60%;
+
+  @media (max-width: 768px) {
+    width: 80%; // Make the card 80% width on smaller screens
+    padding: 1.5rem; // Reduce padding for smaller screens
   }
 
-  .pay-button{
-    width:200px;
-    margin-left:35%;
+  @media (max-width: 576px) {
+    width: 100%; // Full width for cards on mobile screens
+    padding: 1rem; // Further reduce padding for smaller screens
   }
+}
+
+.card-title {
+  color: #07a291db;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cartcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem;
+}
+
+.cart1 {
+  flex: 0 0 50%;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+.cart3 {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.cart2 {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.checkout-button {
+  background-color: #07a291db;
+  border-color: #07a291db;
+  font-size: 19px;
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+
+  &:hover {
+    background-color: #065c56;
+    border-color: #065c56;
+  }
+}
+
+// Media queries for responsive adjustments
+@media (max-width: 768px) {
+  .form-control {
+    font-size: 0.9rem; // Decrease font size for smaller screens
+  }
+  .container1 {
+      display: flex;
+      justify-content: center;
+       margin-top: 5rem;
+     }
+}
+
+@media (max-width: 576px) {
+  .form-control {
+    font-size: 0.85rem; // Further decrease font size for mobile screens
+    padding: 0.25rem 0.5rem; // Adjust padding for smaller inputs
+  }
+
+  .checkout-button {
+    font-size: 17px; // Decrease button font size for mobile screens
+    padding: 0.3rem 0.6rem; // Adjust button padding for smaller screens
+  }
+}

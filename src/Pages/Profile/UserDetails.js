@@ -65,7 +65,7 @@ const UserDetails = () => {
                 alert('No data found');
             }
         } catch (error) {
-            alert('Error:', error);
+            alert('Error in getting details of user:', error);
         }
     };
 
@@ -92,18 +92,22 @@ const UserDetails = () => {
         }
 
         try {
+            console.log('Updated Data:', updatedData);
             const response = await fetch('https://iiiqbets.com/pg-management/update-PUT-API-tenant-details-profile.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ...updatedData,
-                    id: user.id,  // Ensure id is included in the update
-                    old_tenant_mobile: originalData.tenant_mobile // Required for the update
+                    id: editData.id,
+                    tenant_address: editData.tenant_address,
+                    tenant_email: editData.tenant_email,
+                    tenant_mobile: editData.tenant_mobile,
+                    tenant_name: editData.tenant_name
                 }),
             });
             const data = await response.json();
+            console.log('API Response:', data);
             if (data.success) {
                 setUserDetail({ ...userDetail, ...updatedData });
                 setOriginalData({ ...userDetail, ...updatedData });
@@ -112,7 +116,8 @@ const UserDetails = () => {
                 alert('Failed to save data');
             }
         } catch (error) {
-            alert('Error:', error);
+            console.error('Error in updating user profile details:', error);
+            alert('Error in updating user profile details:', error);
         }
     };
 
@@ -160,11 +165,10 @@ const UserDetails = () => {
                         <li className="list-group-item"><b>Aadhar Number: </b> {userDetail.tenant_aadhar_number}</li>
                         <li className="list-group-item"><b>Address: </b> {userDetail.tenant_address}</li>
                         <div className="edit-section">
-                    <FontAwesomeIcon icon={faEdit} className="edit-icon" onClick={handleEditClick} />
-                </div>
+                            <FontAwesomeIcon icon={faEdit} className="edit-icon" onClick={handleEditClick} />
+                        </div>
                     </ul>
                 )}
-               
             </div>
         </div>
     );

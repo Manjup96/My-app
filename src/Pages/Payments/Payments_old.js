@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../styles/components/Payment.scss";
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -56,10 +57,10 @@ const App = () => {
 
   const postPaymentDetails = async (paymentId) => {
     const paymentDetails = {
-      manager_email:"ssy.balu@gmail.com",
+      manager_email: "ssy.balu@gmail.com",
       building_name: "Building 2",
       tenant_name: "chetan",
-      tenant_email:"chetan.chauhan@gmail.com",
+      tenant_email: "chetan.chauhan@gmail.com",
       tenant_mobile: 9785734903,
       date: formData.date,
       type: formData.type,
@@ -87,19 +88,13 @@ const App = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center mt-5">
-      <div className="card p-4 shadow-lg" style={{ width: "60%" }}>
-        <h2 className="mb-4 text-center" style={{ color: "black" }}>
-          Pay Fee
-        </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="d-flex justify-content-center"
-          style={{ flexDirection: "column" }}
-        >
-          <div className="row">
-            <div className="col-6" style={{width:"100%"}}>
-              <div className="mb-3">
+    <div className="container1">
+      <div className="card">
+        <h2 className="card-title">Checkout Form</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="cartcontainer">
+            <div className="cart1">
+              <div className="cart2">
                 <label htmlFor="date">Date</label>
                 <input
                   type="date"
@@ -112,8 +107,8 @@ const App = () => {
                 />
               </div>
             </div>
-            <div className="col-6"  style={{width:"100%"}}>
-              <div className="mb-3">
+            <div className="cart1">
+              <div className="cart2">
                 <label htmlFor="month">Month</label>
                 <input
                   type="number"
@@ -126,8 +121,8 @@ const App = () => {
                 />
               </div>
             </div>
-            {/* <div className="col-6"  style={{width:"100%"}}>
-              <div className="mb-3">
+            <div className="cart3">
+              <div className="cart2">
                 <label htmlFor="year">Year</label>
                 <input
                   type="number"
@@ -140,8 +135,8 @@ const App = () => {
                 />
               </div>
             </div>
-            <div className="col-12">
-              <div className="mb-3">
+            <div className="cart3">
+              <div className="cart2">
                 <label htmlFor="incomeAmount">Income Amount</label>
                 <input
                   type="number"
@@ -153,9 +148,9 @@ const App = () => {
                   required
                 />
               </div>
-            </div> */}
-            <div className="col-12">
-              <div className="mb-3">
+            </div>
+            <div className="cart3">
+              <div className="cart2">
                 <label htmlFor="comments">Comments</label>
                 <input
                   type="text"
@@ -169,17 +164,8 @@ const App = () => {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            style={{
-              background: "#007bff",
-              borderColor: "#07a291db",
-              fontSize: "19px",
-            
-            }}
-            className="btn btn-primary pay-button"
-          >
-           Pay
+          <button type="submit" className=" checkout-button ">
+            Checkout
           </button>
         </form>
       </div>

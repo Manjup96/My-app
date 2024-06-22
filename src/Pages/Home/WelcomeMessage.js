@@ -11,7 +11,7 @@ const WelcomeMessage = () => {
 
   return (
     <div>
-       <h2>Welcome {user.username}</h2>
+       <h2 className="welcome-message">Welcome {user.username}</h2>
     </div>
   );
 };

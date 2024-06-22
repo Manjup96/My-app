@@ -1,7 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
-import "../../styles/components/Payment.scss";
-import { Link } from 'react-router-dom';
+import "../../styles/components/PaymentsDetails.scss";
 import { useAuth } from './../../context/AuthContext';
 import PaymentForm from "./Payments_old";
 
@@ -13,6 +13,8 @@ const News = () => {
   const [searchInput, setSearchInput] = useState("");
   const { user } = useAuth();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8); // Number of items per page
 
   const handleOpenForm = () => {
     setIsPopupOpen(true);
@@ -65,13 +67,22 @@ const News = () => {
         new Date(`${news.month}-${news.year}`).toLocaleDateString("en-IN").includes(searchValue)
     );
     setFilteredData(filteredNews);
+    setCurrentPage(1); // Reset to the first page when search changes
   };
 
+  // Pagination calculations
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  
   return (
     <div className={`news-container ${isPopupOpen ? 'overlay' : ''}`}>
       <Sidebar />
       <div className="News-Title">
-        <h2>News Details</h2>
+        <h2>Payment Details</h2>
       </div>
       <div className="SearchContainer">
         <input
@@ -80,11 +91,10 @@ const News = () => {
           className="search-input"
           value={searchInput}
           onChange={handleSearchInputChange}
-          style={{ marginLeft: '80%' }}
         />
       </div>
-      <div className="Payments_button" style={{ marginLeft: "1215px", marginTop: "10px" }}>
-        <button className="complaint_button_style" onClick={handleOpenForm}>
+      <div className="Payments_button">
+        <button className="payments_button_style" onClick={handleOpenForm}>
           Make Payment
         </button>
       </div>
@@ -93,24 +103,24 @@ const News = () => {
         {loading && <div>Loading...</div>}
         {error && <div>Error: {error}</div>}
         {!loading && !error && (
-          <div className="card-row">
-            {filteredData.map((news, index) => (
-              <div key={index} className="card">
-                <div className="card-header" style={{ textAlign: "center" }}>
-                  ID: {index + 1}
+          <div className="payment-row">
+            {currentItems.map((news, index) => (
+              <div key={index} className="payment">
+                <div className="payment-header">
+                  ID: {indexOfFirstItem + index + 1}
                 </div>
-                <div className="card-body">
-                  <p className="card-text">
+                <div className="payment-body">
+                  <p className="payment-text">
                     <small className="text-muted">
                       <b>Date: </b> {news.date}
                     </small>
                   </p>
-                  <p className="card-text">
+                  <p className="payment-text">
                     <small className="text-muted">
                       <b>Amount Paid: </b> {news.income_amount}
                     </small>
                   </p>
-                  <p className="card-text">
+                  <p className="payment-text">
                     <small className="text-muted">
                       <b>Month-Year Paid for:</b>{" "}
                       {new Date(news.date).toLocaleDateString("en-IN", { month: 'long', year: 'numeric' })}
@@ -121,6 +131,28 @@ const News = () => {
             ))}
           </div>
         )}
+        {/* Pagination controls */}
+        <div className="pagination-container">
+                <ul className="pagination">
+                  <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                    <button className="page-link" onClick={() => paginate(currentPage - 1)}>
+                      Prev
+                    </button>
+                  </li>
+                  {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map((number) => (
+                    <li key={number + 1} className={`page-item ${currentPage === number + 1 ? "active" : ""}`}>
+                      <button className="page-link" onClick={() => paginate(number + 1)}>
+                        {number + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}>
+                    <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </div>
       </div>
     </div>
   );
@@ -130,7 +162,7 @@ const ModalForm = ({ onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <span className="close-button" onClick={onClose}>
+        <span className="close-button1" onClick={onClose}>
           &times;
         </span>
         <PaymentForm />

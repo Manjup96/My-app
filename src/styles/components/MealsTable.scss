@@ -1,158 +1,128 @@
-@import '../base/variables'; // Adjust path as necessary
-@import '../base/mixins'; // Adjust path as necessary
 
-
-$primary-color: #007bff;
-$secondary-color: #0056b3;
-$background-color: #f4f7f6;
-$input-border-color: rgb(212, 191, 191);
-$input-border-radius: 4px;
-$button-border-radius: 4px;
-$button-transition: background-color 0.2s;
-
-
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: $background-color;
-  font-family: $base-font-family;
-  color: $dark-color;
-
-  thead {
-    tr {
-      background-color: $primary-color;
-      color: $white-color;
-
-      th {
-        padding: $spacing-sm $spacing-md;
-        text-align: left;
-        border-right: 1px solid $input-border-color; // Adding vertical lines
-
-        @include desktop {
-          text-align: center;
-        }
-
-        &:last-child {
-          border-right: none; // Remove border for the last cell
-        }
+.Complaints-Title {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+        padding: 0 20px;
       }
-    }
-  }
-
-  tbody {
-    tr {
-      &:nth-child(odd) {
-        background-color: $white-color;
+      
+      .search-bar {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
       }
-
-      &:hover {
-        background-color: $info-color;
-        color: $white-color;
+      
+      .complaint_button_style {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 15px 35px;
         cursor: pointer;
+        font-size: 20px;
+        border-radius: 5px;
+        align-items: flex-end;
+      }
+      
+      .complaint_button_style:hover {
+        background-color: #0056b3;
+      }
+      
+      .complaints-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+      
+      .complaints-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      .complaint-card {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .complaint-card-content {
+        margin-bottom: 10px;
+      }
+      
+      .complaint-card-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .edit-button,
+      .delete-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #007bff;
+      }
+      
+      .edit-button:hover {
+        color: #0056b3;
+      }
+      
+      .delete-button {
+        color: #dc3545;
+      }
+      
+      .delete-button:hover {
+        color: #c82333;
+      }
+      
+     
+
+      .meal-option {
+        display: flex;
+        margin-bottom: 8px;
+        margin-left: -27px;
+      }
+      
+      form .meal-option{
+        margin-right: 250px;
+
+      }
+      
+      .meal-option .input1{
+        margin-left: 10px;
+
+      }
+      .meal-option .input2{
+        margin-left: -8px;
+
+      }
+      
+      .meal-option .input3{
+        margin-left: -2px;
+      }
+      
+      .meal-option .abc {
+
+      }
+      .meal-option  .def{
+        margin-left: px;
+
+      }
+     
+      
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin-top: 8px;
+        margin-bottom: 16px;
       }
 
-      td {
-        padding: $spacing-sm;
-        border-top: 1px solid $secondary-color;
-        border-right: 1px solid $input-border-color; // Adding vertical lines
-
-        @include mobile {
-          padding: $spacing-xs;
-          font-size: 0.8em;
-        }
-
-        &:last-child {
-          border-right: none; // Remove border for the last cell
-        }
-      }
-    }
-  }
-
-  td, th {
-    @include tablet {
-      padding: $spacing-xs;
-      text-align: left;
-    }
-
-    @include mobile {
-      padding: $spacing-xs $spacing-sm;
-      text-align: left;
-    }
-  }
-
-  .actions {
-    button {
-      margin-right: $spacing-xs;
-      padding: $spacing-xs $spacing-sm;
-      border: none;
-      border-radius: $button-border-radius;
-      transition: $button-transition;
-      cursor: pointer;
-
-      &:first-child {
-        background-color: $success-color;
-        color: $white-color;
-      }
-
-      &:last-child {
-        background-color: $danger-color;
-        color: $white-color;
-      }
-
-      @include mobile {
-        padding: $spacing-xs;
-      }
-    }
-  }
-}
-
-// Responsive adjustments
-@include desktop {
-  .table {
-    th, td {
-      padding: $spacing-md;
-    }
-  }
-}
-
-@include tablet {
-  .table {
-    th, td {
-      padding: $spacing-sm;
-    }
-  }
-}
-
-@include mobile {
-  .table {
-    font-size: 0.9em;
-
-    thead {
-      display: none; // Optionally hide the header on very small screens
-    }
-
-    tbody {
-      tr {
-        display: block;
-        margin-bottom: $spacing-md;
-      }
-
-      td {
-        display: block;
-        text-align: right;
-        &:before {
-          content: attr(data-label);
-          float: left;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-}
+     

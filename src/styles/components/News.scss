@@ -9,7 +9,7 @@
   width: 80%;
   margin: 3% 18%;
 
-  // .card {
+  // .news {
   //   border: 1px solid #ccc;
   //   border-radius: 5px;
   //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
 
   // }
 
-  .card-header {
+  .news-header {
     background-color: #f0f0f0;
     border-bottom: 1px solid #ccc;
     padding: 10px;
@@ -25,25 +25,25 @@
     margin-bottom: 10px;
   }
 
-  .card-body {
+  .news-body {
     padding: 0;
   }
 
-  .card-row {
+  .news-row {
     display: flex;
     flex-wrap: wrap;
     margin: -10px; /* Adjust margin as needed */
   }
 
-  .card {
-    width: calc(25% - 20px); /* Adjust card width as needed */
+  .news {
+    width: calc(25% - 20px); /* Adjust news width as needed */
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
-  .card-text {
+  .news-text {
     font-size: 18px;
   }
  
@@ -76,10 +76,8 @@
 
 }
 
-
-
 .export-button {
-   background-color: #007bff;
+  background-color: blue;
   color: white;
   border: none;
   padding: 10px 25px;
@@ -87,9 +85,7 @@
   font-size: 20px;
   border-radius: 5px;
   align-items: flex-end;
-  margin-left: 18%;
-  // background-color:'#007bff';
   &:hover {
-    background-color:#007bff;
+    background-color:blue;
   }
 }

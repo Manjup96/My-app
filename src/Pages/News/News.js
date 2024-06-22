@@ -1,13 +1,12 @@
 
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import { TENANAT_NEWS_URL } from "../../services/ApiUrls";
-import { useAuth } from './../../context/AuthContext';
 import "../../styles/components/News.scss";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
 const News = () => {
-  const { user } = useAuth();
   const [newsData, setNewsData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [error, setError] = useState(null);
@@ -23,10 +22,8 @@ const News = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-              manager_email: user.manager_email,
-        building_name: user.building_name,
-        tenant_mobile: user.mobile,
-          
+            manager_email: "ssy.balu@gmail.com",
+            building_name: "Building 2",
           }),
         };
         const response = await fetch(TENANAT_NEWS_URL, requestOptions);
@@ -158,7 +155,7 @@ const News = () => {
       <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
                 {({ loading, error }) =>
                   loading ? "Loading document..." : (
-                    <button  className="export-button">
+                    <button style={{marginLeft:'300px',backgroundColor:'blue'}} className="export-button">
                       Export as Pdf
                     </button>
                   )
@@ -181,24 +178,24 @@ const News = () => {
         {error && <div>Error: {error}</div>}
         {!loading && !error && (
           <>
-            <div className="card-row">
+            <div className="news-row">
               {currentItems.map((news, index) => (
-                <div key={index} className="card">
-                  <div className="card-header" style={{ textAlign: "center" }}>
+                <div key={index} className="news">
+                  <div className="news-header" style={{ textAlign: "center" }}>
                     ID: {news.id}
                   </div>
-                  <div className="card-body">
-                    <p className="card-text">
+                  <div className="news-body">
+                    <p className="news-text">
                       <small className="text-muted">
                         <b>Type : </b> {news.news_type}
                       </small>
                     </p>
-                    <p className="card-text">
+                    <p className="news-text">
                       <small className="text-muted">
                         <b>Description : </b> {news.news_description}
                       </small>
                     </p>
-                    <p className="card-text">
+                    <p className="news-text">
                       <small className="text-muted">
                         <b>Created On :</b>{" "}
                         {new Date(news.created_at).toLocaleDateString("en-IN")}

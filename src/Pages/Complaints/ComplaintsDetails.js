@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import ComplaintsForm from "./ComplaintsForm";
@@ -299,7 +300,7 @@ const ComplaintsDetails = () => {
               }
             </PDFDownloadLink>
 
-            <button className="complaint_button_style" onClick={() => handleOpenForm()}>
+            <button className="complaints_button_style" onClick={() => handleOpenForm()}>
               Add Complaint
             </button>
           </div>
@@ -332,8 +333,7 @@ const ComplaintsDetails = () => {
                       <div className="card-header" style={{ textAlign: "center" }}>
                         ID: {complaint.id}
                       </div>
-                      <br />
-                      <strong>Tenant Name:</strong> {complaint.tenant_name}
+
                       <br />
                       <strong>Complaint Type:</strong> {complaint.complaint_type}
                       <br />

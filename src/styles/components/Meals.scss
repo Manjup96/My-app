@@ -1,6 +1,220 @@
-.Meals-Title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+$primary-color: #007bff;
+$secondary-color: #0056b3;
+$danger-color: #dc3545;
+$danger-hover-color: #c82333;
+$background-color: #f8f9fa;
+$border-color: #dee2e6;
+$text-color: #333;
+
+body {
+  font-family: Arial, sans-serif;
 }
+
+.Complaints-Title {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.content .container .one {
+
+   display: 'flex';
+    justify-content: 'space-between'; 
+    margin-bottom: '40px';
+
+}
+
+.e_button {
+  background-color:  #007bff;
+  color: rgb(248, 240, 240);
+  border: none;
+  padding: 15px 35px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  align-items: flex-end;
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
+
+.complaint_button_style {
+  background-color:   007bffc;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  align-items: flex-end;
+  &:hover {
+    background-color:  #007bff;
+  }
+}
+
+.complaints-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.complaints-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%; /* Ensure the cards container takes the full width */
+}
+
+.complaint-card {
+  background: $background-color;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  padding: 20px;
+  width: 100%; /* Ensure the card takes the full width */
+  max-width: 300px; /* Ensure the card doesn't exceed 300px */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+  .complaint-card-content {
+    margin-bottom: 10px;
+    margin: 25px;
+    strong {
+      color: $text-color;
+    }
+  }
+
+  .complaint-card-actions {
+    display: flex;
+    justify-content: flex-end; // Align actions to the right
+    .complaint-card-icons {
+      display: flex;
+      gap: 10px; // Space between icons
+      font-size: 20px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-secondary {
+      color: $primary-color;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+    .btn-danger {
+      color: $danger-color;
+      &:hover {
+        color: $danger-hover-color;
+      }
+    }
+  }
+}
+
+.fas {
+  margin-right: 5px;
+}
+
+.complaint-card-content .card-header {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .complaint_button_style {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .complaints-list {
+    padding: 0 10px;
+  }
+
+  .complaint-card {
+    padding: 15px;
+    min-width: 50%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .Complaints-Title {
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .container.e_button {
+    max-width: 50%;
+    padding: 5px;
+    font-size:30px;
+    margin-bottom: 20px;
+    // margin-right: 10px;
+  }
+
+  .complaint_button_style {
+    width: 50%;
+    padding: 3px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+
+  .search-bar {
+    min-width: 50%;
+    margin-bottom: 10px;
+  }
+
+  .complaint_card_style {
+    width: 50%;
+    padding: 3px;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .complaint-card {
+    padding: 5px 5px;
+    max-width: 70%;
+    margin-left: 20%;
+  }
+
+}
+
+
+
+
+// Assuming you have a grid system defined in your SCSS
+
+// Define variables for grid breakpoints
+$lg-columns: 12;
+$md-columns: 12;
+$sm-columns: 12;
+
+// Define mixin for grid columns
+@mixin grid-columns($lg, $md, $sm) {
+  @media (min-width: 1200px) {
+    width: percentage($lg / $lg-columns);
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: percentage($md / $md-columns);
+  }
+  @media (min-width: 576px) and (max-width: 991px) {
+    width: percentage($sm / $sm-columns);
+  }
+}
+

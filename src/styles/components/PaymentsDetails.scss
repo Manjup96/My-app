@@ -1,91 +1,302 @@
+.News-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.TableContainer {
+  width: 80%;
+  margin: 3% 18%;
+}
+.search-input{
+  min-width: 70%;
+}
+
+.news-container {
+  position: relative;
+}
+
+.news-container.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none; // Disable interaction with the background
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // Dark overlay background
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Ensure the modal is on top
+  pointer-events: auto; // Enable interaction with the modal
+}
+
+.modal-content {
+  background-color: #fff; // Light color for the modal content
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%; // Adjust the width as needed
+  position: relative;
+}
+
+.close-button1 {
+  
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 30px;
+  color: #f0f0f0;
+  
+}
+
+.pagination-container .pagination {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  // margin-left: 560px;
+ margin-right: 80%;
+ margin-bottom:20px ;
+}
+
 .Payments-Title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.Payments_button {
+  display: flex;
+  justify-content: flex-end; /* Change to flex-end to move the button to the right */
+  margin-top: 10px;
+  // padding-left: 400px;
+}
+
+.payments_button_style {
+  align-items: end;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  /* margin: 20px; */
+  height: 50px;
+  width: 210px;
+  margin-right: 65px;
+
+  &:hover {
+    background-color: #0056b3;
   }
-  
-  .Payments_button {
-    display: flex;
-    justify-content: flex-end; /* Change to flex-end to move the button to the right */
-    margin-top: 10px;
-    margin-right: 200px; /* Adjust this margin as needed */
-  }
-  
-  .complaint_button_style {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  
-    &:hover {
-      background-color: #0056b3;
-    }
-  }
-  
-  .complaint-form-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure the overlay is on top of other content */
-  }
-  
-  /* Style for the popup container */
+}
+
+.complaint-form-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the overlay is on top of other content */
+}
+
+/* Style for the popup container */
+.complaint-form-popup-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  max-width: 400px; /* Adjust as needed */
+  width: 100%;
+}
+
+/* Style for the form elements inside the popup */
+.complaint-form-popup-container form {
+  margin-bottom: 10px;
+}
+
+.complaint-form-popup-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.complaint-form-popup-container input,
+.complaint-form-popup-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.complaint-form-popup-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.complaint-form-popup-container button.close-button1 {
+  margin-top: 10px;
+  background-color: #dc3545; /* Red color for close button */
+  margin: 10px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
   .complaint-form-popup-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    max-width: 400px; /* Adjust as needed */
+    max-width: 100%; /* Adjust for smaller screens */
+  }
+}
+
+.payment-header {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 10px;
+  text-align: center; // Move textAlign to the CSS
+}
+
+.payment-body {
+  padding: 0;
+}
+
+.payment-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px; /* Adjust margin as needed */
+}
+
+.payment-row .payment {
+  width: calc(25% - 20px); /* Adjust payment width as needed */
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.payment-text {
+  font-size: 18px;
+}
+
+.SearchContainer {
+  display: flex;
+  justify-content: flex-end; /* Align search bar to the right */
+  padding-right: 20px; /* Add some padding to the right */
+  margin-bottom: 20px; /* Add some margin below */
+  padding-left: 1200px;
+}
+
+.search-input {
+  width: 30%;
+  max-width: 200px; // Adjust the maximum width as needed
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-input:focus {
+  border-color: blue; // Example of changing border color on focus
+}
+
+
+@media (max-width: 991px) {
+  .TableContainer {
+    width: 70%; /* Adjusted width for better fit on iPad */
+    margin: 3% auto; /* Centering the container with auto margins */
+  }
+
+  .SearchContainer .search-input {
+    width: 100%; /* Full width for search input */
+    max-width: none; /* No maximum width */
+  }
+
+  .Payments_button {
+    justify-content: center; /* Center align button on smaller screens */
+    margin-right: 0;
+  }
+
+  .payments_button_style {
+    margin-right: 0;
+    width: 100%; /* Full width for button */
+  }
+
+  .payment-row .payment {
+    width: calc(50% - 20px); /* Two payments per row with margin adjustment */
+    margin: 10px; /* Adjusted margin for spacing between payments */
+  }
+}
+
+
+@media (max-width: 576px) {
+  .TableContainer {
     width: 100%;
+    margin: 3% 0;
   }
-  
-  /* Style for the form elements inside the popup */
-  .complaint-form-popup-container form {
-    margin-bottom: 10px;
-  }
-  
-  .complaint-form-popup-container label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .complaint-form-popup-container input,
-  .complaint-form-popup-container textarea {
+
+  .SearchContainer .search-input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    max-width: none;
   }
-  
-  .complaint-form-popup-container button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .Payments_button {
+    justify-content: center; /* Center align button on smaller screens */
+    margin-right: 0;
   }
-  
-  .complaint-form-popup-container button.close-button {
-    margin-top: 10px;
-    background-color: #dc3545; /* Red color for close button */
-    margin: 10px;
+
+  .payments_button_style {
+    width: 100%;
+    margin-right: 0;
   }
-  
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    .complaint-form-popup-container {
-      max-width: 100%; /* Adjust for smaller screens */
-    }
+
+  .payment-row .payment {
+    width: 100%; /* Full width payments */
+    margin: 10px 0; /* Adjusted margin for better spacing */
   }
-  
+}
+
+
+
+
+
+
+
+$lg-columns: 12;
+$md-columns: 12;
+$sm-columns: 12;
+
+// Define mixin for grid columns
+@mixin grid-columns($lg, $md, $sm) {
+  @media (min-width: 1200px) {
+    width: percentage($lg / $lg-columns);
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: percentage($md / $md-columns);
+  }
+  @media (min-width: 576px) and (max-width: 991px) {
+    width: percentage($sm / $sm-columns);
+  }
+}
+
