@@ -25,6 +25,10 @@ $button-transition: background-color 0.2s;
   width: 100vw;
   background-color: $background-color;
 
+
+ 
+
+
   form {
     width: 100%;
     max-width: 320px;
@@ -61,6 +65,14 @@ $button-transition: background-color 0.2s;
   
 }
 
+.logo-login{
+  vertical-align: middle;
+  width: 68px;
+  height: 52px;
+  margin-top: -20px;
+  margin-bottom: 14px;
+  margin-left: 130px;
+}
 
 @media (max-width: 768px) {
   .login-form form {
@@ -307,4 +319,40 @@ input[type="button"] {
   font-size: 15px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 341px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(251, 251, 251, 200);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(197, 188, 188, 188);
+    border-radius: 10px;
+  }
+  .logo-login{
+    vertical-align: middle;
+    width: 68px;
+    height: 52px;
+    margin-top: -20px;
+    margin-bottom: 14px;
+    margin-left: 102px;
+  }
+
+  input[type="button"] {
+    border: none;
+    background: cornflowerblue;
+    color: white;
+    padding: 13px 107px;
+        margin: 8px;
+        font-size: 17px;
+        margin-left: 3px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 }

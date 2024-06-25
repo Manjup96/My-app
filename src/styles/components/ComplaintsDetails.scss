@@ -1,7 +1,3 @@
-
-
-
-
 $primary-color: #007bff;
 $secondary-color: #0056b3;
 $danger-color: #dc3545;
@@ -74,6 +70,11 @@ body {
   width: 100%; /* Ensure the cards container takes the full width */
 }
 
+.read-more-link a {
+  text-decoration: none; /* Remove underline */
+  /* Optionally, you can add more styling here */
+}
+
 .complaint-card {
   position: relative; // Ensure the card positions its children relative to itself
  // background: $background-color;
@@ -85,9 +86,11 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   margin-left: 112px;
-  height: 350px;
+  // height: 300px;
   overflow: hidden;
 }
+
+
 
 .complaint-card-content {
   margin-bottom: 10px;
@@ -270,11 +273,6 @@ body {
  overflow-x: hidden;
    }
 }
-
-
-
-
-
 // Define variables for grid breakpoints
 $lg-columns: 12;
 $md-columns: 12;
@@ -292,24 +290,4 @@ $sm-columns: 12;
     width: percentage($sm / $sm-columns);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

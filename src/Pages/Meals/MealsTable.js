@@ -10,6 +10,11 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData }) => {
   const [date, setDate] = useState("");
   const [comments, setComments] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isValidComment, setIsValidComment] = useState(false);
+
+  useEffect(() => {
+    setIsValidComment(comments.length >= 20);
+  }, [comments]);
 
   useEffect(() => {
     if (initialData) {
@@ -52,6 +57,10 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isValidComment) {
+      alert("Description should be at least 20 characters long.");
+      return;
+    }
     setLoading(true);
 
     onSubmit({
@@ -129,10 +138,15 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData }) => {
             onChange={(e) => setComments(e.target.value)}
             required
           ></textarea>
+          {!isValidComment && (
+            <p style={{ color: "red" }}>Minimum 20 characters required.</p>
+          )}
           <div className="form_div">
-            <button type="submit" disabled={loading}>
+
+            <button type="submit" disabled={loading || !isValidComment}>
               {loading ? "Submitting..." : initialData ? "Update" : "Submit"}
             </button>
+
             <button className="close-button" type="button" onClick={onCloseForm}>
               Close
             </button>
