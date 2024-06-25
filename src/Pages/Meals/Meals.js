@@ -17,6 +17,7 @@ const MealsDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mealsPerPage] = useState(8);
   const { user } = useAuth();
+  const [readMoreStates, setReadMoreStates] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,7 +96,7 @@ const MealsDetails = () => {
     }
   };
 
- 
+
   const handleDelete = async (id) => {
     try {
       const confirmDelete = window.confirm("Are you sure you want to delete this complaint?");
@@ -115,8 +116,8 @@ const MealsDetails = () => {
       }
     } catch (error) {
       console.error("Error deleting meal:", error);
-    }
-  };
+    }
+  };
 
 
   const filteredMeals = meals.filter((meal) => {
@@ -130,7 +131,7 @@ const MealsDetails = () => {
     );
   });
 
-  
+
 
   const styles = StyleSheet.create({
     table: {
@@ -180,7 +181,7 @@ const MealsDetails = () => {
             <View style={styles.idCol}>
               <Text style={styles.tableCell}>Id</Text>
             </View>
-            
+
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>breakfast</Text>
             </View>
@@ -202,7 +203,7 @@ const MealsDetails = () => {
               <View style={styles.idCol}>
                 <Text style={styles.tableCell}>{meal.id}</Text>
               </View>
-              
+
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{meal.breakfast}</Text>
               </View>
@@ -233,7 +234,7 @@ const MealsDetails = () => {
             <View style={styles.idCol}>
               <Text style={styles.tableCell}>Id</Text>
             </View>
-         
+
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>breakfast</Text>
             </View>
@@ -254,7 +255,7 @@ const MealsDetails = () => {
             <View style={styles.idCol}>
               <Text style={styles.tableCell}>{meal.id}</Text>
             </View>
-           
+
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>{meal.breakfast}</Text>
             </View>
@@ -293,26 +294,33 @@ const MealsDetails = () => {
     }
   };
 
+  const handleToggleReadMore = (id) => {
+    setReadMoreStates((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
   return (
     <div >
-      <Sidebar/>
+      <Sidebar />
 
       <div className="main">
 
-          <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
-            Meals Details
-          </h1>
-        
+        <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
+          Meals Details
+        </h1>
+
         <div className="container mt-4">
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
 
             <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
               {({ blob, url, loading, error }) =>
-                  <button className="e-button-meals" >
-                    Export all as Pdf
-                  </button>
-                
+                <button className="e-button-meals" >
+                  Export all as Pdf
+                </button>
+
               }
             </PDFDownloadLink>
 
@@ -336,50 +344,60 @@ const MealsDetails = () => {
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
               </div>
-              {currentMeals.map((meal, index) => (
-                <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">   
-                  <div className="meal-card p-3">
-                    <div className="meal-card-content">
-                      <div className="card-header" style={{ textAlign: "center", marginLeft:'-10px' }}>
-                        ID: {meal.id}
+              {currentMeals.map((meal, index) => {
+                const readMore = readMoreStates[meal.id] || false; // Declare inside the map function block
+                return (
+                  <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
+                    <div className="meal-card p-3">
+                      <div className="meal-card-content">
+                        <div className="card-header" style={{ textAlign: "center", marginLeft: '-10px' }}>
+                          ID: {meal.id}
+                        </div>
+
+                        <strong>breakfast:</strong> {meal.breakfast}
+                        <br />
+                        <strong>lunch:</strong> {meal.lunch}
+                        <br />
+                        <strong>dinner:</strong> {meal.dinner}
+                        <br />
+                        <strong>comments:</strong>
+                        {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
+                        {meal.comments.length > 40 && (
+                          <span className="read-more-link">
+                            <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
+                              {readMore ? "...Show Less" : "...Read More"}
+                            </a>
+                          </span>
+                        )}
+                        <br />
+                        <strong>date:</strong> {meal.date}
                       </div>
-                     
-                      <strong>breakfast:</strong> {meal.breakfast}
-                      <br />
-                      <strong>lunch:</strong> {meal.lunch}
-                      <br />
-                      <strong>dinner:</strong> {meal.dinner}
-                      <br />
-                      <strong>comments:</strong> {meal.comments}
-                      <br />
-                      <strong>date:</strong> {meal.date}
-                    </div>
-                    <div   className="meal-card-actions mt-2">
-                      <div className="meal-card-icons">
-                        <PDFDownloadLink
-                        className="pdf-link"
-                          document={<IndividualMealDocument meal={meal} />}
-                          fileName={`meal_${meal.id}.pdf`}
-                        >
-                          {({ blob, url, loading, error }) =>
-                            <FontAwesomeIcon icon={faFileExport} />
-                          }
-                        </PDFDownloadLink>
+                      <div className="meal-card-actions mt-2">
+                        <div className="meal-card-icons">
+                          <PDFDownloadLink
+                            className="pdf-link"
+                            document={<IndividualMealDocument meal={meal} />}
+                            fileName={`meal_${meal.id}.pdf`}
+                          >
+                            {({ blob, url, loading, error }) =>
+                              <FontAwesomeIcon icon={faFileExport} />
+                            }
+                          </PDFDownloadLink>
 
-                        <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
-                          <FontAwesomeIcon icon={faEdit} />
-                        </button>
+                          <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
+                            <FontAwesomeIcon icon={faEdit} />
+                          </button>
 
-                        <button className="btn btn-danger red" onClick={() => handleDelete(meal.id)}>
-                          <FontAwesomeIcon icon={faTrash} />
-                        </button>
-
-
+                          <button className="btn btn-danger red" onClick={() => handleDelete(meal.id)}>
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
+
             </div>
 
             {showForm && (
@@ -415,7 +433,7 @@ const MealsDetails = () => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

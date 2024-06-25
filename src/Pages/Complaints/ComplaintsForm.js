@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from "react";
 import "../../styles/components/ComplaintsForm.scss";
 import { useAuth } from '../../context/AuthContext';
@@ -25,6 +22,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
   const [response, setResponse] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isValidDescription, setIsValidDescription] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -58,6 +56,10 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
   }, [initialData, user]);
 
   useEffect(() => {
+    setIsValidDescription(description.length >= 20);
+  }, [description]);
+
+  useEffect(() => {
     if (showAlert) {
       const timer = setTimeout(() => {
         setShowAlert(false);
@@ -68,6 +70,11 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isValidDescription) {
+      alert("Description should be at least 20 characters long.");
+      return;
+    }
+
     onSubmit({
       complaint_type: complaintType,
       complaint_description: description,
@@ -86,7 +93,6 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
       response: response,
     });
 
-
     alert(initialData ? "Successfully updated" : "Successfully added");
 
     setShowAlert(true);
@@ -96,6 +102,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
       window.location.reload();
     }, 1000);
   };
+
   return (
     <div className="complaint-form-popup-overlay">
       <div className="complaint-form-popup-container">
@@ -117,7 +124,10 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
             onChange={(e) => setDescription(e.target.value)}
             required
           ></textarea>
-          <button type="submit" disabled={loading}>
+          {!isValidDescription && (
+            <p style={{ color: "red" }}>Minimum 20 characters required.</p>
+          )}
+          <button type="submit" disabled={loading || !isValidDescription}>
             {loading ? "Submitting..." : initialData ? "Update" : "Submit"}
           </button>
           <button className="close-button" onClick={onCloseForm}>
@@ -137,4 +147,3 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
 };
 
 export default ComplaintsForm;
-
