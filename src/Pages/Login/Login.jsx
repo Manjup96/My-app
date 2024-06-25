@@ -5,6 +5,7 @@ import { loginUser } from '../../services/ApiServices';
 import '../../styles/components/LoginForm.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '../../Asset/images/company logo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('chetan.chauhan@example.com');
@@ -51,6 +52,9 @@ const Login = () => {
       />
 
       <div className="login-box">
+      <div >
+      <img className='logo-login' src={logo} alt="Logo" />
+      </div>
         <h2>PG Tenant Login</h2>
         <form>
           <div className="user-box">
