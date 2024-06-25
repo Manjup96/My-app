@@ -212,7 +212,9 @@ const ComplaintsDetails = () => {
                 <Text style={styles.tableCell}>{complaint.complaint_description}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.created_date}</Text>
+                {/* <Text style={styles.tableCell}>{complaint.created_date}</Text> */}
+                {/* <Text style={styles.tableCell}>{formatDate(complaint.created_date)}</Text> */}
+                <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
@@ -403,6 +405,26 @@ const ComplaintsDetails = () => {
       </div>
     
   );
+};
+
+// const formatDate = (dateString) => {
+//   const date = new Date(dateString);
+//   const day = String(date.getDate()).padStart(2, '0');
+//   console.log('date',date);
+//   const month = String(date.getMonth() + 1).padStart(2, '0');
+//   const year = date.getFullYear();
+//   console.log('day',day);
+//   console.log('month',month);
+//   console.log('year',year);
+//   return `${day}/${month}/${year}`;
+// };
+
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split(' ')[0].split('-');
+  console.log('day',day);
+  console.log('month',month);
+  console.log('year',year);
+  return `${day}/${month}/${year}`;
 };
 
 export default ComplaintsDetails;
