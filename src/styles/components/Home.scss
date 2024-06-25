@@ -1,96 +1,130 @@
+
+
 .Meals-Title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+@media (min-width: 1024px) {
+  .welcome-message {
+    margin-left: 29%;
+    margin-top: 37px;
   }
-  
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap; // Make cards wrap on smaller screens
+  margin: 20px;
+
   @media (min-width: 1024px) {
-    .welcome-message {
-      margin-left: 29%;
-      margin-top: 37px;
-    }
+    justify-content: space-between;
   }
-  
-  .dashboard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; // Make cards wrap on smaller screens
-    margin: 20px;
-  
-    @media (min-width: 768px) {
-      justify-content: space-between;
-    }
-  
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column; // Stack cards vertically on medium screens (iPad)
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column; // Stack cards vertically on small screens (mobile)
+  }
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  flex: 1;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+  max-width: calc(33.333% - 20px); // Ensures three cards per row with space between them
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+    margin: 10px 0;
+    font-size: 20px;
+
     @media (max-width: 767px) {
-      flex-direction: column; // Stack cards vertically on small screens
+      font-size: 18px;
     }
   }
-  
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  p {
+    font-size: 17px;
+    font-weight: bold;
+
+    @media (max-width: 767px) {
+      font-size: 10px;
+    }
+  }
+
+  .card-icon {
+    margin-bottom: 10px;
+    color: #a8afa8; // Change the color as needed
+
+    @media (max-width: 767px) {
+      font-size: 1.5em; // Adjust icon size for small screens
+    }
+  }
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    max-width: 100%; // Full width on medium screens (iPad)
+  }
+
+  @media (max-width: 567px) {
+    max-width: 90%; // Full width on small screens (mobile)
+    
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-link {
+  text-decoration: none; // Removes the underline
+  color: black; // Changes the font color to black
+
+  &:hover {
+    color: black; // Ensures the font color stays black on hover
+  }
+}
+
+
+
+@media (max-width: 576px){
+
+  .card{
+ align-items: center;
+ margin-left: 10%;
+  }
+  .container-fluid{
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .welcome-message{
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #333;
-    flex: 1 1 100%;
-    margin: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.5s ease-in-out;
-  
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-  
-    h2 {
-      margin: 10px 0;
-      font-size: 20px;
-  
-      @media (max-width: 767px) {
-        font-size: 18px;
-      }
-    }
-  
-    p {
-      font-size: 11px;
-      font-weight: bold;
-  
-      @media (max-width: 767px) {
-        font-size: 10px;
-      }
-    }
-  
-    .card-icon {
-      margin-bottom: 10px;
-      color: #a8afa8; // Change the color as needed
-  
-      @media (max-width: 767px) {
-        font-size: 1.5em; // Adjust icon size for small screens
-      }
-    }
-  
-    @media (min-width: 768px) {
-      flex: 1 1 calc(33.333% - 20px); // Three cards per row on medium to large screens
-    }
-  
-    @media (max-width: 767px) {
-      flex: 1 1 100%; // Full width on small screens
-    }
   }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}
+

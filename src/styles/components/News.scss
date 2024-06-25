@@ -9,13 +9,6 @@
   width: 80%;
   margin: 3% 18%;
 
-  // .news {
-  //   border: 1px solid #ccc;
-  //   border-radius: 5px;
-  //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  //   padding: 20px;
-
-  // }
 
   .news-header {
     background-color: #f0f0f0;
@@ -48,6 +41,8 @@
   }
  
 }
+
+
 .search-input {
   width: 20%;
   max-width: 200px; // Adjust the maximum width as needed
@@ -57,6 +52,15 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.SearchContainer_news {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  padding-left: 1200px;
+  margin-top: -38px;
 }
 
 .search-input::placeholder {
@@ -84,8 +88,98 @@
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
+  margin-left:18%;
   align-items: flex-end;
   &:hover {
     background-color:blue;
+  }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .TableContainer .news {
+    width: calc(44% - -10px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 218px;
+}
+.SearchContainer_news {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 64px;
+  margin-bottom: 20px;
+  padding-left: 26px;
+  margin-top: 20px;
+  width: 60%;
+  margin-left: 120px;
+}
+.export-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-left: 39%;
+  margin-top: 10px;
+  align-items: flex-end;
+  &:hover {
+    background-color:blue;
+  }
+}
+}
+
+
+@media (max-width: 767px) {
+  .TableContainer .news {
+    width: calc(76% - 20px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 85px;
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 195px; 
+  }
+
+  .SearchContainer_news {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 89%;
+    margin-left: -103px;
+  }
+  .export-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+        margin-left: 108px;
+        width: 48%;
+        margin-top: 10px;
+    &:hover {
+      background-color:blue;
+    }
   }
 }

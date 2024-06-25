@@ -16,9 +16,9 @@ const ComplaintsDetails = () => {
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  // const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [complaintsPerPage] = useState(9);
+  const [complaintsPerPage] = useState(8);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -60,21 +60,29 @@ const ComplaintsDetails = () => {
   const handleFormSubmit = async (formData) => {
     try {
       const requestOptions = {
-        method: selectedComplaint ? "POST" : "POST",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           id: selectedComplaint ? selectedComplaint.id : undefined,
+          tenant_mobile: user.mobile,
+          tenant_email: user.email,
+          manager_email: user.manager_email,
+          manager_mobile: user.manager_mobile,
+          building_name: user.building_name,
+          tenant_name: user.name,
         }),
       };
-
-      const url = selectedComplaint ? TENANAT_COMPLAINT_UPDATE_URL : TENANAT_COMPLAINT_URL;
-
+  
+      const url = selectedComplaint
+        ? TENANAT_COMPLAINT_UPDATE_URL
+        : "https://iiiqbets.com/pg-management/Complaints-POST-API-with-manager-buiding.php";
+  
       const response = await fetch(url, requestOptions);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
+  
       const data = await response.json();
       if (selectedComplaint) {
         setComplaints((prev) =>
@@ -285,15 +293,15 @@ const ComplaintsDetails = () => {
 
   return (
     <div>
-      <Sidebar onToggle={setSidebarCollapsed} />
-      <div className={`content ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <Sidebar  />
+      {/* <div className={`content ${sidebarCollapsed ? 'collapsed' : ''}`}> */}
         <div><h1 style={{ marginTop: '30px' }} className="text-center flex-grow-1">Complaints Details</h1></div>
         <div className="container mt-4">
           <div style={{display:'flex',justifyContent:'space-between',marginBottom:'40px'}} className=" ">
             <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
               {({ blob, url, loading, error }) =>
-                loading ? "Loading document..." : (
-                  <button className="e_button">
+                loading ? "" : (
+                  <button className="e_button_complaints">
                     Export all as Pdf
                   </button>
                 )
@@ -305,7 +313,7 @@ const ComplaintsDetails = () => {
             </button>
           </div>
 
-          <div style={{display:'flex',justifyContent:'flex-end',marginBottom:'40px'}}  className="">
+          <div  className="SearchContainer_complaints">
             <input
               type="text"
               placeholder="Search complaints"
@@ -327,13 +335,13 @@ const ComplaintsDetails = () => {
             <h2 style={{ marginBottom: '30px' }}>Complaints List</h2>
             <div className="row complaints-cards">
               {currentComplaints.map((complaint, index) => (
-                <div key={index} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
                   <div className="complaint-card p-3">
                     <div className="complaint-card-content">
                       <div className="card-header" style={{ textAlign: "center" }}>
                         ID: {complaint.id}
                       </div>
-
+                      
                       <br />
                       <strong>Complaint Type:</strong> {complaint.complaint_type}
                       <br />
@@ -356,10 +364,10 @@ const ComplaintsDetails = () => {
                           }
                         </PDFDownloadLink>
 
-                        <button className="btn btn-secondary me-2" onClick={() => handleOpenForm(complaint)}>
+                        <button className="btn-edit-complaints " onClick={() => handleOpenForm(complaint)}>
                           <FontAwesomeIcon icon={faEdit} />
                         </button>
-                        <button className="btn btn-danger" onClick={() => handleDeleteComplaint(complaint.id)}>
+                        <button className="btn-delete-complaints " onClick={() => handleDeleteComplaint(complaint.id)}>
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </div>
@@ -393,8 +401,47 @@ const ComplaintsDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
 export default ComplaintsDetails;
+
+
+
+
+
+
+
+
+/////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

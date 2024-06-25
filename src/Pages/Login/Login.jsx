@@ -51,7 +51,7 @@ const Login = () => {
       />
 
       <div className="login-box">
-        <h2>Admin Login</h2>
+        <h2>PG Tenant Login</h2>
         <form>
           <div className="user-box">
             <input

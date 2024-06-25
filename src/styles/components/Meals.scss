@@ -6,24 +6,33 @@ $background-color: #f8f9fa;
 $border-color: #dee2e6;
 $text-color: #333;
 
+.meals-list .row {
+  width: 100%;
+}
+
+
 body {
   font-family: Arial, sans-serif;
 }
 
-.Complaints-Title {
+.main{
+  margin-left: 15%;
+}
+.search-bar-meals{
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 20px;
-  padding: 0 20px;
+  justify-content: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  min-width: 20%;
+  margin-left: 80%;
+  padding: 6px;
+  border-radius: 7px;
 }
 
-.search-bar {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+
+
+
 
 .content .container .one {
 
@@ -33,7 +42,7 @@ body {
 
 }
 
-.e_button {
+.e-button-meals {
   background-color:  #007bff;
   color: rgb(248, 240, 240);
   border: none;
@@ -47,8 +56,8 @@ body {
   }
 }
 
-.complaint_button_style {
-  background-color:   007bffc;
+.meal_button_style {
+  background-color:    #007bff;
   color: white;
   border: none;
   padding: 15px 35px;
@@ -61,23 +70,17 @@ body {
   }
 }
 
-.complaints-list {
+.meals-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
 }
 
-.complaints-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  width: 100%; /* Ensure the cards container takes the full width */
-}
 
-.complaint-card {
-  background: $background-color;
+
+.meal-card {
+  // background: $background-color;
   border: 1px solid $border-color;
   border-radius: 5px;
   padding: 20px;
@@ -85,22 +88,25 @@ body {
   max-width: 300px; /* Ensure the card doesn't exceed 300px */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  height: 310px;
 
-  .complaint-card-content {
+  .meal-card-content {
     margin-bottom: 10px;
     margin: 25px;
+    overflow: hidden;
     strong {
       color: $text-color;
     }
   }
 
-  .complaint-card-actions {
+  .meal-card-actions {
     display: flex;
-    justify-content: flex-end; // Align actions to the right
-    .complaint-card-icons {
+    // justify-content: flex-end; // Align actions to the right
+    .meal-card-icons {
       display: flex;
       gap: 10px; // Space between icons
       font-size: 20px;
+      margin-left: 80px;
     }
 
     button {
@@ -128,7 +134,7 @@ body {
   margin-right: 5px;
 }
 
-.complaint-card-content .card-header {
+.meal-card-content .card-header {
   background-color: #f0f0f0;
   border-bottom: 1px solid #ccc;
   padding: 10px;
@@ -137,37 +143,104 @@ body {
 }
 
 @media (max-width: 768px) {
-  .complaint_button_style {
-    padding: 10px 20px;
+  .meal_button_style {
+    padding: 5px 10px;
     font-size: 16px;
   }
+  .meal-card-content
+  .card-header {
+    padding: 10px;
+    width: 100%;
+  }
 
-  .complaints-list {
+  .meals-list {
     padding: 0 10px;
   }
 
-  .complaint-card {
+  .meal-card {
     padding: 15px;
     min-width: 50%;
     max-width: none;
+    height: 330px;
   }
+
+  .search-bar-meals{
+    display: flex; 
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 42%;
+    margin-left: 27%;
+    padding: 10px;
+    border-radius: 10px;
+  
+  }
+  .container .pdf-container .meal_button_style{
+    font-size: 22px;
+    padding: 11px 40px;
+    max-width: 40%;
+
+  }
+  .container .pdf-container .e-button-meals {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 13px 35px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+
+  .meal-card-content {
+    padding: 5px;
+    margin-left: 1px;
+  }
+
+  .meal-card-actions .meal-card-icons .pdf-link{
+    font-size: 20px;
+    // margin-left: 250px;
+    margin-right: -25px;
+    margin-top: 5px;
+
+  }
+  .meal-card-actions .meal-card-icons .blue{
+
+    font-size: 20px;
+    margin-right: 40px;
+    margin-left: 20px;
+
+
+  }
+  .meal-card-actions .meal-card-icons .red{
+
+    font-size: 20px;
+    margin-left: -20px;
+  }
+  .meal-card-actions {
+    margin-left: -50px;
+  }
+ 
 }
 
 @media (max-width: 576px) {
-  .Complaints-Title {
-    justify-content: center;
-    padding: 0 10px;
+
+
+  .main .container .pdf-container {
+    margin-left: 30px;
   }
 
-  .container.e_button {
-    max-width: 50%;
-    padding: 5px;
-    font-size:30px;
-    margin-bottom: 20px;
-    // margin-right: 10px;
+  .container .e-button-meals {
+    width: 80%;
+    padding: 4px;
+    font-size: 12px;
+    //margin-bottom: 20px;
+    margin-right: 1px;
+    margin-left: 50px;
   }
 
-  .complaint_button_style {
+  .meal_button_style {
     width: 50%;
     padding: 3px;
     font-size: 15px;
@@ -175,22 +248,68 @@ body {
     margin-left: 10px;
   }
 
-  .search-bar {
-    min-width: 50%;
-    margin-bottom: 10px;
+  .search-bar-meals{
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    min-width: 61%;
+    margin-left: 27%;
+    padding: 6px;
+    border-radius: 7px;
+  
   }
 
-  .complaint_card_style {
-    width: 50%;
-    padding: 3px;
-    font-size: 15px;
-    margin-bottom: 10px;
-  }
 
-  .complaint-card {
+
+  .meal-card {
     padding: 5px 5px;
-    max-width: 70%;
-    margin-left: 20%;
+    max-width: 100%;
+    margin-left: 5%;
+  }
+  .meal-card .meal-card-content {
+    padding: 5px;
+    margin-left: 40px;
+  }
+
+  .main
+  .meal-card-actions .meal-card-icons .pdf-link{
+    font-size: 15px;
+    margin-left: -20px;
+    margin-top: 10px;
+
+  }
+  .meal-card-actions .meal-card-icons .blue{
+
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .meal-card-actions .meal-card-icons{
+    margin-left: -100px;
+    
+  }
+  .meal-card-actions{
+    margin-left: 20px;
+  }
+
+  .container .pdf-container .e-button-meals {
+    width: 72%;
+    padding: 6px;
+    font-size: 18px;
+    margin-right: 41px;
+    margin-left: -9px;
+  }
+  .container .pdf-container .meal_button_style{
+    font-size: 18px;
+    padding: 18px;
+    max-width: 52%
+
+  }
+  .pagination {
+    margin-left: 30px;
+
+
   }
 
 }
@@ -198,9 +317,7 @@ body {
 
 
 
-// Assuming you have a grid system defined in your SCSS
 
-// Define variables for grid breakpoints
 $lg-columns: 12;
 $md-columns: 12;
 $sm-columns: 12;
@@ -217,4 +334,3 @@ $sm-columns: 12;
     width: percentage($sm / $sm-columns);
   }
 }
-

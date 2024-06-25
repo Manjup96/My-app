@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "pg-tenant",
+    "staging": "pg-tenant-new"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
-import ComplaintsForm from "./MealsTable"
+import MealsTable from "./MealsTable"
 import { TENANT_MEALS_GET_URL, TENANT_MEALS_UPDATE_URL, TENANT_MEALS_POST_URL } from "../../services/ApiUrls";
 import { useAuth } from './../../context/AuthContext';
 import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
 import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
+import "../../styles/components/Meals.scss";
 
-import '../../styles/components/Meals.scss';
-
-
-const ComplaintsDetails = () => {
+const MealsDetails = () => {
   const [showForm, setShowForm] = useState(false);
-  const [selectedComplaint, setSelectedComplaint] = useState(null);
-  const [complaints, setComplaints] = useState([]);
+  const [selectedMeal, setselectedMeal] = useState(null);
+  const [meals, setMeals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [complaintsPerPage] = useState(8);
+  const [mealsPerPage] = useState(8);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -38,7 +35,7 @@ const ComplaintsDetails = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setComplaints(data);
+        setMeals(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,14 +44,14 @@ const ComplaintsDetails = () => {
     fetchData();
   }, [user]);
 
-  const handleOpenForm = (complaint = null) => {
-    setSelectedComplaint(complaint);
+  const handleOpenForm = (meal = null) => {
+    setselectedMeal(meal);
     setShowForm(true);
   };
 
   const handleCloseForm = () => {
     setShowForm(false);
-    setSelectedComplaint(null);
+    setselectedMeal(null);
   };
 
   const handleFormSubmit = async (formData) => {
@@ -73,7 +70,7 @@ const ComplaintsDetails = () => {
         }),
       };
 
-      const url = selectedComplaint
+      const url = selectedMeal
         ? TENANT_MEALS_UPDATE_URL
         : TENANT_MEALS_POST_URL;
 
@@ -83,14 +80,14 @@ const ComplaintsDetails = () => {
       }
 
       const data = await response.json();
-      if (selectedComplaint) {
-        setComplaints((prev) =>
-          prev.map((complaint) =>
-            complaint.id === selectedComplaint.id ? data : complaint
+      if (selectedMeal) {
+        setMeals((prev) =>
+          prev.map((meal) =>
+            meal.id === selectedMeal.id ? data : meal
           )
         );
       } else {
-        setComplaints([...complaints, data]);
+        setMeals([...meals, data]);
       }
       handleCloseForm();
     } catch (error) {
@@ -98,66 +95,42 @@ const ComplaintsDetails = () => {
     }
   };
 
+ 
   const handleDelete = async (id) => {
     try {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      };
-      const response = await fetch("https://iiiqbets.com/pg-management/delete-Meals-API.php", requestOptions);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      setComplaints((prevState) =>
-        prevState.filter((complaint) => complaint.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting data:", error);
-    }
-  };
+      const confirmDelete = window.confirm("Are you sure you want to delete this complaint?");
+      if (confirmDelete) {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        };
 
-  const filteredComplaints = complaints.filter((complaint) => {
+        const response = await fetch("https://iiiqbets.com/pg-management/delete-Meals-API.php", requestOptions);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        setMeals(meals.filter((meal) => meal.id !== id));
+      }
+    } catch (error) {
+      console.error("Error deleting meal:", error);
+    }
+  };
+
+
+  const filteredMeals = meals.filter((meal) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
-      (complaint.id && complaint.id.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.tenant_name && complaint.tenant_name.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.breakfast && complaint.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.lunch && complaint.lunch.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.dinner && complaint.dinner.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.date && complaint.date.toLowerCase().includes(lowerSearchTerm))
+      (meal.id && meal.id.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.breakfast && meal.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.lunch && meal.lunch.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.dinner && meal.dinner.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.date && meal.date.toLowerCase().includes(lowerSearchTerm))
     );
   });
 
-  // const MyDocument = () => (
-  //   <Document>
-  //     <Page>
-  //       {complaints.map((complaint, index) => (
-  //         <Text key={index}>
-  //           Id: {complaint.id}, TenantName: {complaint.tenant_name}, breakfast:{" "}
-  //           {complaint.breakfast}, lunch: {complaint.lunch}, dinner:{" "}
-  //           {complaint.dinner}, comments: {complaint.comments}, Date:{" "}
-  //           {complaint.date},
-  //         </Text>
-  //       ))}
-  //     </Page>
-  //   </Document>
-  // );
-
-  // const IndividualComplaintDocument = ({ complaint }) => (
-  //   <Document>
-  //     <Page>
-  //       <Text>
-  //         Id: {complaint.id}, TenantName: {complaint.tenant_name}, breakfast:{" "}
-  //         {complaint.breakfast}, lunch: {complaint.lunch}, dinner:{" "}
-  //         {complaint.dinner}, comments: {complaint.comments}, Date:{" "}
-  //         {complaint.date},
-  //       </Text>
-  //     </Page>
-  //   </Document>
-  // );
-
-
+  
 
   const styles = StyleSheet.create({
     table: {
@@ -199,7 +172,7 @@ const ComplaintsDetails = () => {
     },
   });
 
-  const MyDocument = ({ complaints }) => (
+  const MyDocument = ({ meals }) => (
     <Document>
       <Page style={{ padding: 10 }}>
         <View style={styles.table}>
@@ -207,9 +180,7 @@ const ComplaintsDetails = () => {
             <View style={styles.idCol}>
               <Text style={styles.tableCell}>Id</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>Tenant Name</Text>
-            </View>
+            
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>breakfast</Text>
             </View>
@@ -226,28 +197,26 @@ const ComplaintsDetails = () => {
               <Text style={styles.tableCell}>date</Text>
             </View>
           </View>
-          {complaints.map((complaint, index) => (
+          {meals.map((meal, index) => (
             <View key={index} style={styles.tableRow}>
               <View style={styles.idCol}>
-                <Text style={styles.tableCell}>{complaint.id}</Text>
+                <Text style={styles.tableCell}>{meal.id}</Text>
               </View>
+              
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.breakfast}</Text>
+                <Text style={styles.tableCell}>{meal.breakfast}</Text>
               </View>
               <View style={styles.descriptionCol}>
-                <Text style={styles.tableCell}>{complaint.lunch}</Text>
+                <Text style={styles.tableCell}>{meal.lunch}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.dinner}</Text>
+                <Text style={styles.tableCell}>{meal.dinner}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.comments}</Text>
+                <Text style={styles.tableCell}>{meal.comments}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.date}</Text>
+                <Text style={styles.tableCell}>{meal.date}</Text>
               </View>
             </View>
           ))}
@@ -256,7 +225,7 @@ const ComplaintsDetails = () => {
     </Document>
   );
 
-  const IndividualComplaintDocument = ({ complaint }) => (
+  const IndividualMealDocument = ({ meal }) => (
     <Document>
       <Page style={{ padding: 10 }}>
         <View style={styles.table}>
@@ -264,9 +233,7 @@ const ComplaintsDetails = () => {
             <View style={styles.idCol}>
               <Text style={styles.tableCell}>Id</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>Tenant Name</Text>
-            </View>
+         
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>breakfast</Text>
             </View>
@@ -285,34 +252,32 @@ const ComplaintsDetails = () => {
           </View>
           <View style={styles.tableRow}>
             <View style={styles.idCol}>
-              <Text style={styles.tableCell}>{complaint.id}</Text>
+              <Text style={styles.tableCell}>{meal.id}</Text>
             </View>
+           
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{complaint.breakfast}</Text>
+              <Text style={styles.tableCell}>{meal.breakfast}</Text>
             </View>
             <View style={styles.descriptionCol}>
-              <Text style={styles.tableCell}>{complaint.lunch}</Text>
+              <Text style={styles.tableCell}>{meal.lunch}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{complaint.dinner}</Text>
+              <Text style={styles.tableCell}>{meal.dinner}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{complaint.comments}</Text>
+              <Text style={styles.tableCell}>{meal.comments}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{complaint.date}</Text>
+              <Text style={styles.tableCell}>{meal.date}</Text>
             </View>
           </View>
         </View>
       </Page>
     </Document>
   );
-  const indexOfLastComplaint = currentPage * complaintsPerPage;
-  const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage;
-  const currentComplaints = filteredComplaints.slice(indexOfFirstComplaint, indexOfLastComplaint);
+  const indexOfLastMeal = currentPage * mealsPerPage;
+  const indexOfFirstMeal = indexOfLastMeal - mealsPerPage;
+  const currentMeals = filteredMeals.slice(indexOfFirstMeal, indexOfLastMeal);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -323,89 +288,89 @@ const ComplaintsDetails = () => {
   };
 
   const nextPage = () => {
-    if (currentPage < Math.ceil(filteredComplaints.length / complaintsPerPage)) {
+    if (currentPage < Math.ceil(filteredMeals.length / mealsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
 
   return (
-    <div>
-      <Sidebar onToggle={setSidebarCollapsed} />
-      <div className={`content ${sidebarCollapsed ? "collapsed" : ""}`}>
+    <div >
+      <Sidebar/>
+
+      <div className="main">
 
           <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
             Meals Details
           </h1>
         
         <div className="container mt-4">
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
 
-            <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
+            <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
               {({ blob, url, loading, error }) =>
-                loading ? "Loading document..." : (
-                  <button className="e_button" style={{ marginLeft: '-10px', backgroundColor: ' #007bff' }}>
+                  <button className="e-button-meals" >
                     Export all as Pdf
                   </button>
-                )
+                
               }
             </PDFDownloadLink>
 
-            <button className="complaint_button_style" onClick={() => handleOpenForm()}>
+            <button className="meal_button_style" onClick={() => handleOpenForm()}>
               Add Meal
             </button>
           </div>
-          <div className="d-flex justify-content-end mb-4">
+          <div className="searchbar-meals">
             <input
               type="text"
-              placeholder="Search complaints"
+              placeholder="Search meal..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="form-control w-25 search-bar"
+              className="search-bar-meals"
             />
           </div>
 
-          <div className="complaints-list mt-4">
+          <div className="meals-list mt-4">
             <h2 style={{ marginBottom: "30px" }}>Meals List</h2>
             <div className="row">
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
               </div>
-              {currentComplaints.map((complaint, index) => (
-                <div key={index} className="col-lg-3 col-md-4 col-sm-6 mb-4">
-                  <div className="complaint-card p-3">
-                    <div className="complaint-card-content">
-                      <div className="card-header" style={{ textAlign: "center" }}>
-                        ID: {complaint.id}
+              {currentMeals.map((meal, index) => (
+                <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">   
+                  <div className="meal-card p-3">
+                    <div className="meal-card-content">
+                      <div className="card-header" style={{ textAlign: "center", marginLeft:'-10px' }}>
+                        ID: {meal.id}
                       </div>
-                      <strong>TenantName:</strong> {complaint.tenant_name}
+                     
+                      <strong>breakfast:</strong> {meal.breakfast}
                       <br />
-                      <strong>breakfast:</strong> {complaint.breakfast}
+                      <strong>lunch:</strong> {meal.lunch}
                       <br />
-                      <strong>lunch:</strong> {complaint.lunch}
+                      <strong>dinner:</strong> {meal.dinner}
                       <br />
-                      <strong>dinner:</strong> {complaint.dinner}
+                      <strong>comments:</strong> {meal.comments}
                       <br />
-                      <strong>comments:</strong> {complaint.comments}
-                      <br />
-                      <strong>date:</strong> {complaint.date}
+                      <strong>date:</strong> {meal.date}
                     </div>
-                    <div className="complaint-card-actions mt-2">
-                      <div className="complaint-card-icons">
+                    <div   className="meal-card-actions mt-2">
+                      <div className="meal-card-icons">
                         <PDFDownloadLink
-                          document={<IndividualComplaintDocument complaint={complaint} />}
-                          fileName={`complaint_${complaint.id}.pdf`}
+                        className="pdf-link"
+                          document={<IndividualMealDocument meal={meal} />}
+                          fileName={`meal_${meal.id}.pdf`}
                         >
                           {({ blob, url, loading, error }) =>
-                            loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
+                            <FontAwesomeIcon icon={faFileExport} />
                           }
                         </PDFDownloadLink>
 
-                        <button className="btn btn-secondary me-2" onClick={() => handleOpenForm(complaint)}>
+                        <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
                           <FontAwesomeIcon icon={faEdit} />
                         </button>
 
-                        <button className="btn btn-danger" onClick={() => handleDelete(complaint.id)}>
+                        <button className="btn btn-danger red" onClick={() => handleDelete(meal.id)}>
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
 
@@ -419,10 +384,10 @@ const ComplaintsDetails = () => {
 
             {showForm && (
               <div className="form-container">
-                <ComplaintsForm
+                <MealsTable
                   onCloseForm={handleCloseForm}
                   onSubmit={handleFormSubmit}
-                  initialData={selectedComplaint}
+                  initialData={selectedMeal}
                 />
               </div>
             )}
@@ -433,14 +398,14 @@ const ComplaintsDetails = () => {
                     Prev
                   </button>
                 </li>
-                {[...Array(Math.ceil(filteredComplaints.length / complaintsPerPage)).keys()].map((number) => (
+                {[...Array(Math.ceil(filteredMeals.length / mealsPerPage)).keys()].map((number) => (
                   <li key={number} className={`page-item ${currentPage === number + 1 ? 'active' : ''}`}>
                     <button onClick={() => paginate(number + 1)} className="page-link">
                       {number + 1}
                     </button>
                   </li>
                 ))}
-                <li className={`page-item ${currentPage === Math.ceil(filteredComplaints.length / complaintsPerPage) ? 'disabled' : ''}`}>
+                <li className={`page-item ${currentPage === Math.ceil(filteredMeals.length / mealsPerPage) ? 'disabled' : ''}`}>
                   <button className="page-link" onClick={nextPage}>
                     Next
                   </button>
@@ -450,8 +415,8 @@ const ComplaintsDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 
-export default ComplaintsDetails;
+export default MealsDetails;

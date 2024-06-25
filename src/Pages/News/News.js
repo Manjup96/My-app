@@ -155,14 +155,14 @@ const News = () => {
       <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
                 {({ loading, error }) =>
                   loading ? "Loading document..." : (
-                    <button style={{marginLeft:'300px',backgroundColor:'blue'}} className="export-button">
+                    <button style={{backgroundColor:'#007bff'}} className="export-button">
                       Export as Pdf
                     </button>
                   )
                 }
               </PDFDownloadLink>
 
-      <div className="SearchContainer">
+      <div className="SearchContainer_news">
         <input
           type="text"
           placeholder="Search news..."

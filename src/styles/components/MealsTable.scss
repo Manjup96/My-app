@@ -1,67 +1,5 @@
 
-.Complaints-Title {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 20px;
-        padding: 0 20px;
-      }
-      
-      .search-bar {
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-right: 10px;
-      }
-      
-      .complaint_button_style {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 15px 35px;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 5px;
-        align-items: flex-end;
-      }
-      
-      .complaint_button_style:hover {
-        background-color: #0056b3;
-      }
-      
-      .complaints-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-      }
-      
-      .complaints-cards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-      
-      .complaint-card {
-        background: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
-        padding: 20px;
-        width: 300px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      
-      .complaint-card-content {
-        margin-bottom: 10px;
-      }
-      
-      .complaint-card-actions {
-        display: flex;
-        justify-content: space-between;
-      }
-      
+
       .edit-button,
       .delete-button {
         background: none;
@@ -84,36 +22,50 @@
       }
       
      
-
+.meals_1 .meals_2
       .meal-option {
         display: flex;
         margin-bottom: 8px;
         margin-left: -27px;
       }
-      
+      .meals_1 .meals_2
       form .meal-option{
         margin-right: 250px;
 
       }
-      
+      .meals_1 .meals_2
       .meal-option .input1{
-        margin-left: 10px;
+        margin-left: 5px;
 
       }
+
+      .meals_1 .meals_2
       .meal-option .input2{
-        margin-left: -8px;
+        margin-left: 1px;
 
       }
-      
+
+      .meals_1 .meals_2
       .meal-option .input3{
-        margin-left: -2px;
+        margin-left: 5px;
       }
-      
-      .meal-option .abc {
+
+      .meals_1 .meals_2
+      .meal-option .abc{
+        margin-right: -10px;
 
       }
+
+       .meals_1 .meals_2
+      .meal-option .ghi {
+        margin-right: 5px;
+
+      }
+
+      .meals_1 .meals_2
       .meal-option  .def{
         margin-left: px;
+        margin-right: 8px;
 
       }
      
@@ -125,4 +77,281 @@
         margin-bottom: 16px;
       }
 
-     
+      .meals_1{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Ensure the overlay is on top of other content */
+      }
+      
+      /* Style for the popup container */
+      .meals_2 {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        max-width: 400px; /* Adjust as needed */
+        width: 100%;
+      }
+
+
+      /* Style for the form elements inside the popup */
+.meals_2 form {
+  margin-bottom: 10px;
+}
+
+.meals_2 label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.meals_2 input,
+.meals_2 textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+// .meals_2 button {
+//   padding: 8px 16px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   margin-left: 3px;
+// }
+
+// .meals_2 .form_div .close-button {
+//   margin-top: -33px;
+//     background-color: #dc3545;
+//     margin-left: 257px;
+//     font-size: 16px;
+//     padding: 8px 25px;
+//     border-radius: 5px;
+// }
+  
+
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+
+
+  .meals_1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure the overlay is on top of other content */
+  }
+  .meals_2 {
+    max-width: 80%; /* Adjust for smaller screens */
+  }
+  .meals_2 .form_div .close-button {
+    margin-top: 10px;
+    background-color: #dc3545; /* Red color for close button */
+    margin-left:465px;
+    font-size: 25px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .meals_2 button {
+    padding: 10px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .meals_1 .meals_2
+  .meal-option .input1{
+    margin-left: -141px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+  .meal-option .input2{
+    margin-left: -141px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+  .meal-option .input3{
+    margin-left: -141px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+      .meal-option .abc{
+        margin-left: -151px;
+        font-size: 24px;
+      }
+
+       .meals_1 .meals_2
+      .meal-option .ghi {
+        margin-left: -151px;
+        font-size: 24px;
+      }
+
+      .meals_1 .meals_2
+      .meal-option  .def{
+        margin-left: -151px;
+        font-size: 24px;
+
+      }
+  
+  
+}
+@media (max-width: 576px) {
+  .meals_2 {
+    max-width: 80%; /* Adjust for smaller screens */
+  }
+  .meals_2 .form_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjust as needed */
+  }
+  
+  .meals_2 .form_div button {
+    margin-top: 10px; /* Reset the margin if necessary */
+  }
+  
+  .meals_2 .form_div .close-button {
+    background-color: #dc3545;
+    font-size: 17px;
+    padding: 9px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Add some space between buttons if needed */
+  }
+  
+
+  .meals_2 button {
+    padding: 10px 21px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+
+  .meals_1 .meals_2
+  .meal-option .input1{
+    margin-left: 27px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+  .meal-option .input2{
+    margin-left: 27px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+  .meal-option .input3{
+    margin-left: 27px;
+    margin-top: 10px;
+  }
+
+  .meals_1 .meals_2
+      .meal-option .abc{
+        margin-left: 20px;
+        font-size: 20px;
+      }
+
+       .meals_1 .meals_2
+      .meal-option .ghi {
+        margin-left: 20px;
+        font-size: 20px;
+      }
+
+      .meals_1 .meals_2
+      .meal-option  .def{
+        margin-left: 20px;
+        font-size: 20px;
+
+      }
+  }
+
+
+
+  .alert {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 0.75rem 1.25rem;
+    margin-top: 1rem;
+  }
+  
+
+
+  @media (min-width: 768px) and (max-width: 1024px) { 
+    .meals_2 .form_div button {
+      margin-top: 10px; /* Reset the margin if necessary */
+    }
+    
+    .meals_2 .form_div .close-button {
+      background-color: #dc3545;
+      font-size: 17px;
+      padding: 9px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 66%; /* Add some space between buttons if needed */
+    }
+    
+  
+    .meals_2 button {
+      padding: 10px 21px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1920px) { 
+    .meals_2 .form_div {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row; /* Reset the margin if necessary */
+    }
+  
+    .meals_2 .form_div .close-button {
+      background-color: #dc3545;
+      font-size: 17px;
+      padding: 9px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 47%; /* Add some space between buttons if needed */
+    }
+  
+    .meals_2 button {
+      padding: 10px 21px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
