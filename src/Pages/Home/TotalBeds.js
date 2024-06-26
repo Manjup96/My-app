@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed } from '@fortawesome/free-solid-svg-icons';
@@ -61,4 +58,3 @@ const TotalBeds = () => {
 }
 
 export default TotalBeds;
-

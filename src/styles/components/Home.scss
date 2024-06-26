@@ -14,9 +14,17 @@
   }
 }
 
+.chart{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 19px;
+  box-shadow: #a8afa8;
+}
+
 .dashboard {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: stretch;
   flex-wrap: wrap; // Make cards wrap on smaller screens
   margin: 20px;

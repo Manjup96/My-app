@@ -16,7 +16,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // If user exists, navigate to dashboard
     if (user) {
       navigate('/dashboard');
     }

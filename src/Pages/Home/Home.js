@@ -1,17 +1,12 @@
-
-
-
 import React, { useEffect } from "react";
 import WelcomeMessage from "./WelcomeMessage";
-import TotalComplaints from "./TotalComplaints";
 import TotalPayments from "./TotalPayments";
 import TotalBeds from "./TotalBeds";
-//import Logout from "./Logout";
-
-import { useAuth } from "../../context/AuthContext";
-//import UserDetails from "../Profile/UserDetails";
+import TotalComplaints from "./TotalComplaints";
+import DashboardChart from "./DashboardChart";
 import Sidebar from "../../shared/Sidebar";
 import "../../styles/components/Home.scss";
+import { useAuth } from "../../context/AuthContext";
 
 const Home = () => {
   const { user } = useAuth();
@@ -29,15 +24,16 @@ const Home = () => {
           <Sidebar />
         </div>
         <main className="col-md-10 ms-sm-auto col-lg-10 px-md-4">
-          {" "}
-          {/* This is your main content */}
           <div className="container" style={{ marginTop: "20px" }}>
             <WelcomeMessage />
-            {/* <Logout /> */}
             <div className="dashboard">
-              <TotalPayments />
-              <TotalBeds />
-              <TotalComplaints />
+              <TotalPayments/>
+              <TotalBeds/>
+              <TotalComplaints/>
+              
+            </div>
+            <div className="chart">
+            <DashboardChart />
             </div>
           </div>
         </main>
@@ -47,4 +43,3 @@ const Home = () => {
 };
 
 export default Home;
-
