@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "pg-tenant",
-    "staging": "pg-tenant-new"
+    "staging": "pg-tenant-new",
+    "staging ": "pg-tenant12"
   },
   "targets": {},
   "etags": {},

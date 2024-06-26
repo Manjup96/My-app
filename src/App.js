@@ -17,13 +17,14 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB9sI3GOJUC1vvMy-B_djXFEp8nvz-RbDU",
-  authDomain: "pg-tenant-new.firebaseapp.com",
-  projectId: "pg-tenant-new",
-  storageBucket: "pg-tenant-new.appspot.com",
-  messagingSenderId: "30772425",
-  appId: "1:30772425:web:9ce648a92590dc60bc5118"
+  apiKey: "AIzaSyBun2kPJ7T02ZWjgI_cf1vjNd39ChYB0E8",
+  authDomain: "pg-tenant12.firebaseapp.com",
+  projectId: "pg-tenant12",
+  storageBucket: "pg-tenant12.appspot.com",
+  messagingSenderId: "436149970935",
+  appId: "1:436149970935:web:796b32d72af63515f470f2"
 };
+
 
 
 const app = initializeApp(firebaseConfig);
