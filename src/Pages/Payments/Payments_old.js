@@ -108,8 +108,8 @@ const Payment = ({ onClose }) => {
               name="month"
               value={formData.month}
               onChange={handleChange}
-            >
-              <option value="" disabled>Select your payment month...
+              placeholder="Select your payment month...">
+              <option value="" disabled hidden>Select your payment month...
               <span className="dropdown-symbol">&#9660;</span>
               </option>
               <option value="January">January</option>
@@ -136,18 +136,14 @@ const Payment = ({ onClose }) => {
               name="year"
               value={formData.year}
               onChange={handleChange}
+              placeholder="Select your payment month..."
+
             >
-              <option value="" disabled>Select your payment year...   
+              <option value="" disabled hidden>Select your payment year...   
                <span className="dropdown-symbol">&#9660;</span>
               </option>
-              <option value="2023">2023</option>
               <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
+              
             </select>
           </div>
           <div className="form-group">
