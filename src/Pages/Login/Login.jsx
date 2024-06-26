@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,12 +10,14 @@ import '../../styles/components/LoginForm.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../Asset/images/company logo.png';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons from react-icons
 
 const Login = () => {
   const [email, setEmail] = useState('chetan.chauhan@example.com');
   const [password, setPassword] = useState('Chetan@303');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
   const { login, user } = useAuth();
   const navigate = useNavigate();
 
@@ -51,9 +57,9 @@ const Login = () => {
       />
 
       <div className="login-box">
-      <div >
-      <img className='logo-login' src={logo} alt="Logo" />
-      </div>
+        <div>
+          <img className="logo-login" src={logo} alt="Logo" />
+        </div>
         <h2>PG Tenant Login</h2>
         <form>
           <div className="user-box">
@@ -64,13 +70,16 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="user-box">
+          <div className="user-box password-container">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'} // Toggle between text and password
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span onClick={() => setShowPassword(!showPassword)} className="password-toggle">
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
           <input
             onClick={handleSubmit}
