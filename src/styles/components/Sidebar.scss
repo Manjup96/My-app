@@ -1,10 +1,13 @@
 @import "../base/mixins";
 
-.sidebar-toggle {
-  margin-left: 17px;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
+// .sidebar-toggle {
+//   // margin-left: 17px;
+//   // margin-bottom: 10px;
+//   // font-size: 20px;
+//   font-size: 15px;
+//   margin-left: 70%;
+//   margin-bottom: 10px;
+// }
 
 .Title {
   margin-left: 30px;
@@ -24,6 +27,43 @@
   z-index: 100;
 
   
+//   .sidebar-toggle {
+//     cursor: pointer;
+//     text-align: center;
+//     font-size: 30px;
+//     transition: all 0.3s ease;
+//     margin-left: 10%;
+//     width: 47px;
+//     margin-bottom: 10px;
+//     // border: 1px solid #000;
+//     background-color: #f0f0f0;
+//     color: #0a98d8;
+// }
+
+
+.sidebar-toggle {
+  cursor: pointer;
+  text-align: center;
+  font-size: 30px;
+  transition: all 0.3s ease;
+  margin-left: 72%;
+  width: 47px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  color: #0a98d8;
+}
+
+.sidebar-toggle.collapsed {
+  background-color: #f0f0f0; /* Example different background color */
+  color: #0a98d8;
+  margin-left: 10%;
+  /* Add any other styles you want for the collapsed state */
+}
+
+
+
+
+
   &.collapsed {
     width: 50px; // Collapsed width
   }

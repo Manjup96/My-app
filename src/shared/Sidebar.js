@@ -7,9 +7,10 @@ import {
   FaExclamationCircle,
   FaMoneyBill,
   FaUser,
-  FaBars,
 } from "react-icons/fa"; 
+import { IoHomeOutline } from "react-icons/io5";
 import logo from "../Asset/images/logo.png";
+
 import '../styles/components/Sidebar.scss';
 import Header from "../shared/Header";
 
@@ -27,64 +28,56 @@ const Sidebar = () => {
       <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
         {!collapsed && (
           <div className="Title">
-            <img src={logo} alt="Logo" style={{ width: '100px', height: '100px' }} />
+            
+            <img src={logo} alt="Logo" style={{ width: '100px', height: '100px', }} />
             <h4>PG Tenant</h4>
           </div>
         )}
-  
+
         <div className="position-sticky">
           <ul className="nav flex-column">
-            <FaBars className="sidebar-toggle" onClick={toggleSidebar} />
+            <li className="nav-item">
+  <div
+    className={`sidebar-toggle ${collapsed ? 'collapsed' : ''}`}
+    onClick={toggleSidebar}
+  >
+    <IoHomeOutline className="toggle-icon" />
+  </div>
+</li>
+
+
             <li className={`nav-item ${location.pathname === '/dashboard' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/dashboard"
-              >
+              <Link className="nav-link" to="/dashboard">
                 <FaHome className="nav-icon" />
                 {!collapsed && <span className="link_text">Dashboard</span>}
               </Link>
             </li>
             <li className={`nav-item ${location.pathname === '/meals' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/meals"
-              >
+              <Link className="nav-link" to="/meals">
                 <FaUtensils className="nav-icon" />
                 {!collapsed && <span className="link_text">Meals</span>}
               </Link>
             </li>
             <li className={`nav-item ${location.pathname === '/news' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/news"
-              >
+              <Link className="nav-link" to="/news">
                 <FaNewspaper className="nav-icon" />
                 {!collapsed && <span className="link_text">News</span>}
               </Link>
             </li>
             <li className={`nav-item ${location.pathname === '/complaints' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/complaints"
-              >
+              <Link className="nav-link" to="/complaints">
                 <FaExclamationCircle className="nav-icon" />
                 {!collapsed && <span className="link_text">Complaints</span>}
               </Link>
             </li>
             <li className={`nav-item ${location.pathname === '/payments' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/payments"
-              >
+              <Link className="nav-link" to="/payments">
                 <FaMoneyBill className="nav-icon" />
                 {!collapsed && <span className="link_text">Payments</span>}
               </Link>
             </li>
             <li className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>
-              <Link
-                className="nav-link"
-                to="/profile"
-              >
+              <Link className="nav-link" to="/profile">
                 <FaUser className="nav-icon" />
                 {!collapsed && <span className="link_text">Profile</span>}
               </Link>
@@ -94,7 +87,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-  
 };
 
 export default Sidebar;
