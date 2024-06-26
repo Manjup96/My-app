@@ -4,7 +4,6 @@ import Sidebar from "../../shared/Sidebar";
 import "../../styles/components/PaymentsDetails.scss";
 import { useAuth } from './../../context/AuthContext';
 import PaymentForm from "./Payments_old";
-import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 
@@ -72,6 +71,13 @@ const PaymentsDetails = () => {
     setFilteredData(filteredNews);
     setCurrentPage(1); // Reset to the first page when search changes
   };
+
+  // Sort filteredData in descending order based on month and year
+  filteredData.sort((a, b) => {
+    const dateA = new Date(`${a.year}-${a.month}`);
+    const dateB = new Date(`${b.year}-${b.month}`);
+    return dateB - dateA;
+  });
 
   // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
