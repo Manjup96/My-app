@@ -67,11 +67,11 @@ $button-transition: background-color 0.2s;
 
 .logo-login{
   vertical-align: middle;
-  width: 68px;
-  height: 52px;
+  width: 120px;
+  height: 72px;
   margin-top: -20px;
   margin-bottom: 14px;
-  margin-left: 130px;
+  margin-left: 104px;
 }
 
 @media (max-width: 768px) {
@@ -112,6 +112,22 @@ body {
 
 .login-box .user-box {
   position: relative;
+  margin-bottom: 1rem;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  flex: 1;
+}
+
+.password-toggle {
+  margin-left: -18px; /* Adjust the margin to properly position the icon */
+  cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .login-box .user-box input {
@@ -337,11 +353,11 @@ input[type="button"] {
   }
   .logo-login{
     vertical-align: middle;
-    width: 68px;
-    height: 52px;
-    margin-top: -20px;
-    margin-bottom: 14px;
-    margin-left: 102px;
+        width: 101px;
+        height: 64px;
+        margin-top: -20px;
+        margin-bottom: 14px;
+        margin-left: 81px;
   }
 
   input[type="button"] {
@@ -354,5 +370,20 @@ input[type="button"] {
         margin-left: 3px;
     border-radius: 8px;
     cursor: pointer;
+  }
+
+  .password-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-container input {
+    flex: 1;
+  }
+  
+  .password-toggle {
+    margin-left: -18px; /* Adjust the margin to properly position the icon */
+    cursor: pointer;
+    margin-bottom: 30px;
   }
 }
