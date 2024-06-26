@@ -106,7 +106,7 @@ body {
       display: flex;
       gap: 10px; // Space between icons
       font-size: 20px;
-      margin-left: 80px;
+      margin-left: 150px;
     }
 
     button {
@@ -161,7 +161,7 @@ body {
     padding: 15px;
     min-width: 50%;
     max-width: none;
-    height: 330px;
+    // height: 330px;
   }
 
   .search-bar-meals{
@@ -219,7 +219,7 @@ body {
     margin-left: -20px;
   }
   .meal-card-actions {
-    margin-left: -50px;
+    margin-left: 60px;
   }
  
 }
