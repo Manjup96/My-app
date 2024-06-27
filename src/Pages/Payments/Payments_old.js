@@ -51,7 +51,8 @@ key : "rzp_test_jIUzBukJnwE5kE",
 key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
       amount: parseInt(formData.income_amount) * 100,
       currency: "INR",
-      name: {logo },
+      name:"iiiQbets",
+      image: logo,  // Use image instead of name
       description: "for testing purpose",
       handler: function (response) {
         const paymentId = response.razorpay_payment_id;
