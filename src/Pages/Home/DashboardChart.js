@@ -86,7 +86,7 @@ const DashboardChart = () => {
   };
 
   return (
-    <div className="card">
+    <div className="card pie-chart">
       <h2>Dashboard Overview</h2>
       <Pie
         ref={chartRef}

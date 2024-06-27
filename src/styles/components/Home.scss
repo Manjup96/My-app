@@ -29,11 +29,16 @@
   width: 97%;
 }
 
+.pie-chart{
+  margin-left: auto;
+  width: 50%;
+  
+}
 
 
 .dashboard {
   display: flex;
-  justify-content: space-around;
+  //justify-content: space-around;
   align-items: stretch;
   flex-wrap: wrap; // Make cards wrap on smaller screens
   margin: 20px;

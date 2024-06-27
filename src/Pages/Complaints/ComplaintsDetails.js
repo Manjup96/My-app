@@ -20,6 +20,7 @@ const ComplaintsDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [complaintsPerPage] = useState(8);
   const [readMoreStates, setReadMoreStates] = useState({});
+  const [view, setView] = useState('table');
   const { user } = useAuth();
 
   useEffect(() => {
@@ -301,6 +302,8 @@ const ComplaintsDetails = () => {
     }));
   };
 
+  
+
   return (
     <div>
       <Sidebar />
@@ -319,21 +322,30 @@ const ComplaintsDetails = () => {
             }
           </PDFDownloadLink>
 
+
           <button className="complaints_button_style" onClick={() => handleOpenForm()}>
             Add Complaint
           </button>
         </div>
 
-        <div className="SearchContainer_complaints">
-          <input
+      
+
+        <div >
+
+        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints"> 
+          Switch to {view === 'table' ? 'Cards' : 'Table'}
+        </button>
+          <input 
             type="text"
             placeholder="Search complaints"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="form-control w-25 search-bar"
+            className="form-control w-25 search-bar SearchContainer_complaints"
           />
         </div>
 
+       
+        
         {showForm && (
           <ComplaintsForm
             onSubmit={handleFormSubmit}
@@ -347,6 +359,7 @@ const ComplaintsDetails = () => {
           <div className="row complaints-cards">
             {currentComplaints.map((complaint) => {
               const readMore = readMoreStates[complaint.id] || false;
+
               return (
                 <div key={complaint.id} className="col-lg-3 col-md-6 col-sm-6 mb-4">
                   <div className="complaint-card p-3">
@@ -435,3 +448,524 @@ const formatDate = (dateString) => {
 };
 
 export default ComplaintsDetails;
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import Sidebar from "../../shared/Sidebar";
+// import ComplaintsForm from "./ComplaintsForm";
+// import {
+//   TENANAT_COMPLAINT_URL,
+//   TENANAT_COMPLAINT_UPDATE_URL,
+//   TENANAT_COMPLAINT_DELETE_URL
+// } from "../../services/ApiUrls";
+// import "../../styles/components/ComplaintsDetails.scss";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faFileExport, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+// import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+// import { useAuth } from "./../../context/AuthContext";
+
+// const ComplaintsDetails = () => {
+//   const [showForm, setShowForm] = useState(false);
+//   const [complaints, setComplaints] = useState([]);
+//   const [selectedComplaint, setSelectedComplaint] = useState(null);
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [filteredData, setFilteredData] = useState([]);
+//   const [complaintsPerPage] = useState(8);
+//   const [readMoreStates, setReadMoreStates] = useState({});
+//   const [view, setView] = useState('table');
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const { user } = useAuth();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const requestOptions = {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify({
+//             manager_email: user.manager_email,
+//             building_name: user.building_name,
+//             tenant_mobile: user.mobile,
+//           }),
+//         };
+//         const response = await fetch(TENANAT_COMPLAINT_URL, requestOptions);
+//         if (!response.ok) {
+//           throw new Error("Network response was not ok");
+//         }
+//         const data = await response.json();
+//         setComplaints(data);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+
+//     fetchData();
+//   }, [user]);
+
+//   const handleOpenForm = (complaint = null) => {
+//     setSelectedComplaint(complaint);
+//     setShowForm(true);
+//   };
+
+//   const handleCloseForm = () => {
+//     setShowForm(false);
+//     setSelectedComplaint(null);
+//   };
+
+//   const handleFormSubmit = async (formData) => {
+//     try {
+//       const requestOptions = {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           ...formData,
+//           id: selectedComplaint ? selectedComplaint.id : undefined,
+//           tenant_mobile: user.mobile,
+//           tenant_email: user.email,
+//           manager_email: user.manager_email,
+//           manager_mobile: user.manager_mobile,
+//           building_name: user.building_name,
+//           tenant_name: user.name,
+//         }),
+//       };
+
+//       const url = selectedComplaint
+//         ? TENANAT_COMPLAINT_UPDATE_URL
+//         : "https://iiiqbets.com/pg-management/Complaints-POST-API-with-manager-buiding.php";
+
+//       const response = await fetch(url, requestOptions);
+//       if (!response.ok) {
+//         throw new Error("Network response was not ok");
+//       }
+
+//       const data = await response.json();
+//       if (selectedComplaint) {
+//         setComplaints((prev) =>
+//           prev.map((complaint) =>
+//             complaint.id === selectedComplaint.id ? data : complaint
+//           )
+//         );
+//       } else {
+//         setComplaints([...complaints, data]);
+//       }
+//       handleCloseForm();
+//     } catch (error) {
+//       console.error("Error submitting form:", error);
+//     }
+//   };
+
+//   const handleDeleteComplaint = async (id) => {
+//     try {
+//       const confirmDelete = window.confirm("Are you sure you want to delete this complaint?");
+//       if (confirmDelete) {
+//         const requestOptions = {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify({ id }),
+//         };
+
+//         const response = await fetch(TENANAT_COMPLAINT_DELETE_URL, requestOptions);
+//         if (!response.ok) {
+//           throw new Error("Network response was not ok");
+//         }
+
+//         setComplaints(complaints.filter((complaint) => complaint.id !== id));
+//       }
+//     } catch (error) {
+//       console.error("Error deleting complaint:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     const filtered = complaints.filter((complaint) => {
+//       const lowerSearchTerm = searchTerm.toLowerCase();
+//       return (
+//         (complaint.id && complaint.id.toLowerCase().includes(lowerSearchTerm)) ||
+//         (complaint.tenant_name && complaint.tenant_name.toLowerCase().includes(lowerSearchTerm)) ||
+//         (complaint.complaint_type && complaint.complaint_type.toLowerCase().includes(lowerSearchTerm)) ||
+//         (complaint.complaint_description && complaint.complaint_description.toLowerCase().includes(lowerSearchTerm)) ||
+//         (complaint.created_date && complaint.created_date.toLowerCase().includes(lowerSearchTerm)) ||
+//         (complaint.resolve_date && complaint.resolve_date.toLowerCase().includes(lowerSearchTerm))
+//       );
+//     });
+//     setFilteredData(filtered);
+//   }, [complaints, searchTerm]);
+
+//   const styles = StyleSheet.create({
+//     table: {
+//       display: "table",
+//       width: "auto",
+//       borderStyle: "solid",
+//       borderWidth: 1,
+//       borderRightWidth: 0,
+//       borderBottomWidth: 0,
+//     },
+//     tableRow: {
+//       flexDirection: "row",
+//     },
+//     tableCol: {
+//       width: "20%", // Default width for most columns
+//       borderStyle: "solid",
+//       borderWidth: 1,
+//       borderLeftWidth: 0,
+//       borderTopWidth: 0,
+//     },
+//     idCol: {
+//       width: "10%", // Reduced width for ID column
+//       borderStyle: "solid",
+//       borderWidth: 1,
+//       borderLeftWidth: 0,
+//       borderTopWidth: 0,
+//     },
+//     descriptionCol: {
+//       width: "50%", // Increased width for Description column
+//       borderStyle: "solid",
+//       borderWidth: 1,
+//       borderLeftWidth: 0,
+//       borderTopWidth: 0,
+//     },
+//     tableCell: {
+//       margin: "auto",
+//       marginTop: 5,
+//       fontSize: 10,
+//     },
+//   });
+
+//   const MyDocument = ({ complaints }) => (
+//     <Document>
+//       <Page style={{ padding: 10 }}>
+//         <View style={styles.table}>
+//           <View style={styles.tableRow}>
+//             <View style={styles.idCol}>
+//               <Text style={styles.tableCell}>Id</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Tenant Name</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Complaint Type</Text>
+//             </View>
+//             <View style={styles.descriptionCol}>
+//               <Text style={styles.tableCell}>Description</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Created Date</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Resolved Date</Text>
+//             </View>
+//           </View>
+//           {complaints.map((complaint, index) => (
+//             <View key={index} style={styles.tableRow}>
+//               <View style={styles.idCol}>
+//                 <Text style={styles.tableCell}>{complaint.id}</Text>
+//               </View>
+//               <View style={styles.tableCol}>
+//                 <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
+//               </View>
+//               <View style={styles.tableCol}>
+//                 <Text style={styles.tableCell}>{complaint.complaint_type}</Text>
+//               </View>
+//               <View style={styles.descriptionCol}>
+//                 <Text style={styles.tableCell}>{complaint.complaint_description}</Text>
+//               </View>
+//               <View style={styles.tableCol}>
+//                 <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
+//               </View>
+//               <View style={styles.tableCol}>
+//                 <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+//               </View>
+//             </View>
+//           ))}
+//         </View>
+//       </Page>
+//     </Document>
+//   );
+
+//   const IndividualComplaintDocument = ({ complaint }) => (
+//     <Document>
+//       <Page style={{ padding: 10 }}>
+//         <View style={styles.table}>
+//           <View style={styles.tableRow}>
+//             <View style={styles.idCol}>
+//               <Text style={styles.tableCell}>Id</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Tenant Name</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Complaint Type</Text>
+//             </View>
+//             <View style={styles.descriptionCol}>
+//               <Text style={styles.tableCell}>Description</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Created Date</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>Resolved Date</Text>
+//             </View>
+//           </View>
+//           <View style={styles.tableRow}>
+//             <View style={styles.idCol}>
+//               <Text style={styles.tableCell}>{complaint.id}</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>{complaint.complaint_type}</Text>
+//             </View>
+//             <View style={styles.descriptionCol}>
+//               <Text style={styles.tableCell}>{complaint.complaint_description}</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
+//             </View>
+//             <View style={styles.tableCol}>
+//               <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+//             </View>
+//           </View>
+//         </View>
+//       </Page>
+//     </Document>
+//   );
+
+//   const handleSearchChange = (e) => {
+//     setSearchTerm(e.target.value);
+//   };
+
+//   const toggleReadMore = (id) => {
+//     setReadMoreStates((prevState) => ({
+//       ...prevState,
+//       [id]: !prevState[id],
+//     }));
+//   };
+
+//   const toggleView = (viewType) => {
+//     setView(viewType);
+//   };
+
+//   const indexOfLastComplaint = currentPage * complaintsPerPage;
+//   const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage;
+//   const currentComplaints = filteredData.slice(indexOfFirstComplaint, indexOfLastComplaint);
+//   const totalPages = Math.ceil(filteredData.length / complaintsPerPage);
+
+//   const renderPagination = () => {
+//     const pageNumbers = [];
+//     for (let i = 1; i <= totalPages; i++) {
+//       pageNumbers.push(i);
+//     }
+
+//     return (
+//       <ul className="pagination">
+//         {pageNumbers.map((number) => (
+//           <li key={number} className={`page-item ${currentPage === number ? "active" : ""}`}>
+//             <button onClick={() => setCurrentPage(number)} className="page-link">
+//               {number}
+//             </button>
+//           </li>
+//         ))}
+//       </ul>
+//     );
+//   };
+
+//   return (
+//     <>
+//       <Sidebar />
+//       <div className="content">
+//         <h1>Complaints Details</h1>
+//         <div className="search-bar">
+//           <input
+//             type="text"
+//             placeholder="Search complaints..."
+//             value={searchTerm}
+//             onChange={handleSearchChange}
+//           />
+//           <div className="buttons">
+//             <button className="btn btn-primary" onClick={() => handleOpenForm()}>
+//               Add Complaint
+//             </button>
+//             <button className="btn btn-secondary" onClick={() => toggleView('table')}>
+//               Table View
+//             </button>
+//             <button className="btn btn-secondary" onClick={() => toggleView('card')}>
+//               Card View
+//             </button>
+//             <PDFDownloadLink
+//               document={<MyDocument complaints={filteredData} />}
+//               fileName="complaints.pdf"
+//               className="btn btn-secondary"
+//             >
+//               <FontAwesomeIcon icon={faFileExport} /> Export All
+//             </PDFDownloadLink>
+//           </div>
+//         </div>
+//         {showForm && (
+//           <ComplaintsForm
+//             complaint={selectedComplaint}
+//             onClose={handleCloseForm}
+//             onSubmit={handleFormSubmit}
+//           />
+//         )}
+//         {view === 'table' ? (
+//           <table className="complaints-table">
+//             <thead>
+//               <tr>
+//                 <th>Id</th>
+//                 <th>Tenant Name</th>
+//                 <th>Complaint Type</th>
+//                 <th>Description</th>
+//                 <th>Created Date</th>
+//                 <th>Resolved Date</th>
+//                 <th>Actions</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {currentComplaints.map((complaint) => (
+//                 <tr key={complaint.id}>
+//                   <td>{complaint.id}</td>
+//                   <td>{complaint.tenant_name}</td>
+//                   <td>{complaint.complaint_type}</td>
+//                   <td>
+//                     {readMoreStates[complaint.id] ? (
+//                       <span>
+//                         {complaint.complaint_description}
+//                         <button
+//                           className="btn btn-link"
+//                           onClick={() => toggleReadMore(complaint.id)}
+//                         >
+//                           Read Less
+//                         </button>
+//                       </span>
+//                     ) : (
+//                       <span>
+//                         {complaint.complaint_description.slice(0, 100)}
+//                         {complaint.complaint_description.length > 100 && (
+//                           <button
+//                             className="btn btn-link"
+//                             onClick={() => toggleReadMore(complaint.id)}
+//                           >
+//                             Read More
+//                           </button>
+//                         )}
+//                       </span>
+//                     )}
+//                   </td>
+//                   <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
+//                   <td>{complaint.resolve_date}</td>
+//                   <td>
+//                     <button
+//                       className="btn btn-secondary"
+//                       onClick={() => handleOpenForm(complaint)}
+//                     >
+//                       <FontAwesomeIcon icon={faEdit} /> Edit
+//                     </button>
+//                     <button
+//                       className="btn btn-danger"
+//                       onClick={() => handleDeleteComplaint(complaint.id)}
+//                     >
+//                       <FontAwesomeIcon icon={faTrash} /> Delete
+//                     </button>
+//                     <PDFDownloadLink
+//                       document={<IndividualComplaintDocument complaint={complaint} />}
+//                       fileName={`complaint_${complaint.id}.pdf`}
+//                       className="btn btn-secondary"
+//                     >
+//                       <FontAwesomeIcon icon={faFileExport} /> Export
+//                     </PDFDownloadLink>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         ) : (
+//           <div className="complaints-card-view">
+//             {currentComplaints.map((complaint) => (
+//               <div key={complaint.id} className="complaint-card">
+//                 <h3>{complaint.tenant_name}</h3>
+//                 <p>
+//                   <strong>Complaint Type:</strong> {complaint.complaint_type}
+//                 </p>
+//                 <p>
+//                   <strong>Description:</strong>{" "}
+//                   {readMoreStates[complaint.id] ? (
+//                     <span>
+//                       {complaint.complaint_description}
+//                       <button
+//                         className="btn btn-link"
+//                         onClick={() => toggleReadMore(complaint.id)}
+//                       >
+//                         Read Less
+//                       </button>
+//                     </span>
+//                   ) : (
+//                     <span>
+//                       {complaint.complaint_description.slice(0, 100)}
+//                       {complaint.complaint_description.length > 100 && (
+//                         <button
+//                           className="btn btn-link"
+//                           onClick={() => toggleReadMore(complaint.id)}
+//                         >
+//                           Read More
+//                         </button>
+//                       )}
+//                     </span>
+//                   )}
+//                 </p>
+//                 <p>
+//                   <strong>Created Date:</strong>{" "}
+//                   {new Date(complaint.created_date).toLocaleDateString("en-IN")}
+//                 </p>
+//                 <p>
+//                   <strong>Resolved Date:</strong> {complaint.resolve_date}
+//                 </p>
+//                 <div className="actions">
+//                   <button
+//                     className="btn btn-secondary"
+//                     onClick={() => handleOpenForm(complaint)}
+//                   >
+//                     <FontAwesomeIcon icon={faEdit} /> Edit
+//                   </button>
+//                   <button
+//                     className="btn btn-danger"
+//                     onClick={() => handleDeleteComplaint(complaint.id)}
+//                   >
+//                     <FontAwesomeIcon icon={faTrash} /> Delete
+//                   </button>
+//                   <PDFDownloadLink
+//                     document={<IndividualComplaintDocument complaint={complaint} />}
+//                     fileName={`complaint_${complaint.id}.pdf`}
+//                     className="btn btn-secondary"
+//                   >
+//                     <FontAwesomeIcon icon={faFileExport} /> Export
+//                   </PDFDownloadLink>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         )}
+//         {renderPagination()}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default ComplaintsDetails;
+

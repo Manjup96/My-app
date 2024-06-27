@@ -152,13 +152,29 @@ body {
   justify-content: center;
   padding: 0 10px;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: -45px;
   width: 97%;
-  margin-left: 40%;
+  margin-left: 1060px;
   padding: 10px;
 }
 .body{
   overflow: hidden;
+}
+
+.switch-button-complaints{
+
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  margin-left: 150px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  //align-items: flex-end;
+  &:hover {
+    background-color: $secondary-color;
+  }
 }
 
 @media (max-width: 768px) {

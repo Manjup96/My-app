@@ -1,0 +1,126 @@
+.payments-table {
+
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 60px;
+
+    .payments-table-heading{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+     th, td {
+    padding: 15px 100px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      td {
+        &.actions {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+
+          .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+
+            &:hover {
+              color: #000;
+            }
+          }
+
+          .edit-btn {
+            color: #007bff;
+
+            &:hover {
+              color: #0056b3;
+            }
+          }
+
+          .delete-btn {
+            color: #dc3545;
+
+            &:hover {
+              color: #c82333;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+  
+    // h1 {
+    //   text-align: center;
+    //   margin-bottom: 20px;
+    //   color: #333;
+    // }
+  
+    // table {
+    //   width: 100%;
+    //   border-collapse: collapse;
+  
+    //   thead {
+    //     background-color: #4CAF50;
+    //     color: white;
+    //   }
+  
+    //   th, td {
+    //     padding: 12px;
+    //     text-align: left;
+    //     border-bottom: 1px solid #ddd;
+  
+    //     &:nth-child(odd) {
+    //       background-color: #f2f2f2;
+    //     }
+    //   }
+  
+    //   tbody tr:hover {
+    //     background-color: #f1f1f1;
+    //   }
+  
+    //   th {
+    //     background-color: #4CAF50;
+    //     color: white;
+    //     text-align: center;
+    //   }
+    // }
+  
+    
+    .pagination-container-paymentstable .pagination {
+
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        // margin-left: 160px;
+      
+      }
+  }
+  

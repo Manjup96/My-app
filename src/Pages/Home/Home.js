@@ -4,7 +4,7 @@ import TotalPayments from "./TotalPayments";
 import TotalBeds from "./TotalBeds";
 import TotalComplaints from "./TotalComplaints";
 import TotalMeals from "./TotalMeals";
-
+import PaymentsTable from "./PaymentsTable";
 import DashboardChart from "./DashboardChart";
 import Sidebar from "../../shared/Sidebar";
 import "../../styles/components/Home.scss";
@@ -38,6 +38,9 @@ const Home = () => {
             </div>
             <div className="chart">
             <DashboardChart />
+            </div>
+            <div>
+              <PaymentsTable/>
             </div>
           </div>
         </main>
