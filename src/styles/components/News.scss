@@ -90,12 +90,37 @@
   border-radius: 5px;
   margin-left:18%;
   align-items: flex-end;
+  width: 177px;
   &:hover {
     background-color:blue;
   }
 }
 
+.switch_button{
+  margin-left: 18%;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
 
+}
+@media (min-width: 1025px) and (max-width: 1920px) {
+  .switch_button {
+    margin-left: 18%;
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .TableContainer .news {
@@ -136,6 +161,17 @@
   &:hover {
     background-color:blue;
   }
+}
+.switch_button {
+  margin-left: 39%;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
 }
 }
 
@@ -180,6 +216,90 @@
         margin-top: 10px;
     &:hover {
       background-color:blue;
+    }
+  }
+  .switch_button {
+    margin-left: 25%;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 210px;
+ }
+}
+
+
+// TableStyles.scss
+.news-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      td {
+        &.actions {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+
+          .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+
+            &:hover {
+              color: #000;
+            }
+          }
+
+          .edit-btn {
+            color: #007bff;
+
+            &:hover {
+              color: #0056b3;
+            }
+          }
+
+          .delete-btn {
+            color: #dc3545;
+
+            &:hover {
+              color: #c82333;
+            }
+          }
+        }
+      }
     }
   }
 }
