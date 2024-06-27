@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import { TENANAT_NEWS_URL } from "../../services/ApiUrls";
@@ -14,6 +12,7 @@ const News = () => {
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // Adjust the number of items per page as needed
+  const [view, setView] = useState('table'); // State to manage the current view
 
   useEffect(() => {
     const fetchData = async () => {
@@ -145,68 +144,101 @@ const News = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
+  const renderTable = () => (
+    <table className="news-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Created Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentItems.map((news, index) => (
+          <tr key={index}>
+            <td>{news.id}</td>
+            <td>{news.news_type}</td>
+            <td>{news.news_description}</td>
+            <td>{new Date(news.created_at).toLocaleDateString("en-IN")}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+
+  const renderCards = () => (
+    <div className="news-row">
+      {currentItems.map((news, index) => (
+        <div key={index} className="news">
+          <div className="news-header" style={{ textAlign: "center" }}>
+            ID: {news.id}
+          </div>
+          <div className="news-body">
+            <p className="news-text">
+              <small className="text-muted">
+                <b>Type : </b> {news.news_type}
+              </small>
+            </p>
+            <p className="news-text">
+              <small className="text-muted">
+                <b>Description : </b> {news.news_description}
+              </small>
+            </p>
+            <p className="news-text">
+              <small className="text-muted">
+                <b>Created On :</b>{" "}
+                {new Date(news.created_at).toLocaleDateString("en-IN")}
+              </small>
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div>
       <Sidebar />
       <div className="News-Title">
         <h2>News Details</h2>
+      
       </div>
-    <div>
-      <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
-                {({ loading, error }) =>
-                  loading ? "Loading document..." : (
-                    <button style={{backgroundColor:'#007bff'}} className="export-button">
-                      Export as Pdf
-                    </button>
-                  )
-                }
-              </PDFDownloadLink>
-
-      <div className="SearchContainer_news">
-        <input
-          type="text"
-          placeholder="Search news..."
-          className="search-input"
-          value={searchInput}
-          onChange={handleSearchInputChange}
-          style={{ marginLeft: "80%" }}
-        />
-      </div>
+      <div>
+     
+        <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
+          {({ loading, error }) =>
+            loading ? "Loading document..." : (
+              <button style={{ backgroundColor: '#007bff' }} className="export-button">
+                Export as Pdf
+              </button>
+              
+            )
+          }
+        </PDFDownloadLink>
+        <div>
+        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button"> 
+          Switch to {view === 'table' ? 'Cards' : 'Table'}
+        </button>
+        </div>
+        <div className="SearchContainer_news">
+          <input
+            type="text"
+            placeholder="Search news..."
+            className="search-input"
+            value={searchInput}
+            onChange={handleSearchInputChange}
+            style={{ marginLeft: "80%" }}
+          />
+        </div>
       </div>
       <div className="TableContainer">
         {loading && <div>Loading...</div>}
         {error && <div>Error: {error}</div>}
         {!loading && !error && (
           <>
-            <div className="news-row">
-              {currentItems.map((news, index) => (
-                <div key={index} className="news">
-                  <div className="news-header" style={{ textAlign: "center" }}>
-                    ID: {news.id}
-                  </div>
-                  <div className="news-body">
-                    <p className="news-text">
-                      <small className="text-muted">
-                        <b>Type : </b> {news.news_type}
-                      </small>
-                    </p>
-                    <p className="news-text">
-                      <small className="text-muted">
-                        <b>Description : </b> {news.news_description}
-                      </small>
-                    </p>
-                    <p className="news-text">
-                      <small className="text-muted">
-                        <b>Created On :</b>{" "}
-                        {new Date(news.created_at).toLocaleDateString("en-IN")}
-                      </small>
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {view === 'table' ? renderTable() : renderCards()}
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
-              
               <div className="pagination-container">
                 <ul className="pagination">
                   <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>

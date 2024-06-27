@@ -7,6 +7,7 @@
   margin-top: 40px;
 }
 
+
 @media (min-width: 1024px) {
   .welcome-message {
     margin-left: 29%;
@@ -22,6 +23,14 @@
   box-shadow: #a8afa8;
 }
 
+
+.dashborad-meal-card {
+  margin-left: 20px;
+  width: 97%;
+}
+
+
+
 .dashboard {
   display: flex;
   justify-content: space-around;
@@ -35,6 +44,9 @@
 
   @media (max-width: 1023px) and (min-width: 768px) {
     flex-direction: column; // Stack cards vertically on medium screens (iPad)
+
+    
+
   }
 
   @media (max-width: 767px) {
@@ -118,6 +130,15 @@
     color: black; // Ensures the font color stays black on hover
   }
 }
+ 
+
+@media (max-width: 768px){
+  .dashborad-meal-card {
+    margin-left: 22px;
+    width: 93%;
+  }
+
+}
 
 
 
@@ -133,6 +154,10 @@
   }
   .welcome-message{
     text-align: center;
+  }
+  .dashborad-meal-card {
+    margin-left: 20px;
+    width: 88%;
   }
 }
 

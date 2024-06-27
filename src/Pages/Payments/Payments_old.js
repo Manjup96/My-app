@@ -40,10 +40,15 @@ const Payment = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+     
     var options = {
-      key: "rzp_live_meYRQwcQTdON8u",
-      key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
+      // Live enviroment
+      // key: "rzp_live_meYRQwcQTdON8u",
+      // key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
+
+      // Test enviroment
+key : "rzp_test_jIUzBukJnwE5kE",
+key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
       amount: parseInt(formData.income_amount) * 100,
       currency: "INR",
       name:"iiiQbets",
