@@ -3,6 +3,8 @@ import WelcomeMessage from "./WelcomeMessage";
 import TotalPayments from "./TotalPayments";
 import TotalBeds from "./TotalBeds";
 import TotalComplaints from "./TotalComplaints";
+import TotalMeals from "./TotalMeals";
+
 import DashboardChart from "./DashboardChart";
 import Sidebar from "../../shared/Sidebar";
 import "../../styles/components/Home.scss";
@@ -30,7 +32,9 @@ const Home = () => {
               <TotalPayments/>
               <TotalBeds/>
               <TotalComplaints/>
-              
+            </div>
+            <div className="dashborad-meal-card" >
+            <TotalMeals/>
             </div>
             <div className="chart">
             <DashboardChart />
