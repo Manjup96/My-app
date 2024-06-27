@@ -46,7 +46,8 @@ const Payment = ({ onClose }) => {
       key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
       amount: parseInt(formData.income_amount) * 100,
       currency: "INR",
-      name: {logo },
+      name:"iiiQbets",
+      image: logo,  // Use image instead of name
       description: "for testing purpose",
       handler: function (response) {
         const paymentId = response.razorpay_payment_id;
