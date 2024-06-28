@@ -7,6 +7,15 @@
   margin-top: 40px;
 }
 
+.meals_heading {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.main_meals {
+  display: flex;
+}
 
 @media (min-width: 1024px) {
   .welcome-message {
@@ -142,6 +151,10 @@
     margin-left: 22px;
     width: 93%;
   }
+  .main_meals {
+    display: flex;
+    flex-direction: column;
+  }
 
 }
 
@@ -163,6 +176,11 @@
   .dashborad-meal-card {
     margin-left: 20px;
     width: 88%;
+  }
+
+  .main_meals {
+    display: flex;
+    flex-direction: column;
   }
 }
 
