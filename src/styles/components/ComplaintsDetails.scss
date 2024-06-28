@@ -177,6 +177,103 @@ body {
   }
 }
 
+.complaints-table{
+ margin-top: 30px;
+ width: 95%;
+ margin-left: 200px;
+ overflow-x: auto;
+
+  .complaint-table-actions{
+ // position: absolute; // Ensure actions are always positioned correctly
+  bottom: 10px; // Adjust to position buttons at the bottom
+  right: 10px; // Adjust to position buttons at the right
+  display: flex;
+  gap: 10px;
+  }
+
+  a, button {
+    z-index: 1; // Ensure the buttons are on top
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: $primary-color;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .btn-delete-complaints {
+    color: $danger-color;
+    &:hover {
+      color: $danger-hover-color;
+    }
+  }
+
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+      
+    }
+  }
+
+   tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      td {
+        &.actions {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+
+          .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+
+            &:hover {
+              color: #000;
+            }
+          }
+
+          .edit-btn {
+            color: #007bff;
+
+            &:hover {
+              color: #0056b3;
+            }
+          }
+
+          .delete-btn {
+            color: #dc3545;
+
+            &:hover {
+              color: #c82333;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .complaints_button_style {
     padding: 10px 20px;
@@ -231,6 +328,13 @@ body {
           margin-left: -7%;
           padding: 10px;
   }
+
+  .complaints-table{
+    margin-top: 30px;
+    // width: 100%;
+    margin-left: 80px;
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 576px) {
@@ -269,6 +373,13 @@ body {
     width: 90%; /* Ensure the card takes the full width on small screens */
     margin-left: 40px;
     overflow: hidden;
+  }
+
+  .complaints-table{
+    margin-top: 30px;
+    width: 100%;
+    margin-left: 70px;
+    overflow-x: auto;
   }
 }
 
