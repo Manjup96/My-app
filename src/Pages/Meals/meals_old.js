@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/components/Meals.scss";
 
-
 const MealsDetails = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedMeal, setselectedMeal] = useState(null);
@@ -19,9 +18,6 @@ const MealsDetails = () => {
   const [mealsPerPage] = useState(8);
   const { user } = useAuth();
   const [readMoreStates, setReadMoreStates] = useState({});
-  const [view, setView] = useState('table');
-
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -305,74 +301,49 @@ const MealsDetails = () => {
     }));
   };
 
+  return (
+    <div >
+      <Sidebar />
+
+      <div className="main">
+
+        <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
+          Meals Details
+        </h1>
+
+        <div className="container mt-4">
+          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
 
-
-
-  const renderTable = () => (
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Breakfast</th>
-          <th>Lunch</th>
-          <th>Dinner</th>
-          <th>Comments</th>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentMeals.map((meal, index) => {
-          const readMore = readMoreStates[meal.id] || false;
-  
-          return (
-            <tr key={index}>
-              <td>{meal.id}</td>
-              <td>{meal.breakfast}</td>
-              <td>{meal.lunch}</td>
-              <td>{meal.dinner}</td>
-              <td>
-                {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
-                {meal.comments.length > 100 && (
-                  <span className="read-more-link">
-                    <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                      {readMore ? "...Show Less" : "...Read More"}
-                    </a>
-                  </span>
-                )}
-              </td>
-              <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
-              <td>
-                <PDFDownloadLink
-                  className="pdf-link"
-                  document={<IndividualMealDocument meal={meal} />}
-                  fileName={`meal_${meal.id}.pdf`}
-                >
-                  {({ blob, url, loading, error }) => (
-                    <FontAwesomeIcon icon={faFileExport} />
-                  )}
-                </PDFDownloadLink>
-  
-                <button className="table_meal_e_button" onClick={() => handleOpenForm(meal)}>
-                  <FontAwesomeIcon icon={faEdit} />
+            <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
+              {({ blob, url, loading, error }) =>
+                <button className="e-button-meals" >
+                  Export all as Pdf
                 </button>
-  
-                <button className="table_meal_t_button" onClick={() => handleDelete(meal.id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  
-  );
 
-  const renderCards = () => (
-    <div className="row">
+              }
+            </PDFDownloadLink>
 
+            <button className="meal_button_style" onClick={() => handleOpenForm()}>
+              Add Meal
+            </button>
+          </div>
+          <div className="searchbar-meals">
+            <input
+              type="text"
+              placeholder="Search meal..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-bar-meals"
+            />
+          </div>
+
+          <div className="meals-list mt-4">
+            <h2 style={{ marginBottom: "30px" }}>Meals List</h2>
+            <div className="row">
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+
+              </div>
               {currentMeals.map((meal, index) => {
                 const readMore = readMoreStates[meal.id] || false; // Declare inside the map function block
                 return (
@@ -430,57 +401,6 @@ const MealsDetails = () => {
               })}
 
             </div>
-  );
-
-  return (
-    <div >
-      <Sidebar />
-
-      <div className="main">
-
-        <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
-          Meals Details
-        </h1>
-
-        <div className="container mt-4">
-          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-
-
-            <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
-              {({ blob, url, loading, error }) =>
-                <button className="e-button-meals" >
-                  Export all as Pdf
-                </button>
-
-              }
-            </PDFDownloadLink>
-
-            <button className="meal_button_style" onClick={() => handleOpenForm()}>
-              Add Meal
-            </button>
-          </div>
-
-
-          <div>
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
-          </button>
-        </div>
-          <div className="searchbar-meals">
-            <input
-              type="text"
-              placeholder="Search meal..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-bar-meals"
-            />
-          </div>
-
-          <div className="meals-list mt-4">
-            <h2 style={{ marginBottom: "30px" }}>Meals List</h2>
-         
-                        {view === 'table' ? renderTable() : renderCards()}
-
 
             {showForm && (
               <div className="form-container">

@@ -30,10 +30,50 @@ body {
   border-radius: 7px;
 }
 
+.switch_button_meals{
+  background-color: #007bff;
+  color: rgb(248, 240, 240);
+  border: none;
+  padding: 15px 35px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px
+}
+
+.table_meal_e_button{
+  gap: 10px;
+  color: $primary-color;
+      &:hover {
+        color: $secondary-color;
+      }
+      margin-left: 10px;
+      border: none;
 
 
+}
+.table_meal_t_button{
+  gap: 10px;
+  margin-left: 10px;
+  border: none;
+  color: $danger-color;
+  &:hover {
+    color: $danger-hover-color;
+  }
+
+}
 
 
+tbody {
+  tr {
+    &:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+}
 .content .container .one {
 
    display: 'flex';
