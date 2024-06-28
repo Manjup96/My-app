@@ -3,6 +3,7 @@ import Sidebar from "../../shared/Sidebar";
 import { TENANAT_NEWS_URL } from "../../services/ApiUrls";
 import "../../styles/components/News.scss";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { useAuth } from './../../context/AuthContext';
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -11,8 +12,9 @@ const News = () => {
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6); // Adjust the number of items per page as needed
-  const [view, setView] = useState('table'); // State to manage the current view
+  const [itemsPerPage] = useState(6);
+  const [view, setView] = useState('table');
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +23,9 @@ const News = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            manager_email: "ssy.balu@gmail.com",
-            building_name: "Building 2",
+            manager_email: user.manager_email,
+            building_name: user.building_name,
+            tenant_mobile: user.mobile,
           }),
         };
         const response = await fetch(TENANAT_NEWS_URL, requestOptions);
@@ -31,7 +34,7 @@ const News = () => {
         }
         const data = await response.json();
         setNewsData(data);
-        setFilteredData(data); // Initialize filteredData with all news data
+        setFilteredData(data.map((item, index) => ({ ...item, seqId: index + 1 })));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,22 +44,23 @@ const News = () => {
     };
 
     fetchData();
-  }, []);
+  }, [user.manager_email, user.building_name, user.mobile]);
 
   const handleSearchInputChange = (e) => {
     const searchValue = e.target.value;
     setSearchInput(searchValue);
 
-    // Filter newsData based on searchValue for type, ID, description, and created date
-    const filteredNews = newsData.filter(
-      (news) =>
-        news.news_type.toLowerCase().includes(searchValue.toLowerCase()) ||
-        news.id.toString().includes(searchValue) ||
-        news.news_description.toLowerCase().includes(searchValue.toLowerCase()) ||
-        new Date(news.created_at).toLocaleDateString("en-IN").includes(searchValue)
-    );
+    const filteredNews = newsData
+      .filter(
+        (news) =>
+          news.news_type.toLowerCase().includes(searchValue.toLowerCase()) ||
+          news.id.toString().includes(searchValue) ||
+          news.news_description.toLowerCase().includes(searchValue.toLowerCase()) ||
+          new Date(news.created_at).toLocaleDateString("en-IN").includes(searchValue)
+      )
+      .map((item, index) => ({ ...item, seqId: index + 1 }));
     setFilteredData(filteredNews);
-    setCurrentPage(1); // Reset to first page after search
+    setCurrentPage(1);
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -74,21 +78,21 @@ const News = () => {
       flexDirection: "row",
     },
     tableCol: {
-      width: "20%", // Adjust column widths as needed
+      width: "20%",
       borderStyle: "solid",
       borderWidth: 1,
       borderLeftWidth: 0,
       borderTopWidth: 0,
     },
     idCol: {
-      width: "10%", // Adjust column widths as needed
+      width: "10%",
       borderStyle: "solid",
       borderWidth: 1,
       borderLeftWidth: 0,
       borderTopWidth: 0,
     },
     descriptionCol: {
-      width: "50%", // Adjust column widths as needed
+      width: "50%",
       borderStyle: "solid",
       borderWidth: 1,
       borderLeftWidth: 0,
@@ -107,6 +111,9 @@ const News = () => {
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.idCol}>
+              <Text style={styles.tableCell}>Seq. ID</Text>
+            </View>
+            <View style={styles.idCol}>
               <Text style={styles.tableCell}>Id</Text>
             </View>
             <View style={styles.tableCol}>
@@ -121,6 +128,9 @@ const News = () => {
           </View>
           {news.map((item, index) => (
             <View key={index} style={styles.tableRow}>
+              <View style={styles.idCol}>
+                <Text style={styles.tableCell}>{item.seqId}</Text>
+              </View>
               <View style={styles.idCol}>
                 <Text style={styles.tableCell}>{item.id}</Text>
               </View>
@@ -157,7 +167,7 @@ const News = () => {
       <tbody>
         {currentItems.map((news, index) => (
           <tr key={index}>
-            <td>{news.id}</td>
+            <td>{news.seqId}</td>
             <td>{news.news_type}</td>
             <td>{news.news_description}</td>
             <td>{new Date(news.created_at).toLocaleDateString("en-IN")}</td>
@@ -172,7 +182,7 @@ const News = () => {
       {currentItems.map((news, index) => (
         <div key={index} className="news">
           <div className="news-header" style={{ textAlign: "center" }}>
-            ID: {news.id}
+             ID: {news.seqId}
           </div>
           <div className="news-body">
             <p className="news-text">
@@ -202,24 +212,21 @@ const News = () => {
       <Sidebar />
       <div className="News-Title">
         <h2>News Details</h2>
-      
       </div>
       <div>
-     
         <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
-          {({ loading, error }) =>
+          {({ loading }) =>
             loading ? "Loading document..." : (
               <button style={{ backgroundColor: '#007bff' }} className="export-button">
                 Export as Pdf
               </button>
-              
             )
           }
         </PDFDownloadLink>
         <div>
-        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button"> 
-          Switch to {view === 'table' ? 'Cards' : 'Table'}
-        </button>
+          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
+            Switch to {view === 'table' ? 'Cards' : 'Table'}
+          </button>
         </div>
         <div className="SearchContainer_news">
           <input
@@ -242,23 +249,36 @@ const News = () => {
               <div className="pagination-container">
                 <ul className="pagination">
                   <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                    <button className="page-link" onClick={() => paginate(currentPage - 1)}>
-                      Prev
+                    <button
+                      className="page-link"
+                      onClick={() => paginate(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
                     </button>
                   </li>
-                  {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map((number) => (
-                    <li key={number + 1} className={`page-item ${currentPage === number + 1 ? "active" : ""}`}>
-                      <button className="page-link" onClick={() => paginate(number + 1)}>
-                        {number + 1}
+                  {Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) }, (_, i) => i + 1).map((number) => (
+                    <li key={number} className={`page-item ${currentPage === number ? "active" : ""}`}>
+                      <button onClick={() => paginate(number)} className="page-link">
+                        {number}
                       </button>
                     </li>
                   ))}
-                  <li className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}>
-                    <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+                  <li
+                    className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => paginate(currentPage + 1)}
+                      disabled={currentPage === Math.ceil(filteredData.length / itemsPerPage)}
+                    >
                       Next
                     </button>
                   </li>
                 </ul>
+              </div>
+              <div className="total-news-count">
+                Total News: {filteredData.length}
               </div>
             </div>
           </>
