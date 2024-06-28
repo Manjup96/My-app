@@ -76,6 +76,16 @@ key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
           .post("https://iiiqbets.com/pg-management/razorpay-orderID-tenant-fee-pay-update-API.php", apiData)
           .then((response) => {
             console.log("API response", response.data);
+
+            // Send email notification
+            axios.post('http://localhost:3001/send-email', apiData)
+              .then(emailResponse => {
+                console.log('Email sent successfully', emailResponse.data);
+              })
+              .catch(emailError => {
+                console.error('Email sending error', emailError);
+              });
+              
             setFormData({
               month: "",
               year: "",
