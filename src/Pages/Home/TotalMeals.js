@@ -122,6 +122,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/components/Home.scss";
+import { someIconName } from '@fortawesome/free-regular-svg-icons';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faHamburger, faDrumstickBite, faBacon, faSandwich, faPizzaSlice, faBreadSlice} from '@fortawesome/free-solid-svg-icons';
