@@ -146,6 +146,10 @@ body {
   margin-bottom: 10px;
 }
 
+.complaints-list-heading{
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
 
 .SearchContainer_complaints{
   display: flex;
@@ -290,12 +294,28 @@ body {
     gap: 50px;
     max-width: none;
   }
+
+  .switch-button-complaints{
+
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 10px 35px;
+    margin-left: 60px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    //align-items: flex-end;
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
  
   .e_button_complaints {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 5px 35px;
+    padding: 10px 35px;
     margin-left: 59px;
     cursor: pointer;
     font-size: 20px;
@@ -305,11 +325,12 @@ body {
     background-color: #007bff;
         color: white;
         border: none;
-        padding: 6px 21px;
+        padding: 12px 21px;
         cursor: pointer;
         font-size: 20px;
         border-radius: 5px;
-        margin-left: 12px;
+        margin-left: -62px;
+        margin-right: 20px;
         /* gap: 12px; */
         align-items: flex-end;
 
@@ -322,10 +343,11 @@ body {
          display: flex; 
           justify-content: center;
           padding: 0 10px;
-          margin-bottom: 20px;
-          margin-top: 20px;
+          margin-bottom: 38px;
+          margin-top: -39px;
+  
           width: 131%;
-          margin-left: -7%;
+          margin-left: 72%;
           padding: 10px;
   }
 
@@ -333,7 +355,11 @@ body {
     margin-top: 30px;
     // width: 100%;
     margin-left: 80px;
-    overflow-x: auto;
+    overflow-x: scroll;
+  }
+
+  .complaints-list-heading{
+    margin-bottom: 25px;
   }
 }
 
@@ -344,20 +370,60 @@ body {
     margin-left: 50px;
   }
 
-  .e_button {
-    width: 80%;
-    padding: 4px;
-    font-size: 12px;
-    //margin-bottom: 20px;
-    margin-right: 1px;
-    margin-left: 50px;
+  .e_button_complaints {
+   width: 90%;
+        padding: 0px 25px;
+        font-size: 20px;
+        margin-right: 2px;
+        margin-left: 50px;
+  }
+
+  .switch-button-complaints{
+
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 10px 35px;
+    margin-left: 108px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    //align-items: flex-end;
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  .complaints-list-heading {
+       margin-bottom: 25px;
+        margin-left: 39px;
+        margin-top: 8px;
+    }
+
+.complaints_button_style {
+  background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0px 20px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 5px;
+        margin-left: 72px;
+        margin-right: 4px;
+        /* gap: 12px; */
+        align-items: flex-end;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
   }
 
 
-
   .search-bar {
-    min-width: 50%;
-    //margin-bottom: 10px;
+    min-width: 60%;
+        margin-top: 28px;
+        margin-left: 98px;
+        margin-bottom: 10px;
   }
 
   .complaint_card_style {
@@ -379,7 +445,7 @@ body {
     margin-top: 30px;
     width: 100%;
     margin-left: 70px;
-    overflow-x: auto;
+    overflow-x: scroll;
   }
 }
 

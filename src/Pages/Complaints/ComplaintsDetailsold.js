@@ -40,22 +40,14 @@ const ComplaintsDetails = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        // Add incremental ID to each complaint
-        const dataWithId = data.map((complaint, index) => ({
-          ...complaint,
-          displayId: index + 1,
-        }));
-        setComplaints(dataWithId);
+        setComplaints(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, [user]);
-  
-  
-  
 
   const handleOpenForm = (complaint = null) => {
     setSelectedComplaint(complaint);
@@ -96,7 +88,6 @@ const ComplaintsDetails = () => {
       const data = await response.json();
       if (selectedComplaint) {
         setComplaints((prev) =>
-          
           prev.map((complaint) =>
             complaint.id === selectedComplaint.id ? data : complaint
           )
@@ -135,15 +126,14 @@ const ComplaintsDetails = () => {
   const filteredComplaints = complaints.filter((complaint) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
-      (complaint.id && complaint.id.toString().includes(lowerSearchTerm)) ||
+      (complaint.id && complaint.id.toLowerCase().includes(lowerSearchTerm)) ||
       (complaint.tenant_name && complaint.tenant_name.toLowerCase().includes(lowerSearchTerm)) ||
       (complaint.complaint_type && complaint.complaint_type.toLowerCase().includes(lowerSearchTerm)) ||
       (complaint.complaint_description && complaint.complaint_description.toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.created_date && new Date(complaint.created_date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm)) ||
-      (complaint.resolve_date && new Date(complaint.resolve_date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm))
+      (complaint.created_date && complaint.created_date.toLowerCase().includes(lowerSearchTerm)) ||
+      (complaint.resolve_date && complaint.resolve_date.toLowerCase().includes(lowerSearchTerm))
     );
   });
-  
 
   const styles = StyleSheet.create({
     table: {
@@ -332,7 +322,7 @@ const ComplaintsDetails = () => {
 
         return (
           <tr key={complaint.id}>
-            <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
+            <td style={{ textAlign: "center" }}>{complaint.id}</td>
             <td>{complaint.complaint_type}</td>
             <td>
               {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
@@ -386,7 +376,7 @@ const ComplaintsDetails = () => {
                   <div className="complaint-card p-3">
                     <div className="complaint-card-content">
                       <div className="card-header" style={{ textAlign: "center" }}>
-                        ID: {complaint.displayId}
+                        ID: {complaint.id}
                       </div>
                       <br />
                       <strong>Complaint Type:</strong> {complaint.complaint_type}

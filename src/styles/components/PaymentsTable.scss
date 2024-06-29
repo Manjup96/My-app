@@ -30,6 +30,7 @@
     tr {
       &:nth-child(even) {
         background-color: #f9f9f9;
+        padding: auto;
       }
 
       &:hover {
@@ -123,4 +124,56 @@
       
       }
   }
+
+  @media (max-width: 768px) {
+      
+    .payments-table {
+
+      width: 122%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 16px;
+      text-align: left;
+      margin-top: 60px;
+      overflow-x: scroll;
+      margin-left: -101px;
+  }
+  .pagination-container-paymentstable .pagination {
+
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    // margin-left: 160px;
+    overflow-x: hidden;
   
+  }
+}
+
+  @media (max-width: 576px) {
+      
+    .payments-table {
+
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 16px;
+      text-align: left;
+      margin-top: 60px;
+      overflow-x: scroll;
+  }
+
+  th, td {
+    padding: 15px 100px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+}
