@@ -465,7 +465,7 @@ const ComplaintsDetails = () => {
         <div >
 
         <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints"> 
-          Switch to {view === 'table' ? 'Table' : 'Cards'}
+          Switch to {view === 'table' ? 'Cards' : 'Table'}
         </button>
           <input 
             type="text"
@@ -489,7 +489,7 @@ const ComplaintsDetails = () => {
         <div className="complaints-list mt-4">
           <h2 className="complaints-list-heading">Complaints List</h2>
          
-          {view === 'table' ? renderCards() :  renderTable()}
+          {view === 'table' ? renderTable() :  renderCards()}
           <nav className="mt-4">
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
