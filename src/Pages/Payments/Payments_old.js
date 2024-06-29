@@ -40,19 +40,19 @@ const Payment = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     
+
     var options = {
       // Live enviroment
-      // key: "rzp_live_meYRQwcQTdON8u",
-      // key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
+      key: "rzp_live_meYRQwcQTdON8u",
+      key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
 
       // Test enviroment
-key : "rzp_test_jIUzBukJnwE5kE",
-key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
+      // key: "rzp_test_jIUzBukJnwE5kE",
+      // key_secret: "ZhnhUtHuusGrZBSqBAnwXhAI",
       amount: parseInt(formData.income_amount) * 100,
       currency: "INR",
-      name:"iiiQbets",
-      image: logo,  // Use image instead of name
+      name: "iiiQbets",
+      image: logo,
       description: "for testing purpose",
       handler: function (response) {
         const paymentId = response.razorpay_payment_id;
@@ -85,7 +85,7 @@ key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
               .catch(emailError => {
                 console.error('Email sending error', emailError);
               });
-              
+
             setFormData({
               month: "",
               year: "",
@@ -126,7 +126,7 @@ key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
               onChange={handleChange}
               placeholder="Select your payment month...">
               <option value="" disabled hidden>Select your payment month...
-              <span className="dropdown-symbol">&#9660;</span>
+                <span className="dropdown-symbol">&#9660;</span>
               </option>
               <option value="January">January</option>
               <option value="February">February</option>
@@ -155,11 +155,11 @@ key_secret : "ZhnhUtHuusGrZBSqBAnwXhAI",
               placeholder="Select your payment month..."
 
             >
-              <option value="" disabled hidden>Select your payment year...   
-               <span className="dropdown-symbol">&#9660;</span>
+              <option value="" disabled hidden>Select your payment year...
+                <span className="dropdown-symbol">&#9660;</span>
               </option>
               <option value="2024">2024</option>
-              
+
             </select>
           </div>
           <div className="form-group">
