@@ -43,6 +43,9 @@ body {
 .table_meal_e_button{
   gap: 10px;
   color: $primary-color;
+  margin-left: 15px;
+
+  background-color: white;
       &:hover {
         color: $secondary-color;
       }
@@ -53,7 +56,9 @@ body {
 }
 .table_meal_t_button{
   gap: 10px;
-  margin-left: 10px;
+  margin-left: 15px;
+  background-color: white;
+
   border: none;
   color: $danger-color;
   &:hover {
@@ -181,6 +186,14 @@ tbody {
   border-radius: 10px;
   margin-bottom: 10px;
 }
+.meals_table{
+  margin-top: 30px;
+  width: 101%;
+  margin-left: -2px;
+  overflow-x: auto;
+}
+
+
 
 @media (max-width: 768px) {
   .meal_button_style {
@@ -195,8 +208,14 @@ tbody {
 
   .meals-list {
     padding: 0 10px;
+    margin-left: -35px;
   }
-
+  .meals_table{
+    margin-top: 30px;
+    width: 101%;
+    margin-left: -2px;
+    overflow-x: auto;
+  }
   .meal-card {
     padding: 15px;
     min-width: 50%;
@@ -204,16 +223,28 @@ tbody {
     // height: 330px;
   }
 
+  .switch_button_meals{
+    background-color: #007bff;
+    color: rgb(248, 240, 240);
+    border: none;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-left: -34px;
+  }
+
   .search-bar-meals{
-    display: flex; 
+    display: flex;
     justify-content: center;
     padding: 0 10px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 31px;
+    margin-top: -47px;
     width: 42%;
-    margin-left: 27%;
+    margin-left: 57%;
     padding: 10px;
     border-radius: 10px;
+
   
   }
   .container .pdf-container .meal_button_style{
@@ -227,7 +258,7 @@ tbody {
     color: white;
     border: none;
     padding: 13px 35px;
-    margin-left: 5px;
+    margin-left: -34px;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
@@ -261,6 +292,7 @@ tbody {
   .meal-card-actions {
     margin-left: 60px;
   }
+
  
 }
 
@@ -279,7 +311,12 @@ tbody {
     margin-right: 1px;
     margin-left: 50px;
   }
-
+  .meals_table{
+    margin-top: 30px;
+    width: 101%;
+    margin-left: -2px;
+    overflow-x: auto;
+  }
   .meal_button_style {
     width: 50%;
     padding: 3px;
@@ -288,14 +325,32 @@ tbody {
     margin-left: 10px;
   }
 
+  .meals-list {
+    padding: 0 10px;
+    margin-left: -35px;
+    overflow-x: scroll;
+  }
+
+  .switch_button_meals{
+    background-color: #007bff;
+    color: rgb(248, 240, 240);
+    border: none;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-left: 43px;
+  }
+
+
   .search-bar-meals{
     display: flex;
     justify-content: center;
     padding: 0 10px;
     margin-bottom: 20px;
     margin-top: 15px;
-    min-width: 61%;
-    margin-left: 27%;
+    min-width: 70%;
+    margin-left: 15%;
     padding: 6px;
     border-radius: 7px;
   }
@@ -332,11 +387,11 @@ tbody {
   }
 
   .container .pdf-container .e-button-meals {
-    width: 72%;
+    width: 93%;
     padding: 6px;
     font-size: 18px;
     margin-right: 41px;
-    margin-left: -9px;
+    margin-left: -35px
   }
   .container .pdf-container .meal_button_style{
     font-size: 18px;

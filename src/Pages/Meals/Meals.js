@@ -21,8 +21,6 @@ const MealsDetails = () => {
   const [readMoreStates, setReadMoreStates] = useState({});
   const [view, setView] = useState('table');
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,12 +38,16 @@ const MealsDetails = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setMeals(data);
+        // Sort data by id
+        const sortedData = data.sort((a, b) => a.id - b.id);
+        // Add incremental ID
+        const dataWithIncrementalId = sortedData.map((meal, index) => ({ ...meal, incrementalId: index + 1 }));
+        setMeals(dataWithIncrementalId);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchData();
   }, [user]);
 
@@ -310,128 +312,115 @@ const MealsDetails = () => {
 
 
   const renderTable = () => (
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Breakfast</th>
-          <th>Lunch</th>
-          <th>Dinner</th>
-          <th>Comments</th>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentMeals.map((meal, index) => {
-          const readMore = readMoreStates[meal.id] || false;
+    <div className="meals_table">
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th> ID</th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+            <th>Comments</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentMeals.map((meal, index) => {
+            const readMore = readMoreStates[meal.id] || false;
+            return (
+              <tr key={index}>
+                <td>{meal.incrementalId}</td>
+                <td>{meal.breakfast}</td>
+                <td>{meal.lunch}</td>
+                <td>{meal.dinner}</td>
+                <td>
+                  {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
+                  {meal.comments.length > 100 && (
+                    <span className="read-more-link">
+                      <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
+                        {readMore ? "...Show Less" : "...Read More"}
+                      </a>
+                    </span>
+                  )}
+                </td>
+                <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
+                <td>
+                  <PDFDownloadLink
+                    className="pdf-link"
+                    document={<IndividualMealDocument meal={meal} />}
+                    fileName={`meal_${meal.id}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
+                  </PDFDownloadLink>
+                  <button className="table_meal_e_button" onClick={() => handleOpenForm(meal)}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button className="table_meal_t_button" onClick={() => handleDelete(meal.id)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
   
-          return (
-            <tr key={index}>
-              <td>{meal.id}</td>
-              <td>{meal.breakfast}</td>
-              <td>{meal.lunch}</td>
-              <td>{meal.dinner}</td>
-              <td>
+  const renderCards = () => (
+    <div className="row">
+      {currentMeals.map((meal, index) => {
+        const readMore = readMoreStates[meal.id] || false;
+        return (
+          <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div className="meal-card p-3">
+              <div className="meal-card-content">
+                <div className="card-header" style={{ textAlign: "center", marginLeft: "-10px" }}>
+                   ID: {meal.incrementalId}
+                </div>
+                <strong>breakfast:</strong> {meal.breakfast}
+                <br />
+                <strong>lunch:</strong> {meal.lunch}
+                <br />
+                <strong>dinner:</strong> {meal.dinner}
+                <br />
+                <strong>comments:</strong>
                 {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
-                {meal.comments.length > 100 && (
+                {meal.comments.length > 40 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
                       {readMore ? "...Show Less" : "...Read More"}
                     </a>
                   </span>
                 )}
-              </td>
-              <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
-              <td>
-                <PDFDownloadLink
-                  className="pdf-link"
-                  document={<IndividualMealDocument meal={meal} />}
-                  fileName={`meal_${meal.id}.pdf`}
-                >
-                  {({ blob, url, loading, error }) => (
-                    <FontAwesomeIcon icon={faFileExport} />
-                  )}
-                </PDFDownloadLink>
-  
-                <button className="table_meal_e_button" onClick={() => handleOpenForm(meal)}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-  
-                <button className="table_meal_t_button" onClick={() => handleDelete(meal.id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  
-  );
-
-  const renderCards = () => (
-    <div className="row">
-
-              {currentMeals.map((meal, index) => {
-                const readMore = readMoreStates[meal.id] || false; // Declare inside the map function block
-                return (
-                  <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-                    <div className="meal-card p-3">
-                      <div className="meal-card-content">
-                        <div className="card-header" style={{ textAlign: "center", marginLeft: '-10px' }}>
-                          ID: {meal.id}
-                        </div>
-
-                        <strong>breakfast:</strong> {meal.breakfast}
-                        <br />
-                        <strong>lunch:</strong> {meal.lunch}
-                        <br />
-                        <strong>dinner:</strong> {meal.dinner}
-                        <br />
-                        <strong>comments:</strong>
-                        {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
-                        {meal.comments.length > 40 && (
-                          <span className="read-more-link">
-                            <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                              {readMore ? "...Show Less" : "...Read More"}
-                            </a>
-                          </span>
-                        )}
-                        <br />
-
-                        <strong>date:</strong> {new Date(meal.dat).toLocaleDateString("en-IN")}
-
-                      </div>
-                      <div className="meal-card-actions mt-2">
-                        <div className="meal-card-icons">
-                          <PDFDownloadLink
-                            className="pdf-link"
-                            document={<IndividualMealDocument meal={meal} />}
-                            fileName={`meal_${meal.id}.pdf`}
-                          >
-                            {({ blob, url, loading, error }) =>
-                              <FontAwesomeIcon icon={faFileExport} />
-                            }
-                          </PDFDownloadLink>
-
-                          <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
-                            <FontAwesomeIcon icon={faEdit} />
-                          </button>
-
-                          <button className="btn btn-danger red" onClick={() => handleDelete(meal.id)}>
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-
+                <br />
+                <strong>date:</strong> {new Date(meal.date).toLocaleDateString("en-IN")}
+              </div>
+              <div className="meal-card-actions mt-2">
+                <div className="meal-card-icons">
+                  <PDFDownloadLink
+                    className="pdf-link"
+                    document={<IndividualMealDocument meal={meal} />}
+                    fileName={`meal_${meal.id}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
+                  </PDFDownloadLink>
+                  <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button className="btn btn-danger red" onClick={() => handleDelete(meal.id)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+        );
+      })}
+    </div>
   );
-
+  
   return (
     <div >
       <Sidebar />
