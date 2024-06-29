@@ -212,7 +212,7 @@ const ComplaintsDetails = () => {
           {complaints.map((complaint, index) => (
             <View key={index} style={styles.tableRow}>
               <View style={styles.idCol}>
-                <Text style={styles.tableCell}>{complaint.id}</Text>
+                <Text style={styles.tableCell}>{index+1}</Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
