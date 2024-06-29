@@ -392,8 +392,8 @@ const ComplaintsDetails = () => {
                       <strong>Complaint Type:</strong> {complaint.complaint_type}
                       <br />
                       <strong>Description:</strong>
-                      {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
-                      {complaint.complaint_description.length > 40 && (
+                      {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
+                      {complaint.complaint_description.length > 15 && (
                         <span className="read-more-link">
                         <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
                           {readMore ? "...Show Less" : "...Read More"}
