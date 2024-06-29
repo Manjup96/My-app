@@ -264,7 +264,7 @@ const ComplaintsDetails = () => {
           </View>
           <View style={styles.tableRow}>
             <View style={styles.idCol}>
-              <Text style={styles.tableCell}>{complaint.id}</Text>
+              <Text style={styles.tableCell}>{complaint.displayId}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
@@ -351,7 +351,7 @@ const ComplaintsDetails = () => {
               <div className="complaint-table-icons">
                 <PDFDownloadLink
                   document={<IndividualComplaintDocument complaint={complaint} />}
-                  fileName={`complaint_${complaint.id}.pdf`}
+                  fileName={`complaint_${complaint.displayId}.pdf`}
                 >
                   {({ blob, url, loading, error }) =>
                     loading ? "" : <FontAwesomeIcon icon={faFileExport} />

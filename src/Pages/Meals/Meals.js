@@ -259,7 +259,7 @@ const MealsDetails = () => {
           </View>
           <View style={styles.tableRow}>
             <View style={styles.idCol}>
-              <Text style={styles.tableCell}>{meal.id}</Text>
+              <Text style={styles.tableCell}>{meal.incrementalId}</Text>
             </View>
 
             <View style={styles.tableCol}>
@@ -402,7 +402,7 @@ const MealsDetails = () => {
                   <PDFDownloadLink
                     className="pdf-link"
                     document={<IndividualMealDocument meal={meal} />}
-                    fileName={`meal_${meal.id}.pdf`}
+                    fileName={`meal_${meal.incrementalId}.pdf`}
                   >
                     {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
                   </PDFDownloadLink>
