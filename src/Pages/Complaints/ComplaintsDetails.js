@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import ComplaintsForm from "./ComplaintsForm";
+import Button from '@mui/material/Button';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+//import { PDFDownloadLink } from '@react-pdf/renderer';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faTable, faTh } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import {
   TENANAT_COMPLAINT_URL,
   TENANAT_COMPLAINT_UPDATE_URL,
@@ -50,12 +59,12 @@ const ComplaintsDetails = () => {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, [user]);
-  
-  
-  
+
+
+
 
   const handleOpenForm = (complaint = null) => {
     setSelectedComplaint(complaint);
@@ -96,7 +105,7 @@ const ComplaintsDetails = () => {
       const data = await response.json();
       if (selectedComplaint) {
         setComplaints((prev) =>
-          
+
           prev.map((complaint) =>
             complaint.id === selectedComplaint.id ? data : complaint
           )
@@ -143,7 +152,7 @@ const ComplaintsDetails = () => {
       (complaint.resolve_date && new Date(complaint.resolve_date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm))
     );
   });
-  
+
 
   const styles = StyleSheet.create({
     table: {
@@ -212,7 +221,7 @@ const ComplaintsDetails = () => {
           {complaints.map((complaint, index) => (
             <View key={index} style={styles.tableRow}>
               <View style={styles.idCol}>
-                <Text style={styles.tableCell}>{index+1}</Text>
+                <Text style={styles.tableCell}>{index + 1}</Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{complaint.tenant_name}</Text>
@@ -314,127 +323,127 @@ const ComplaintsDetails = () => {
 
   const renderTable = () => (
     <div className="complaints-table">
-  <table className="table table-bordered thead">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Complaint Type</th>
-        <th>Description</th>
-        <th>Created Date</th>
-        <th>Resolved Date</th>
-        <th>Comments</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {currentComplaints.map((complaint) => {
-        const readMore = readMoreStates[complaint.id] || false;
-
-        return (
-          <tr key={complaint.id}>
-            <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
-            <td>{complaint.complaint_type}</td>
-            <td>
-              {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
-              {complaint.complaint_description.length > 100 && (
-                <span className="read-more-link">
-                  <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
-                    {readMore ? "...Show Less" : "...Read More"}
-                  </a>
-                </span>
-              )}
-            </td>
-            <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-            <td>{complaint.resolve_date}</td>
-            <td>{complaint.comments}</td>
-            <td className="complaint-table-actions">
-              <div className="complaint-table-icons">
-                <PDFDownloadLink
-                  document={<IndividualComplaintDocument complaint={complaint} />}
-                  fileName={`complaint_${complaint.displayId}.pdf`}
-                >
-                  {({ blob, url, loading, error }) =>
-                    loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-                  }
-                </PDFDownloadLink>
-                <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            </td>
+      <table className="table table-bordered table-striped table-hover thead">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Complaint Type</th>
+            <th>Description</th>
+            <th>Created Date</th>
+            <th>Resolved Date</th>
+            <th>Comments</th>
+            <th>Actions</th>
           </tr>
-        );
-      })}
-    </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+          {currentComplaints.map((complaint) => {
+            const readMore = readMoreStates[complaint.id] || false;
+
+            return (
+              <tr key={complaint.id}>
+                <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
+                <td>{complaint.complaint_type}</td>
+                <td>
+                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
+                  {complaint.complaint_description.length > 100 && (
+                    <span className="read-more-link">
+                      <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
+                        {readMore ? "...Show Less" : "...Read More"}
+                      </a>
+                    </span>
+                  )}
+                </td>
+                <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
+                <td>{complaint.resolve_date}</td>
+                <td>{complaint.comments}</td>
+                <td className="complaint-table-actions">
+                  <div className="complaint-table-icons">
+                    <PDFDownloadLink
+                      document={<IndividualComplaintDocument complaint={complaint} />}
+                      fileName={`complaint_${complaint.displayId}.pdf`}
+                    >
+                      {({ blob, url, loading, error }) =>
+                        loading ? "" : <FontAwesomeIcon icon={faFileExport} />
+                      }
+                    </PDFDownloadLink>
+                    <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                    <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
 
 
   );
 
   const renderCards = () => (
-    
+
     <div className="row complaints-cards">
-            {currentComplaints.map((complaint) => {
-              const readMore = readMoreStates[complaint.id] || false;
+      {currentComplaints.map((complaint) => {
+        const readMore = readMoreStates[complaint.id] || false;
 
-              return (
-                <div key={complaint.id} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-                  <div className="complaint-card p-3">
-                    <div className="complaint-card-content">
-                      <div className="card-header" style={{ textAlign: "center" }}>
-                        ID: {complaint.displayId}
-                      </div>
-                      <br />
-                      <strong>Complaint Type:</strong> {complaint.complaint_type}
-                      <br />
-                      <strong>Description:</strong>
-                      {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
-                      {complaint.complaint_description.length > 15 && (
-                        <span className="read-more-link">
-                        <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
-                          {readMore ? "...Show Less" : "...Read More"}
-                        </a>
-                        </span>
-                      )}
-                      <br />
-                      <strong>Created Date:</strong> {new Date(complaint.created_date).toLocaleDateString("en-IN")}
-                      <br />
-                      <strong>Resolved Date:</strong> {complaint.resolve_date}
-                      <br />
-                      <strong>Comments:</strong> {complaint.comments}
-                    </div>
-                    <div className="complaint-card-actions mt-2">
-                      <div className="complaint-card-icons">
-                        <PDFDownloadLink
-                          document={<IndividualComplaintDocument complaint={complaint} />}
-                          fileName={`complaint_${complaint.id}.pdf`}
-                        >
-                          {({ blob, url, loading, error }) =>
-                            loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-                          }
-                        </PDFDownloadLink>
-
-                        <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
-                          <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                        <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
-                          <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+        return (
+          <div key={complaint.id} className="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <div className="complaint-card p-3">
+              <div className="complaint-card-content">
+                <div className="card-header" style={{ textAlign: "center" }}>
+                  ID: {complaint.displayId}
                 </div>
-              );
-            })}
+                <br />
+                <strong>Complaint Type:</strong> {complaint.complaint_type}
+                <br />
+                <strong>Description:</strong>
+                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
+                {complaint.complaint_description.length > 15 && (
+                  <span className="read-more-link">
+                    <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
+                      {readMore ? "...Show Less" : "...Read More"}
+                    </a>
+                  </span>
+                )}
+                <br />
+                <strong>Created Date:</strong> {new Date(complaint.created_date).toLocaleDateString("en-IN")}
+                <br />
+                <strong>Resolved Date:</strong> {complaint.resolve_date}
+                <br />
+                <strong>Comments:</strong> {complaint.comments}
+              </div>
+              <div className="complaint-card-actions mt-2">
+                <div className="complaint-card-icons">
+                  <PDFDownloadLink
+                    document={<IndividualComplaintDocument complaint={complaint} />}
+                    fileName={`complaint_${complaint.id}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? "" : <FontAwesomeIcon icon={faFileExport} />
+                    }
+                  </PDFDownloadLink>
+
+                  <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+        );
+      })}
+    </div>
   );
 
 
-  
+
 
   return (
     <div>
@@ -444,7 +453,7 @@ const ComplaintsDetails = () => {
       </div>
       <div className="container mt-4">
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-          <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
+          {/* <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
             {({ blob, url, loading, error }) =>
                (
                 <button className="e_button_complaints">
@@ -452,22 +461,37 @@ const ComplaintsDetails = () => {
                 </button>
               )
             }
+          </PDFDownloadLink> */}
+
+
+          <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
+            {({ blob, url, loading, error }) => (
+              <button className="e_button_complaints">
+                <FontAwesomeIcon icon={faFilePdf} />
+              </button>
+            )}
           </PDFDownloadLink>
 
 
           <button className="complaints_button_style" onClick={() => handleOpenForm()}>
             Add Complaint
           </button>
-        </div>
 
-      
+          {/* <button className="complaints_button_style" onClick={handleOpenForm}>
+            <FontAwesomeIcon icon={faPlus} />
+          </button> */}
+        </div>
 
         <div >
 
-        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints"> 
-          Switch to {view === 'table' ? 'Cards' : 'Table'}
-        </button>
-          <input 
+          {/* <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints">
+            Switch to {view === 'table' ? 'Cards' : 'Table'}
+          </button> */}
+
+          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints">
+            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
+          <input
             type="text"
             placeholder="Search complaints"
             value={searchTerm}
@@ -476,8 +500,8 @@ const ComplaintsDetails = () => {
           />
         </div>
 
-       
-        
+
+
         {showForm && (
           <ComplaintsForm
             onSubmit={handleFormSubmit}
@@ -488,8 +512,8 @@ const ComplaintsDetails = () => {
 
         <div className="complaints-list mt-4">
           <h2 className="complaints-list-heading">Complaints List</h2>
-         
-          {view === 'table' ? renderTable() :  renderCards()}
+
+          {view === 'table' ? renderTable() : renderCards()}
           <nav className="mt-4">
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
@@ -520,9 +544,9 @@ const ComplaintsDetails = () => {
 
 const formatDate = (dateString) => {
   const [year, month, day] = dateString.split(' ')[0].split('-');
-  console.log('day',day);
-  console.log('month',month);
-  console.log('year',year);
+  console.log('day', day);
+  console.log('month', month);
+  console.log('year', year);
   return `${day}/${month}/${year}`;
 };
 
