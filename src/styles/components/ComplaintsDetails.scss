@@ -31,11 +31,12 @@ body {
   background-color: $primary-color;
   color: white;
   border: none;
-  padding: 15px 35px;
+  padding: 8px 25px;
   margin-left: 150px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
+  margin-top: 1px;
   //align-items: flex-end;
   &:hover {
     background-color: $secondary-color;
@@ -46,7 +47,7 @@ body {
   background-color: $primary-color;
   color: white;
   border: none;
-  padding: 15px 35px;
+  padding: 8px 25px;
   cursor: pointer;
   margin-right: -93px;
   font-size: 20px;
@@ -62,6 +63,8 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  margin-left: 10px;
+    margin-right: -31px;
 }
 
 .complaints-cards {
@@ -170,11 +173,13 @@ body {
   background-color: $primary-color;
   color: white;
   border: none;
-  padding: 15px 35px;
+  padding: 8px 25px;
   margin-left: 150px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
+  margin-bottom: 10px;
+    margin-top: -35px;
   //align-items: flex-end;
   &:hover {
     background-color: $secondary-color;
@@ -186,6 +191,13 @@ body {
  width: 95%;
  margin-left: 200px;
  overflow-x: auto;
+
+//  width: 95%;
+//   border-collapse: collapse;
+//   margin: 20px 0;
+//   font-size: 16px;
+//   text-align: left;
+  
 
   .complaint-table-actions{
  // position: absolute; // Ensure actions are always positioned correctly
@@ -217,6 +229,7 @@ body {
   th, td {
     padding: 12px 15px;
     border: 1px solid #ddd;
+    height: 50px;
   }
 
   thead {
@@ -225,7 +238,7 @@ body {
     th {
       font-weight: bold;
       text-transform: capitalize;
-      
+      height: 50px;
     }
   }
 
@@ -286,6 +299,8 @@ body {
 
   .complaints-list {
     padding: 0 10px;
+    margin-left: -44px;
+    width: 109%;
   }
 
   .complaint-card {
@@ -372,7 +387,7 @@ body {
 
   .e_button_complaints {
    width: 90%;
-        padding: 0px 25px;
+        padding: 6px 2px;
         font-size: 20px;
         margin-right: 2px;
         margin-left: 50px;
@@ -383,8 +398,8 @@ body {
     background-color: $primary-color;
     color: white;
     border: none;
-    padding: 10px 35px;
-    margin-left: 108px;
+    padding: 5px 24px;
+    margin-left: 52px;;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
@@ -404,7 +419,7 @@ body {
   background-color: #007bff;
         color: white;
         border: none;
-        padding: 0px 20px;
+        padding: 7px 25px;
         cursor: pointer;
         font-size: 20px;
         border-radius: 5px;
@@ -419,10 +434,16 @@ body {
   }
 
 
+  .complaints-list {
+    padding: 0 6px;
+        margin-left: -5px;
+        width: 100%;
+}
+
   .search-bar {
-    min-width: 60%;
-        margin-top: 28px;
-        margin-left: 98px;
+    min-width: 56%;
+        margin-top: -48px;
+        margin-left: 159px;
         margin-bottom: 10px;
   }
 
