@@ -8,6 +8,15 @@ import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/components/Meals.scss";
+import Button from '@mui/material/Button';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faTable, faTh } from "@fortawesome/free-solid-svg-icons"
+
+
+
 
 
 const MealsDetails = () => {
@@ -313,59 +322,59 @@ const MealsDetails = () => {
 
   const renderTable = () => (
     <div className="meals_table">
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th> ID</th>
-            <th>Breakfast</th>
-            <th>Lunch</th>
-            <th>Dinner</th>
-            <th>Comments</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentMeals.map((meal, index) => {
-            const readMore = readMoreStates[meal.id] || false;
-            return (
-              <tr key={index}>
-                <td>{meal.incrementalId}</td>
-                <td>{meal.breakfast}</td>
-                <td>{meal.lunch}</td>
-                <td>{meal.dinner}</td>
-                <td>
-                  {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
-                  {meal.comments.length > 100 && (
-                    <span className="read-more-link">
-                      <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                        {readMore ? "...Show Less" : "...Read More"}
-                      </a>
-                    </span>
-                  )}
-                </td>
-                <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
-                <td>
-                  <PDFDownloadLink
-                    className="pdf-link"
-                    document={<IndividualMealDocument meal={meal} />}
-                    fileName={`meal_${meal.id}.pdf`}
-                  >
-                    {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
-                  </PDFDownloadLink>
-                  <button className="table_meal_e_button" onClick={() => handleOpenForm(meal)}>
-                    <FontAwesomeIcon icon={faEdit} />
-                  </button>
-                  <button className="table_meal_t_button" onClick={() => handleDelete(meal.id)}>
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <table className="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Breakfast</th>
+          <th>Lunch</th>
+          <th>Dinner</th>
+          <th>Comments</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentMeals.map((meal, index) => {
+          const readMore = readMoreStates[meal.id] || false;
+          return (
+            <tr key={index}>
+              <td>{meal.incrementalId}</td>
+              <td>{meal.breakfast}</td>
+              <td>{meal.lunch}</td>
+              <td>{meal.dinner}</td>
+              <td>
+                {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
+                {meal.comments.length > 100 && (
+                  <span className="read-more-link">
+                    <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
+                      {readMore ? "...Show Less" : "...Read More"}
+                    </a>
+                  </span>
+                )}
+              </td>
+              <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
+              <td className="actions">
+                <PDFDownloadLink
+                  className="pdf-link"
+                  document={<IndividualMealDocument meal={meal} />}
+                  fileName={`meal_${meal.id}.pdf`}
+                >
+                  {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
+                </PDFDownloadLink>
+                <button className="edit-btn" onClick={() => handleOpenForm(meal)}>
+                  <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button className="delete-btn" onClick={() => handleDelete(meal.id)}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
   );
   
   const renderCards = () => (
@@ -435,14 +444,17 @@ const MealsDetails = () => {
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
 
-            <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
-              {({ blob, url, loading, error }) =>
-                <button className="e-button-meals" >
-                  Export all as Pdf
-                </button>
+           
 
-              }
-            </PDFDownloadLink>
+<PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
+            {({ blob, url, loading, error }) => (
+              <button className="e-button-meals">
+                <FontAwesomeIcon icon={faFilePdf} />
+              </button>
+            )}
+          </PDFDownloadLink>
+
+
 
             <button className="meal_button_style" onClick={() => handleOpenForm()}>
                Meal update
@@ -450,11 +462,27 @@ const MealsDetails = () => {
           </div>
 
 
-          <div>
+          {/* <div>
           <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
             Switch to {view === 'table' ? 'Cards' : 'Table'}
           </button>
-        </div>
+        </div> */}
+          <div>
+      {/* <Button
+        variant="contained"
+        color="primary"
+        startIcon={view === 'table' ? <ViewModuleIcon /> : <TableChartIcon />}
+        onClick={() => setView(view === 'table' ? 'cards' : 'table')}
+        className="switch_button_meals"
+      >
+         {view === 'table' ? 'Cards' : 'Table'}
+      </Button> */}
+
+
+      <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
+            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
+    </div>
           <div className="searchbar-meals">
             <input
               type="text"
