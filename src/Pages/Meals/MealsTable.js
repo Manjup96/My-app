@@ -88,7 +88,7 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData }) => {
   return (
     <div className="meals_1">
       <div className="meals_2">
-        <h2>{initialData ? "Edit Meal" : "Add Meal"}</h2>
+        <h2>{initialData ? "Edit Meal" : " Meal Update"}</h2>
         <form onSubmit={handleSubmit}>
           <div className="meal-option">
             <input
