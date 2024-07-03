@@ -344,12 +344,12 @@ const ComplaintsDetails = () => {
                 <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
                 <td>{complaint.complaint_type}</td>
                 <td>
-                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
+                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
                   {complaint.complaint_description.length > 100 && (
                     <span className="read-more-link">
-                      <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
+                      {/* <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
                         {readMore ? "...Show Less" : "...Read More"}
-                      </a>
+                      </a> */}
                     </span>
                   )}
                 </td>
