@@ -238,7 +238,7 @@ const ComplaintsDetails = () => {
                 <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+                <Text style={styles.tableCell}>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</Text>
               </View>
             </View>
           ))}
@@ -344,17 +344,17 @@ const ComplaintsDetails = () => {
                 <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
                 <td>{complaint.complaint_type}</td>
                 <td>
-                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 36)}`}
+                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
                   {complaint.complaint_description.length > 100 && (
                     <span className="read-more-link">
-                      <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
+                      {/* <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
                         {readMore ? "...Show Less" : "...Read More"}
-                      </a>
+                      </a> */}
                     </span>
                   )}
                 </td>
                 <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-                <td>{complaint.resolve_date}</td>
+                <td>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</td>
                 <td>{complaint.comments}</td>
                 <td className="complaint-table-actions">
                   <div className="complaint-table-icons">

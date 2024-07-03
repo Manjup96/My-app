@@ -344,7 +344,7 @@ const MealsDetails = () => {
               <td>{meal.lunch}</td>
               <td>{meal.dinner}</td>
               <td>
-                {readMore ? meal.comments : `${meal.comments.substring(0, 30)}`}
+                {readMore ? meal.comments : `${meal.comments.substring()}`}
                 {meal.comments.length > 100 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
