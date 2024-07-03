@@ -47,7 +47,7 @@ app.post('/send-email', (req, res) => {
   // Configure the email message for the customer
   const customerEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "asaikrishnachary103@gmail.com", // Customer's email address
+    to: "bharathkusuma4953@gmail.com", // Customer's email address
     subject: 'Payment Confirmation',
     html: `
       <p>Your payment has been successfully processed. Here are the details:</p>
