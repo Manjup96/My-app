@@ -47,7 +47,7 @@ app.post('/send-email', (req, res) => {
   // Configure the email message for the customer
   const customerEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "asaikrishnachary103@gmail.com", // Customer's email address
+    to: "manjuprasad.4343@gmail.com", // Customer's email address
     subject: 'Payment Confirmation',
     html: `
       <p>Your payment has been successfully processed. Here are the details:</p>
@@ -58,7 +58,7 @@ app.post('/send-email', (req, res) => {
   // Configure the email message for the admin
   const adminEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "asaikrishnachary@gmail.com", // Admin's email address
+    to: "manjuprasad.4343@gmail.com", // Admin's email address
     subject: 'Payment Notification',
     html: `
       <p>The tenant has made a payment. Here are the details:</p>
@@ -74,7 +74,6 @@ app.post('/send-email', (req, res) => {
     } else {
       console.log('Customer email sent:', info.response);
 
-      // Send the email to the admin
       transporter.sendMail(adminEmailOptions, (error, info) => {
         if (error) {
           console.error('Error sending admin email:', error);
