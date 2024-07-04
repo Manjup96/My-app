@@ -324,7 +324,7 @@ const renderCards = () => (
                 <div className="payment-body">
                   <p className="payment-text">
                     <small className="text-muted">
-                      <b>Date: </b> {news.date}
+                      <b>Date: </b>{new Date(news.date).toLocaleDateString("en-IN")} 
                     </small>
                   </p>
                   <p className="payment-text">

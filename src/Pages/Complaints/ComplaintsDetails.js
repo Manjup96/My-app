@@ -238,7 +238,7 @@ const ComplaintsDetails = () => {
                 <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{complaint.resolve_date}</Text>
+                <Text style={styles.tableCell}>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</Text>
               </View>
             </View>
           ))}
@@ -416,7 +416,7 @@ const ComplaintsDetails = () => {
                   )}
                 </td>
                 <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-                <td>{complaint.resolve_date}</td>
+                <td>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</td>
                 <td>{complaint.comments}</td>
                 <td className="complaint-table-actions">
                   <div className="complaint-table-icons">
