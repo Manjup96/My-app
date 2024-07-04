@@ -78,7 +78,7 @@ const PaymentsTable = () => {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.income_amount}</td>
-              <td>{item.date}</td>
+              <td>{new Date(item.date).toLocaleDateString("en-IN")}</td>
               <td>{new Date(item.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{item.year}</td>
             </tr>
           ))}
