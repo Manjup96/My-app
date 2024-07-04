@@ -52,7 +52,7 @@ body {
   margin-right: -93px;
   font-size: 20px;
   border-radius: 5px;
-  align-items: flex-end;complaints-cards
+  align-items: flex-end;
   &:hover {
     background-color: $secondary-color;
   }
@@ -63,8 +63,8 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  margin-left: 10px;
-    margin-right: -31px;
+  margin-left: 26px;
+    margin-right: 8px;
 }
 
 .complaints-cards {
@@ -93,6 +93,31 @@ body {
   overflow: hidden;
 }
 
+
+// .complaints-table .description-cell-complaints {
+//   white-space: pre-wrap; 
+//   // word-wrap: break-word; 
+//   max-width: 90ch;
+  
+  
+// }
+
+
+
+
+.complaint-card .read-more-link {
+  cursor: pointer;
+}
+
+
+
+
+.complaint-description {
+  max-width: 60ch; /* Adjust the value as needed to achieve the desired width */
+  white-space: pre-wrap; /* Ensures that whitespace is preserved and text wraps correctly */
+  word-wrap: break-word; /* Allows breaking long words */
+  overflow-wrap: break-word; /* Same as word-wrap, ensures text wrapping */
+}
 
 
 .complaint-card-content {
@@ -152,6 +177,7 @@ body {
 .complaints-list-heading{
   margin-bottom: 30px;
   margin-top: 20px;
+  margin-left: -15px;
 }
 
 .SearchContainer_complaints{
@@ -186,50 +212,31 @@ body {
   }
 }
 
-.complaints-table{
- margin-top: 30px;
- width: 95%;
- margin-left: 200px;
- overflow-x: auto;
 
-//  width: 95%;
-//   border-collapse: collapse;
-//   margin: 20px 0;
-//   font-size: 16px;
-//   text-align: left;
-  
 
-  .complaint-table-actions{
- // position: absolute; // Ensure actions are always positioned correctly
-  bottom: 10px; // Adjust to position buttons at the bottom
-  right: 10px; // Adjust to position buttons at the right
+
+.complaints-table-list {
   display: flex;
-  gap: 10px;
-  }
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 98%;
+    margin-left: 5px;
+    margin-right: -206px;
+}
 
-  a, button {
-    z-index: 1; // Ensure the buttons are on top
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: $primary-color;
-    &:hover {
-      color: $secondary-color;
-    }
-  }
+.complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
 
-  .btn-delete-complaints {
-    color: $danger-color;
-    &:hover {
-      color: $danger-hover-color;
-    }
-  }
-
+  
+  
   th, td {
     padding: 12px 15px;
     border: 1px solid #ddd;
-    height: 50px;
   }
 
   thead {
@@ -238,7 +245,6 @@ body {
     th {
       font-weight: bold;
       text-transform: capitalize;
-      height: 50px;
     }
   }
 
@@ -253,12 +259,12 @@ body {
       }
 
       td {
-        &.actions {
-          display: flex;
+        &.complaint-table-actions {
+         
           justify-content: center;
           gap: 10px;
 
-          .edit-btn, .delete-btn {
+          .btn-edit-complaints, .btn-delete-complaints {
             background: none;
             border: none;
             cursor: pointer;
@@ -270,7 +276,7 @@ body {
             }
           }
 
-          .edit-btn {
+          .btn-edit-complaints {
             color: #007bff;
 
             &:hover {
@@ -278,7 +284,7 @@ body {
             }
           }
 
-          .delete-btn {
+          .btn-delete-complaints {
             color: #dc3545;
 
             &:hover {
@@ -290,6 +296,10 @@ body {
     }
   }
 }
+
+
+
+
 
 @media (max-width: 768px) {
   .complaints_button_style {
@@ -376,6 +386,17 @@ body {
   .complaints-list-heading{
     margin-bottom: 25px;
   }
+
+  .complaints-table-list {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        width: 100%;
+        margin-left: -108px;
+        margin-right: -197px;
+        overflow-x: scroll;
+}
 }
 
 @media (max-width: 576px) {
@@ -468,6 +489,20 @@ body {
     margin-left: 70px;
     overflow-x: scroll;
   }
+
+  .complaints-table-list {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        width: 100%;
+        margin-left: -108px;
+        margin-right: -197px;
+        overflow-x: scroll;
+}
+
+
+
 }
 
 

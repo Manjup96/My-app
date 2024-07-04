@@ -16,7 +16,6 @@ const PaymentsDetails = () => {
   const { user } = useAuth();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [view, setView] = useState('table');
   const [itemsPerPage] = useState(8); // Number of items per page
 
   const handleOpenForm = () => {
@@ -174,105 +173,6 @@ const PaymentsDetails = () => {
     </Document>
   );
 
-
-  const renderTable = () => (
-    
-     <div className="TableContainer">
-  {loading && <div>Loading...</div>}
-  {error && <div>Error: {error}</div>}
-  {!loading && !error && (
-    <table className="payment-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Amount Paid</th>
-          <th>Month-Year Paid for</th>
-          <th>Download</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentItems.map((news, index) => (
-          <tr key={index} className="payment-row">
-            <td>{indexOfFirstItem + index + 1}</td>
-            <td>{news.date}</td>
-            <td>{news.income_amount}</td>
-            <td>
-              {new Date(news.month)
-                .toLocaleDateString("en-IN", { month: "long" })
-                .replace(" ", "-")}-{news.year}
-            </td>
-            <td>
-              <PDFDownloadLink
-                document={<IndividualPaymentDocument payment={news} />}
-                fileName={`payment_${news.id}.pdf`}
-              >
-                {({ loading }) =>
-                  loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-                }
-              </PDFDownloadLink>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )}
-</div>
-  );
-
-const renderCards = () => (
-  <div className="TableContainer">
-  {loading && <div>Loading...</div>}
-  {error && <div>Error: {error}</div>}
-  {!loading && !error && (
-
-    
-    <div className="payment-row">
-      {currentItems.map((news, index) => (
-        <div key={index} className="payment">
-          <div className="payment-header">
-            ID: {indexOfFirstItem + index + 1}
-            
-          </div>
-          <div className="payment-body">
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Date: </b> {news.date}
-              </small>
-            </p>
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Amount Paid: </b> {news.income_amount}
-              </small>
-            </p>
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Month-Year Paid for:</b>{" "}
-                {new Date(news.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{news.year}
-              </small>
-            </p>
-           
-          </div>
-          <div>
-          <PDFDownloadLink
-              document={<IndividualPaymentDocument payment={news} />}
-              fileName={`payment_${news.id}.pdf`}
-            >
-              {({ loading }) =>
-                loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-              }
-            </PDFDownloadLink>
-            </div>
-        </div>
-      ))}
-    </div>
-  )}
-  </div>
-);
-
-    
-  
-
   return (
     <div className={`news-container ${isPopupOpen ? 'overlay' : ''}`}>
       <Sidebar />
@@ -303,17 +203,10 @@ const renderCards = () => (
         </button>
       </div>
       {isPopupOpen && <ModalForm onClose={handleClose} />}
-
-      <div>
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
-          </button>
-        </div>
-
-      {/* <div className="TableContainer">
+      <div className="TableContainer">
         {loading && <div>Loading...</div>}
-        {error && <div>Error: {error}</div>} */}
-        {/* {!loading && !error && (
+        {error && <div>Error: {error}</div>}
+        {!loading && !error && (
           <div className="payment-row">
             {currentItems.map((news, index) => (
               <div key={index} className="payment">
@@ -353,9 +246,7 @@ const renderCards = () => (
               </div>
             ))}
           </div>
-        )} */}
-
-      {view === 'table' ? renderTable() : renderCards()}
+        )}
         <div className="pagination-container">
           <ul className="pagination">
             <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
@@ -378,7 +269,7 @@ const renderCards = () => (
           </ul>
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
