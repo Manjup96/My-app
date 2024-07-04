@@ -47,8 +47,8 @@ const MealsDetails = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        // Sort data by id
-        const sortedData = data.sort((a, b) => a.id - b.id);
+        // Sort data by id in descending order
+        const sortedData = data.sort((a, b) => b.id - a.id);
         // Add incremental ID
         const dataWithIncrementalId = sortedData.map((meal, index) => ({ ...meal, incrementalId: index + 1 }));
         setMeals(dataWithIncrementalId);
@@ -58,7 +58,7 @@ const MealsDetails = () => {
     };
   
     fetchData();
-  }, [user]);
+  }, [user]);
 
   const handleOpenForm = (meal = null) => {
     setselectedMeal(meal);
