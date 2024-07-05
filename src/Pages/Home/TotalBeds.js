@@ -45,7 +45,7 @@ const TotalBeds = () => {
 
   return (
     
-    <div className="card">
+    <div className="card-bed">
     <div className="card-icon">
       <FontAwesomeIcon icon={faBed} size="2x" />
     </div>

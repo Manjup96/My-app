@@ -32,6 +32,12 @@ const PaymentsTable = () => {
           ...item,
           id: index + 1,
         }));
+        // Sort data by Month-Year Paid for (descending order)
+        updatedData.sort((a, b) => {
+          const dateA = new Date(`${a.year}-${a.month}-01`);
+          const dateB = new Date(`${b.year}-${b.month}-01`);
+          return dateB - dateA;
+        });
         setData(updatedData);
         setLoading(false);
       } catch (error) {
@@ -79,7 +85,7 @@ const PaymentsTable = () => {
               <td>{item.id}</td>
               <td>{item.income_amount}</td>
               <td>{new Date(item.date).toLocaleDateString("en-IN")}</td>
-              <td>{new Date(item.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{item.year}</td>
+              <td>{new Date(`${item.year}-${item.month}-01`).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{item.year}</td>
             </tr>
           ))}
         </tbody>
