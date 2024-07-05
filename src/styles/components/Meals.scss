@@ -11,6 +11,10 @@ $text-color: #333;
 }
 
 
+.meal-card .read-more-link{
+  cursor: pointer;
+}
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -23,23 +27,70 @@ body {
   justify-content: center;
   padding: 0 10px;
   margin-bottom: 20px;
-  margin-top: -47px;
+  margin-top: 21px;
   min-width: 20%;
   margin-left: 80%;
   padding: 6px;
   border-radius: 7px;
 }
 
-.switch_button_meals{
+// .switch_button_meals{
+//   background-color: #007bff;
+//   color: rgb(248, 240, 240);
+//   border: none;
+//   padding: 14px 0px;
+//   cursor: pointer;
+//   font-size: 20px;
+//   border-radius: 5px;
+//   padding-left: 22px;
+//   padding-right: 20px;
+//   &:hover {
+//     background-color: $secondary-color;
+//   } 
+// }
+
+
+.switch_button_meals {
   background-color: #007bff;
   color: rgb(248, 240, 240);
   border: none;
-  padding: 14px 0px;
+  padding: 14px 0;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
-  padding-left: 32px;
+  padding-left: 22px;
+  padding-right: 20px;
+  position: relative; /* Added for positioning the hover text */
+  display: inline-flex; /* Flex for alignment */
+  align-items: center; /* Center alignment */
+  justify-content: center; /* Center alignment */
 }
+
+.switch_button_meals:hover {
+  background-color: $secondary-color; /* Replace with the actual $secondary-color value */
+}
+
+.switch_button_meals .hover-text {
+  display: none; /* Hide the text by default */
+  position: absolute; /* Position relative to the button */
+  top: -40px; /* Position the text above the button */
+  left: 50%; /* Center the text horizontally */
+  transform: translateX(-50%); /* Adjust for center alignment */
+  background-color: rgba(0, 0, 0, 0.8); /* Background color for the text */
+  color: #fff; /* Text color */
+  padding: 5px 10px; /* Padding for the text */
+  border-radius: 3px; /* Rounded corners */
+  font-size: 16px; /* Font size for the text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.switch_button_meals:hover .hover-text {
+  display: block; /* Show the text on hover */
+}
+
+
+
+
 
 .table_meal_e_button{
   gap: 10px;
@@ -69,17 +120,7 @@ body {
 }
 
 
-tbody {
-  tr {
-    &:nth-child(even) {
-      background-color: #f9f9f9;
-    }
 
-    &:hover {
-      background-color: #f1f1f1;
-    }
-  }
-}
 .content .container .one {
 
    display: 'flex';
@@ -88,19 +129,61 @@ tbody {
 
 }
 
+// .e-button-meals {
+//   background-color:  #007bff;
+//   color: rgb(248, 240, 240);
+//   border: none;
+//   padding: 15px 24px;
+//   cursor: pointer;
+//   font-size: 20px;
+//   border-radius: 5px;
+//   align-items: flex-end;
+//   &:hover {
+//     background-color: $secondary-color;
+//   }
+// }
+
+
+
 .e-button-meals {
-  background-color:  #007bff;
+  background-color: #007bff;
   color: rgb(248, 240, 240);
   border: none;
-  padding: 15px 35px;
+  padding: 15px 24px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
-  align-items: flex-end;
-  &:hover {
-    background-color: $secondary-color;
-  }
+  position: relative; /* Added for positioning the hover text */
+  display: inline-flex; /* Flex for alignment */
+  align-items: center; /* Center alignment */
+  justify-content: center; /* Center alignment */
 }
+
+.e-button-meals:hover {
+  background-color:$secondary-color; /* Replace with the actual $secondary-color value */
+}
+
+.e-button-meals .hover-text {
+  display: none; /* Hide the text by default */
+  position: absolute; /* Position relative to the button */
+  top: -40px; /* Position the text above the button */
+  left: 50%; /* Center the text horizontally */
+  transform: translateX(-50%); /* Adjust for center alignment */
+  background-color: rgba(0, 0, 0, 0.8); /* Background color for the text */
+  color: #fff; /* Text color */
+  padding: 5px 10px; /* Padding for the text */
+  border-radius: 3px; /* Rounded corners */
+  font-size: 16px; /* Font size for the text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.e-button-meals:hover .hover-text {
+  display: block; /* Show the text on hover */
+}
+
+
+
+
 
 .meal_button_style {
   background-color:    #007bff;
@@ -112,7 +195,7 @@ tbody {
   border-radius: 5px;
   align-items: flex-end;
   &:hover {
-    background-color:  #007bff;
+    background-color:  $secondary-color;
   }
 }
 
@@ -152,7 +235,7 @@ tbody {
       display: flex;
       gap: 10px; // Space between icons
       font-size: 20px;
-      margin-left: 150px;
+      margin-left: 71px;
     }
 
     button {
@@ -195,79 +278,78 @@ tbody {
 }
 
 
-  
+
+
+
+
+
+
+
+
+
+
 .meals_table {
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+  tbody {
     tr {
       &:nth-child(even) {
-        background-color: #f4f4f4;
+        background-color: #f9f9f9;
       }
 
       &:hover {
         background-color: #f1f1f1;
       }
-    }
 
-    th, td {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-    }
+      td {
+        &.actions {
+          // display: flex;
+          gap: 10px;
+          width: 120px;
 
-    thead {
-      background-color: #f4f4f4;
+          .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
 
-      th {
-        font-weight: bold;
-        text-transform: capitalize;
-      }
-    }
-
-    tbody {
-      tr {
-        &:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-
-        td {
-          &.actions {
-            display: flex;
-            gap: 10px;
-
-            .edit-btn, .delete-btn {
-              background: none;
-              border: none;
-              cursor: pointer;
-              font-size: 18px;
-              color: #555;
-
-              &:hover {
-                color: #000;
-              }
+            &:hover {
+              color: #000;
             }
+          }
 
-            .edit-btn {
-              color: #007bff;
+          .edit-btn {
+            color: #007bff;
 
-              &:hover {
-                color: #0056b3;
-              }
+            &:hover {
+              color: #0056b3;
             }
+          }
 
-            .delete-btn {
-              color: #dc3545;
+          .delete-btn {
+            color: #dc3545;
 
-              &:hover {
-                color: #c82333;
-              }
+            &:hover {
+              color: #c82333;
             }
           }
         }
@@ -275,7 +357,6 @@ tbody {
     }
   }
 }
-
 
 
   
@@ -381,8 +462,80 @@ tbody {
     margin-left: 6px;
   }
 
+  // .meals_table {
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   margin: 20px 0;
+  //   font-size: 16px;
+  //   text-align: left;
+  //   overflow-x:scroll
+
+  
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+  
+    thead {
+      background-color: #f4f4f4;
+  
+      th {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+  
+        &:hover {
+          background-color: #f1f1f1;
+        }
+  
+        td {
+          &.actions {
+            // display: flex;
+            gap: 10px;
+            width: 120px;
+  
+            .edit-btn, .delete-btn {
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              color: #555;
+  
+              &:hover {
+                color: #000;
+              }
+            }
+  
+            .edit-btn {
+              color: #007bff;
+  
+              &:hover {
+                color: #0056b3;
+              }
+            }
+  
+            .delete-btn {
+              color: #dc3545;
+  
+              &:hover {
+                color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
  
-}
+
 
 @media (max-width: 576px) {
 
@@ -399,12 +552,12 @@ tbody {
     margin-right: 1px;
     margin-left: 50px;
   }
-  .meals_table{
-    margin-top: 30px;
-    width: 101%;
-    margin-left: -2px;
-    overflow-x: auto;
-  }
+  // .meals_table{
+  //   margin-top: 30px;
+  //   width: 101%;
+  //   margin-left: -2px;
+  //   overflow-x: auto;
+  // }
   .meal_button_style {
     width: 50%;
     padding: 3px;
@@ -423,13 +576,13 @@ tbody {
     background-color: #007bff;
     color: rgb(248, 240, 240);
     border: none;
-    padding: 14px 9px;
+    padding: 17px;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
     margin-left: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 26px;
+    padding-right: 32px;
   }
 
 
@@ -493,6 +646,77 @@ tbody {
     margin-left: 30px;
 
 
+  }
+
+  .meals_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    overflow-x:scroll
+  
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+  
+    thead {
+      background-color: #f4f4f4;
+  
+      th {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+  
+        &:hover {
+          background-color: #f1f1f1;
+        }
+  
+        td {
+          &.actions {
+            // display: flex;
+            gap: 10px;
+            width: 120px;
+  
+            .edit-btn, .delete-btn {
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              color: #555;
+  
+              &:hover {
+                color: #000;
+              }
+            }
+  
+            .edit-btn {
+              color: #007bff;
+  
+              &:hover {
+                color: #0056b3;
+              }
+            }
+  
+            .delete-btn {
+              color: #dc3545;
+  
+              &:hover {
+                color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 }

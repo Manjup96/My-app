@@ -12,6 +12,9 @@
 .Title {
   margin-left: 30px;
 }
+.Title h4{
+  margin-left: 15px;
+}
 
 .sidebar {
   position: fixed;
@@ -42,13 +45,22 @@
 
 
 .sidebar-toggle {
+  // cursor: pointer;
+  // text-align: center;
+  // font-size: 30px;
+  // transition: all 0.3s ease;
+  // margin-left: 72%;
+  // width: 47px;
+  // margin-bottom: 10px;
+  // background-color: #f0f0f0;
+  // color: #0a98d8;
   cursor: pointer;
   text-align: center;
-  font-size: 30px;
+  font-size: 21px;
   transition: all 0.3s ease;
   margin-left: 72%;
-  width: 47px;
-  margin-bottom: 10px;
+  width: 37px;
+  margin-bottom: 6px;
   background-color: #f0f0f0;
   color: #0a98d8;
 }
@@ -117,4 +129,9 @@
   .nav-item.active {
     background-color: #f0f0f0;
   }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
 }

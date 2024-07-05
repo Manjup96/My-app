@@ -27,17 +27,20 @@ const PaymentsTable = () => {
           throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         const data = await response.json();
-        // Adding auto-increment ID based on data length
-        const updatedData = data.map((item, index) => ({
-          ...item,
-          id: index + 1,
-        }));
+        
         // Sort data by Month-Year Paid for (descending order)
-        updatedData.sort((a, b) => {
+        const sortedData = data.sort((a, b) => {
           const dateA = new Date(`${a.year}-${a.month}-01`);
           const dateB = new Date(`${b.year}-${b.month}-01`);
           return dateB - dateA;
         });
+        
+        // Adding auto-increment ID based on sorted data length
+        const updatedData = sortedData.map((item, index) => ({
+          ...item,
+          id: index + 1,
+        }));
+        
         setData(updatedData);
         setLoading(false);
       } catch (error) {
@@ -46,9 +49,10 @@ const PaymentsTable = () => {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, [user]);
+  
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -68,9 +72,10 @@ const PaymentsTable = () => {
   }
 
   return (
+    <div>
     <div className="payments-table">
       <h1 className='payments-table-heading'>Payment Details</h1>
-      <table>
+      <table className='tables'>
         <thead>
           <tr>
             <th>ID</th>
@@ -90,7 +95,9 @@ const PaymentsTable = () => {
           ))}
         </tbody>
       </table>
-      <div className="pagination-container-paymentstable">
+      
+    </div>
+    <div className="pagination-container-paymentstable">
         <ul className="pagination">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
             <button className="page-link" onClick={() => paginate(currentPage - 1)}>
