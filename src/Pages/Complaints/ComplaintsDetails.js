@@ -31,7 +31,9 @@ const ComplaintsDetails = () => {
   const [readMoreStates, setReadMoreStates] = useState({});
   const [view, setView] = useState('table');
   const { user } = useAuth();
+  const [showAlert, setShowAlert] = useState(false);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,7 +51,6 @@ const ComplaintsDetails = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        // Add incremental ID to each complaint
         const dataWithId = data.map((complaint, index) => ({
           ...complaint,
           displayId: index + 1,
@@ -63,6 +64,13 @@ const ComplaintsDetails = () => {
     fetchData();
   }, [user]);
 
+  useEffect(() => {
+    if (!showForm && showAlert) {
+      alert('Form has been closed!');
+      setShowAlert(false);
+    }
+  }, [showForm, showAlert]);
+
 
 
 
@@ -70,12 +78,12 @@ const ComplaintsDetails = () => {
     setSelectedComplaint(complaint);
     setShowForm(true);
   };
-
+  
   const handleCloseForm = () => {
     setShowForm(false);
     setSelectedComplaint(null);
   };
-
+  
   const handleFormSubmit = async (formData) => {
     try {
       const requestOptions = {
@@ -105,7 +113,6 @@ const ComplaintsDetails = () => {
       const data = await response.json();
       if (selectedComplaint) {
         setComplaints((prev) =>
-
           prev.map((complaint) =>
             complaint.id === selectedComplaint.id ? data : complaint
           )
@@ -113,7 +120,9 @@ const ComplaintsDetails = () => {
       } else {
         setComplaints([...complaints, data]);
       }
+
       handleCloseForm();
+
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -321,8 +330,8 @@ const ComplaintsDetails = () => {
     }));
   };
 
-  // const renderTable = () => (
-  //   <div className="complaints-table">
+
+
   //     <table className="table table-bordered table-striped table-hover thead">
   //       <thead>
   //         <tr>
@@ -347,7 +356,7 @@ const ComplaintsDetails = () => {
   //                 {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
   //                 {complaint.complaint_description.length > 80 && (
   //                   <span className="read-more-link">
-                     
+
   //                   </span>
   //                 )}
   //               </td>
@@ -382,12 +391,12 @@ const ComplaintsDetails = () => {
 
   // );
 
-  
+
   const renderTable = () => (
     // <div className="complaints-table">
     <div className="complaints-table-list">
       <table className="complaints-table">
-        
+
         <thead>
           <tr>
             <th>ID</th>
@@ -402,7 +411,7 @@ const ComplaintsDetails = () => {
         <tbody>
           {currentComplaints.map((complaint) => {
             const readMore = readMoreStates[complaint.id] || false;
-  
+
             return (
               <tr key={complaint.id}>
                 <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
@@ -411,7 +420,7 @@ const ComplaintsDetails = () => {
                   {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
                   {complaint.complaint_description.length > 150 && (
                     <span className="read-more-link">
-                     
+
                     </span>
                   )}
                 </td>
@@ -442,11 +451,11 @@ const ComplaintsDetails = () => {
         </tbody>
         {/* </div> */}
       </table>
-     </div>
+    </div>
   );
-  
-  
-  
+
+
+
 
   const renderCards = () => (
 
@@ -469,7 +478,7 @@ const ComplaintsDetails = () => {
                 {complaint.complaint_description.length > 15 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
-                      {readMore ? "...Show Less" : "...Read More"}
+                      {readMore ? "...Read Less" : "...Read More"}
                     </a>
                   </span>
                 )}
@@ -517,40 +526,34 @@ const ComplaintsDetails = () => {
       </div>
       <div className="container mt-4">
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-          {/* <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
-            {({ blob, url, loading, error }) =>
-               (
-                <button className="e_button_complaints">
-                  Export all as Pdf
-                </button>
-              )
-            }
-          </PDFDownloadLink> */}
+
 
 
           <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
             {({ blob, url, loading, error }) => (
-              <button className="e_button_complaints">
+              <button className="e_button_complaints" title="Download">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )}
           </PDFDownloadLink>
+          <button
+            onClick={() => setView(view === 'table' ? 'cards' : 'table')}
+            className="switch-button-complaints switch-button-complaints1"
+            title={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+          >
+            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
 
-
-          <button className="complaints_button_style" onClick={() => handleOpenForm()}>
+          <button className="complaints_button_style  " onClick={() => handleOpenForm()}>
             Add Complaint
           </button>
 
-          {/* <button className="complaints_button_style" onClick={handleOpenForm}>
-            <FontAwesomeIcon icon={faPlus} />
-          </button> */}
+
         </div>
 
         <div >
 
-          {/* <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
-          </button> */}
+
 
           <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints">
             <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
@@ -567,12 +570,12 @@ const ComplaintsDetails = () => {
 
 
         {showForm && (
-          <ComplaintsForm
-            onSubmit={handleFormSubmit}
-            onCloseForm={handleCloseForm}
-            initialData={selectedComplaint}
-          />
-        )}
+  <ComplaintsForm
+    onSubmit={handleFormSubmit}
+    onCloseForm={handleCloseForm}
+    initialData={selectedComplaint}
+  />
+)}
 
         <div className="complaints-list mt-4">
           <h2 className="complaints-list-heading">Complaints List</h2>

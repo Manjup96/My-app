@@ -47,10 +47,10 @@ const UserDetails = () => {
                 body: JSON.stringify({ id: user.id }),
             });
             const data = await response.json();
-          
+
             if (data.length > 0) {
-              
-                 fetchedData = data[0];
+
+                fetchedData = data[0];
                 // alert(`fetchedData.id: ${fetchedData.id}`);
                 // alert(`userId: ${userDetail.id}`);
                 setEditData({
@@ -95,15 +95,15 @@ const UserDetails = () => {
             alert('No changes made.');
             return;
         }
-         updateProfile(editData, userDetail, setUserDetail, setOriginalData, setEditMode);
-        async function updateProfile(editData, userDetail, setUserDetail, setOriginalData, setEditMode){
+        updateProfile(editData, userDetail, setUserDetail, setOriginalData, setEditMode);
+        async function updateProfile(editData, userDetail, setUserDetail, setOriginalData, setEditMode) {
 
-      
-        try {
 
-           
-            // alert(`editData.id: ${editData.id}`);
-            const editedmessage = `
+            try {
+
+
+                // alert(`editData.id: ${editData.id}`);
+                const editedmessage = `
         ID: ${editData.id}
         Address: ${editData.tenant_address}
         Email: ${editData.tenant_email}
@@ -111,50 +111,50 @@ const UserDetails = () => {
         Name: ${editData.tenant_name}
     `;
 
-    // Display the alert
-    // alert("You are about to send the following data: " + editedmessage);
+                // Display the alert
+                // alert("You are about to send the following data: " + editedmessage);
 
-            // alert(`updatedData.tenant_name: ${updatedData.tenant_name}`);
-            let updatedmessage = 'You are about to update the following fields:\n';
-            Object.keys(updatedData).forEach(key => {
-                updatedmessage += `${key}: ${updatedData[key]}\n`;
-            });
-        
-            // Display the alert
-            // alert(updatedmessage);
-            const response = await fetch('https://iiiqbets.com/pg-management/update-PUT-API-tenant-details-profile.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
+                // alert(`updatedData.tenant_name: ${updatedData.tenant_name}`);
+                let updatedmessage = 'You are about to update the following fields:\n';
+                Object.keys(updatedData).forEach(key => {
+                    updatedmessage += `${key}: ${updatedData[key]}\n`;
+                });
 
-                    id:editData.id,    
-                  tenant_address:editData.tenant_address,
-              tenant_email: editData.tenant_email,
-    tenant_mobile:editData.tenant_mobile,
-    tenant_name: editData.tenant_name
+                // Display the alert
+                // alert(updatedmessage);
+                const response = await fetch('https://iiiqbets.com/pg-management/update-PUT-API-tenant-details-profile.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
 
-                }),
-            });
-            
-            let data;
-            data = await response.json();
-           
-           
-            if (data[0].Message.response === 'success') {
-                alert('Profile Data Updated successfully');
-                setUserDetail({ ...userDetail, ...updatedData });
-                setOriginalData({ ...userDetail, ...updatedData });
-                setEditMode(false);
-            } else {
-                alert('Failed to save data');
+                        id: editData.id,
+                        tenant_address: editData.tenant_address,
+                        tenant_email: editData.tenant_email,
+                        tenant_mobile: editData.tenant_mobile,
+                        tenant_name: editData.tenant_name
+
+                    }),
+                });
+
+                let data;
+                data = await response.json();
+
+
+                if (data[0].Message.response === 'success') {
+                    alert('Profile Data Updated successfully');
+                    setUserDetail({ ...userDetail, ...updatedData });
+                    setOriginalData({ ...userDetail, ...updatedData });
+                    setEditMode(false);
+                } else {
+                    alert('Failed to save data');
+                }
+            } catch (error) {
+                console.error('Error in updating user profile details:', error);
+                alert('Error in updating user profile details: ' + error.message);
             }
-        } catch (error) {
-            console.error('Error in updating user profile details:', error);
-            alert('Error in updating user profile details: ' + error.message);
         }
-    } 
 
     };
 
@@ -202,11 +202,11 @@ const UserDetails = () => {
                         <li className="list-group-item"><b>Aadhar Number: </b> {userDetail.tenant_aadhar_number}</li>
                         <li className="list-group-item"><b>Address: </b> {userDetail.tenant_address}</li>
                         <div className="edit-section">
-                    <FontAwesomeIcon icon={faEdit} className="edit-icon" onClick={handleEditClick} />
-                </div>
+                            <FontAwesomeIcon icon={faEdit} className="edit-icon" onClick={handleEditClick} />
+                        </div>
                     </ul>
                 )}
-               
+
             </div>
         </div>
     );

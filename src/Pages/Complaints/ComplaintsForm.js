@@ -95,7 +95,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
 
     alert(initialData ? "Successfully updated" : "Successfully added");
 
-    setShowAlert(true);
+    setShowAlert();
     setLoading(false);
 
     setTimeout(() => {

@@ -14,10 +14,12 @@ import logo from "../Asset/images/logo.png";
 
 import '../styles/components/Sidebar.scss';
 import Header from "../shared/Header";
+import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
   
 
   const toggleSidebar = () => {
@@ -32,7 +34,7 @@ const Sidebar = () => {
           <div className="Title">
             
             <img src={logo} alt="Logo" style={{ width: '100px', height: '100px', }} />
-            <h4>PG Tenant</h4>
+            <h4>Hi, {user.username}</h4>
           </div>
         )}
 

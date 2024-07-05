@@ -19,9 +19,21 @@
 
 @media (min-width: 1024px) {
   .welcome-message {
-    margin-left: 29%;
+    margin-left: 470px;
     margin-top: 37px;
   }
+}
+
+@media (max-width: 1023px) {
+  .welcome-message {
+    margin-left: 190px;
+    margin-top: 37px;
+  }
+
+  .card {
+    max-width: 100%;
+    margin-left: 50px;
+}
 }
 
 .chart{
@@ -59,12 +71,16 @@
   @media (max-width: 1023px) and (min-width: 768px) {
     flex-direction: column; // Stack cards vertically on medium screens (iPad)
 
-    
+    .card {
+      max-width: 100%;
+      margin-left: 50px;
+  }
 
   }
 
   @media (max-width: 767px) {
     flex-direction: column; // Stack cards vertically on small screens (mobile)
+
   }
 }
 
@@ -87,6 +103,72 @@
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+  
+
+  h2 {
+    margin: 10px 0;
+    font-size: 20px;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: bold;
+
+    @media (max-width: 767px) {
+      font-size: 10px;
+    }
+  }
+
+  .card-icon {
+    margin-bottom: 10px;
+    color: #a8afa8; // Change the color as needed
+
+    @media (max-width: 767px) {
+      font-size: 1.5em; // Adjust icon size for small screens
+    }
+  }
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    max-width: 100%; // Full width on medium screens (iPad)
+
+    .card-bed {
+      max-width: 100%;
+      margin-left: 50px;
+  }
+  }
+
+  @media (max-width: 567px) {
+    max-width: 90%; // Full width on small screens (mobile)
+    margin-left: 30px;
+  }
+}
+
+.card-bed {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  flex: 1;
+  margin: 10px;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+  max-width: calc(33.333% - 20px); // Ensures three cards per row with space between them
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  
 
   h2 {
     margin: 10px 0;
@@ -154,6 +236,7 @@
   .main_meals {
     display: flex;
     flex-direction: column;
+    margin-left: 40px;
   }
 
 }
@@ -181,8 +264,33 @@
   .main_meals {
     display: flex;
     flex-direction: column;
+    margin-left: 0px;
   }
 
 
 }
 
+@media (max-width: 1023px) and (min-width: 768px) {
+  
+
+  .card-bed {
+    max-width: 100%;
+    margin-left: 50px;
+}
+.chart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 19px;
+  box-shadow: #a8afa8;
+  margin-left: 60px;
+}
+}
+
+@media (max-width: 567px) {
+  
+  .card-bed {
+    max-width: 90%;
+    margin-left: 30px;
+}
+}
