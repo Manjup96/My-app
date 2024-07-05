@@ -4,6 +4,8 @@ import { TENANAT_NEWS_URL } from "../../services/ApiUrls";
 import "../../styles/components/News.scss";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { useAuth } from './../../context/AuthContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilePdf, faTable, faTh } from "@fortawesome/free-solid-svg-icons";
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -12,7 +14,7 @@ const News = () => {
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6);
+  const [itemsPerPage] = useState(8); // Changed from 6 to 8
   const [view, setView] = useState('table');
   const { user } = useAuth();
 
@@ -182,7 +184,7 @@ const News = () => {
       {currentItems.map((news, index) => (
         <div key={index} className="news">
           <div className="news-header" style={{ textAlign: "center" }}>
-             ID: {news.seqId}
+            ID: {news.seqId}
           </div>
           <div className="news-body">
             <p className="news-text">
@@ -213,31 +215,53 @@ const News = () => {
       <div className="News-Title">
         <h2>News Details</h2>
       </div>
-      <div>
+      {/* <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
         <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
           {({ loading }) =>
             loading ? "Loading document..." : (
               <button style={{ backgroundColor: '#007bff' }} className="export-button">
-                Export as Pdf
+                <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )
           }
         </PDFDownloadLink>
-        <div>
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
-          </button>
-        </div>
-        <div className="SearchContainer_news">
-          <input
-            type="text"
-            placeholder="Search news..."
-            className="search-input"
-            value={searchInput}
-            onChange={handleSearchInputChange}
-            style={{ marginLeft: "80%" }}
-          />
-        </div>
+        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
+          <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+        </button>
+      </div> */}
+ <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
+  <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
+    {({ loading }) =>
+      loading ? "Loading document..." : (
+        <button 
+          style={{ backgroundColor: '#007bff', position: 'relative' }} 
+          className="export-button"
+          data-tooltip="Download as PDF"
+        >
+          <FontAwesomeIcon icon={faFilePdf} />
+        </button>
+      )
+    }
+  </PDFDownloadLink>
+  <button 
+    onClick={() => setView(view === 'table' ? 'cards' : 'table')} 
+    className="switch_button"
+    data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+  >
+    <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+  </button>
+</div>
+
+
+      <div className="SearchContainer_news">
+        <input
+          type="text"
+          placeholder="Search news..."
+          className="search-input"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+          style={{ marginLeft: "80%" }}
+        />
       </div>
       <div className="TableContainer">
         {loading && <div>Loading...</div>}
@@ -249,36 +273,38 @@ const News = () => {
               <div className="pagination-container">
                 <ul className="pagination">
                   <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                    <button
-                      className="page-link"
-                      onClick={() => paginate(currentPage - 1)}
-                      disabled={currentPage === 1}
-                    >
+                    <button className="page-link" onClick={() => paginate(currentPage - 1)}>
                       Previous
                     </button>
                   </li>
-                  {Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) }, (_, i) => i + 1).map((number) => (
-                    <li key={number} className={`page-item ${currentPage === number ? "active" : ""}`}>
-                      <button onClick={() => paginate(number)} className="page-link">
-                        {number}
-                      </button>
-                    </li>
-                  ))}
+                  {Array.from(
+                    { length: Math.ceil(filteredData.length / itemsPerPage) },
+                    (_, index) => (
+                      <li
+                        key={index + 1}
+                        className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+                      >
+                        <button className="page-link" onClick={() => paginate(index + 1)}>
+                          {index + 1}
+                        </button>
+                      </li>
+                    )
+                  )}
                   <li
-                    className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}
+                    className={`page-item ${
+                      currentPage === Math.ceil(filteredData.length / itemsPerPage)
+                        ? "disabled"
+                        : ""
+                    }`}
                   >
-                    <button
-                      className="page-link"
-                      onClick={() => paginate(currentPage + 1)}
-                      disabled={currentPage === Math.ceil(filteredData.length / itemsPerPage)}
-                    >
+                    <button className="page-link" onClick={() => paginate(currentPage + 1)}>
                       Next
                     </button>
                   </li>
                 </ul>
               </div>
-              <div className="total-news-count">
-                Total News: {filteredData.length}
+              <div className="item-count">
+                Total Items: {filteredData.length}
               </div>
             </div>
           </>
