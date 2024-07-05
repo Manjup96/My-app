@@ -144,7 +144,7 @@ const ComplaintsDetails = () => {
   const filteredComplaints = complaints.filter((complaint) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
-      (complaint.id && complaint.id.toString().includes(lowerSearchTerm)) ||
+      (complaint.id && complaint.displayId.toString().includes(lowerSearchTerm)) ||
       (complaint.tenant_name && complaint.tenant_name.toLowerCase().includes(lowerSearchTerm)) ||
       (complaint.complaint_type && complaint.complaint_type.toLowerCase().includes(lowerSearchTerm)) ||
       (complaint.complaint_description && complaint.complaint_description.toLowerCase().includes(lowerSearchTerm)) ||
