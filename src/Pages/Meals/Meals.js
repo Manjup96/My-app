@@ -138,7 +138,7 @@ const MealsDetails = () => {
   const filteredMeals = meals.filter((meal) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
-      (meal.id && meal.id.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.id && meal.incrementalId.toString().includes(lowerSearchTerm)) ||
       (meal.breakfast && meal.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.lunch && meal.lunch.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.dinner && meal.dinner.toLowerCase().includes(lowerSearchTerm)) ||
@@ -321,8 +321,8 @@ const MealsDetails = () => {
 
 
   const renderTable = () => (
-    <div className="meals_table">
-    <table className="table table-bordered table-hover table-striped">
+    <div className="main_meals_table">
+    <table className="meals_table">
       <thead>
         <tr>
           <th>ID</th>
@@ -347,9 +347,9 @@ const MealsDetails = () => {
                 {readMore ? meal.comments : `${meal.comments.substring()}`}
                 {meal.comments.length > 100 && (
                   <span className="read-more-link">
-                    <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
+                    {/* <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
                       {readMore ? "...Show Less" : "...Read More"}
-                    </a>
+                    </a> */}
                   </span>
                 )}
               </td>
@@ -374,7 +374,7 @@ const MealsDetails = () => {
         })}
       </tbody>
     </table>
-  </div>
+    </div>
   );
   
   const renderCards = () => (
@@ -399,7 +399,7 @@ const MealsDetails = () => {
                 {meal.comments.length > 20 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                      {readMore ? "...Show Less" : "...Read More"}
+                      {readMore ? "...Read Less" : "...Read More"}
                     </a>
                   </span>
                 )}
@@ -435,53 +435,30 @@ const MealsDetails = () => {
       <Sidebar />
 
       <div className="main">
-
         <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
           Meals Details
         </h1>
-
         <div className="container mt-4">
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
-
-           
-
 <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
             {({ blob, url, loading, error }) => (
-              <button className="e-button-meals">
+              <button className="e-button-meals" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )}
           </PDFDownloadLink>
+      <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals" 
+          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+      >
+            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
 
-
-
+          <div>
             <button className="meal_button_style" onClick={() => handleOpenForm()}>
                Meal update
             </button>
           </div>
-
-
-          {/* <div>
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
-          </button>
-        </div> */}
-          <div>
-      {/* <Button
-        variant="contained"
-        color="primary"
-        startIcon={view === 'table' ? <ViewModuleIcon /> : <TableChartIcon />}
-        onClick={() => setView(view === 'table' ? 'cards' : 'table')}
-        className="switch_button_meals"
-      >
-         {view === 'table' ? 'Cards' : 'Table'}
-      </Button> */}
-
-
-      <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
-            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-          </button>
     </div>
           <div className="searchbar-meals">
             <input
@@ -495,10 +472,7 @@ const MealsDetails = () => {
 
           <div className="meals-list mt-4">
             <h2 style={{ marginBottom: "30px" }}>Meals List</h2>
-         
                         {view === 'table' ? renderTable() : renderCards()}
-
-
             {showForm && (
               <div className="form-container">
                 <MealsTable
