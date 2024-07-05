@@ -1,14 +1,13 @@
-.News-Title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-}
+// .News-Title {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 40px;
+// }
 
 .TableContainer {
   width: 80%;
   margin: 3% 18%;
-
 
   .news-header {
     background-color: #f0f0f0;
@@ -39,9 +38,7 @@
   .news-text {
     font-size: 18px;
   }
- 
 }
-
 
 .search-input {
   width: 20%;
@@ -54,14 +51,14 @@
   font-size: 16px;
 }
 
-.SearchContainer_news {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-  margin-bottom: 20px;
-  padding-left: 1200px;
-  margin-top: -38px;
-}
+// .SearchContainer_news {
+//   display: flex;
+//   justify-content: flex-end;
+//   padding-right: 20px;
+//   margin-bottom: 20px;
+//   padding-left: 77%;
+//   margin-top: -38px;
+// }
 
 .search-input::placeholder {
   color: #999;
@@ -71,13 +68,11 @@
   border-color: blue; // Example of changing border color on focus
 }
 
-
 .pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-left: 560px;
-
 }
 
 .export-button {
@@ -93,11 +88,11 @@
   align-items: flex-end;
   width: 68px;
   &:hover {
-    background-color:blue;
+    background-color: blue;
   }
 }
 
-.switch_button{
+.switch_button {
   margin-left: 18%;
   margin-top: 10px;
   background-color: #007bff;
@@ -107,8 +102,8 @@
   cursor: pointer;
   font-size: 18px;
   border-radius: 5px;
-
 }
+
 //tooltip
 .export-button {
   position: relative;
@@ -116,7 +111,7 @@
   &:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    top: -1.5em;  // Adjust as needed for positioning
+    top: -1.5em; // Adjust as needed for positioning
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -137,7 +132,7 @@
   &:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    top: -1.5em;  // Adjust as needed for positioning
+    top: -1.5em; // Adjust as needed for positioning
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -154,8 +149,8 @@
 
 @media (min-width: 1025px) and (max-width: 1920px) {
   .switch_button {
-    margin-left: 19%;
-    margin-top: 3px;
+    margin-left: 21%;
+    margin-top: 0px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -164,7 +159,20 @@
     font-size: 18px;
     border-radius: 5px;
   }
-  
+  .SearchContainer_news {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    padding-left: 77%;
+    margin-top: -38px;
+  }
+  .News-Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -181,47 +189,46 @@
     justify-content: center;
     margin-top: 20px;
     margin-left: 218px;
-}
-.SearchContainer_news {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 64px;
-  margin-bottom: 20px;
-  padding-left: 26px;
-  margin-top: 20px;
-  width: 60%;
-  margin-left: 120px;
-}
-.export-button {
-  background-color: blue;
-        color: white;
-        border: none;
-        padding: 9px 55px;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 5px;
-        margin-left: 183%;
-        margin-top: 10px;
-        align-items: flex-end;
-        width: 37%;
-  &:hover {
-    background-color:blue;
+  }
+  .SearchContainer_news {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 64px;
+    margin-bottom: 20px;
+    padding-left: 26px;
+    margin-top: 20px;
+    width: 60%;
+    margin-left: 120px;
+  }
+  .export-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 9px 55px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-left: 183%;
+    margin-top: 10px;
+    align-items: flex-end;
+    width: 37%;
+    &:hover {
+      background-color: blue;
+    }
+  }
+  .switch_button {
+    margin-left: 41%;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 15%;
   }
 }
-.switch_button {
-  margin-left: 41%;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 5px;
-  width: 15%;
-}
-}
-
 
 @media (max-width: 767px) {
   .TableContainer .news {
@@ -233,12 +240,12 @@
     padding: 20px;
     margin-left: 85px;
   }
-  
+
   .pagination-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    margin-left: 195px; 
+    margin-left: 195px;
   }
 
   .SearchContainer_news {
@@ -262,7 +269,7 @@
     width: 18%;
     margin-top: 10px;
     &:hover {
-      background-color:blue;
+      background-color: blue;
     }
   }
   .switch_button {
@@ -276,10 +283,8 @@
     font-size: 16px;
     border-radius: 5px;
     width: 83px;
-
- }
+  }
 }
-
 
 // TableStyles.scss
 .news-table {
@@ -289,7 +294,8 @@
   font-size: 16px;
   text-align: left;
 
-  th, td {
+  th,
+  td {
     padding: 12px 15px;
     border: 1px solid #ddd;
   }
@@ -319,7 +325,8 @@
           justify-content: center;
           gap: 10px;
 
-          .edit-btn, .delete-btn {
+          .edit-btn,
+          .delete-btn {
             background: none;
             border: none;
             cursor: pointer;

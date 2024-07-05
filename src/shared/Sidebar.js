@@ -8,7 +8,8 @@ import {
   FaMoneyBill,
   FaUser,
 } from "react-icons/fa"; 
-import { IoHomeOutline } from "react-icons/io5";
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from "../Asset/images/logo.png";
 
 import '../styles/components/Sidebar.scss';
@@ -17,6 +18,7 @@ import Header from "../shared/Header";
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -37,12 +39,13 @@ const Sidebar = () => {
         <div className="position-sticky">
           <ul className="nav flex-column">
             <li className="nav-item">
-  <div
-    className={`sidebar-toggle ${collapsed ? 'collapsed' : ''}`}
-    onClick={toggleSidebar}
-  >
-    <IoHomeOutline className="toggle-icon" />
-  </div>
+
+     <div
+      className={`sidebar-toggle ${collapsed ? 'collapsed' : ''}`}
+      onClick={toggleSidebar}
+    >
+      <FontAwesomeIcon icon={faBars} className="toggle-icon" />
+    </div>
 </li>
 
 
