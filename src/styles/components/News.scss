@@ -41,14 +41,17 @@
 }
 
 .search-input {
-  width: 20%;
-  max-width: 200px; // Adjust the maximum width as needed
-  margin: 0 auto; // Centers the input horizontally
-  display: block;
-  padding: 10px;
+
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 200px;
+    padding: 10px 30px;
+    width: 59%;
+    margin-left: -15%;
+    margin-right: 4%;
 }
 
 // .SearchContainer_news {

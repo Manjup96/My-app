@@ -260,7 +260,7 @@ const News = () => {
           className="search-input"
           value={searchInput}
           onChange={handleSearchInputChange}
-          style={{ marginLeft: "80%" }}
+          
         />
       </div>
       <div className="TableContainer">
