@@ -64,27 +64,8 @@ const MealsDetails = () => {
                 setselectedMeal(meal);
                 setShowForm(true);
         };
-<<<<<<< HEAD
-=======
-        const response = await fetch(TENANT_MEALS_GET_URL, requestOptions);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        // Sort data by id in descending order
-        const sortedData = data.sort((a, b) => b.id - a.id);
-        // Add incremental ID
-        const dataWithIncrementalId = sortedData.map((meal, index) => ({ ...meal, incrementalId: index + 1 }));
-        setMeals(dataWithIncrementalId);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-  
-    fetchData();
-  }, [user]);
->>>>>>> 16fcd8de8f8436003fc66e4683bc86097016cf22
 
+     
         const handleCloseForm = () => {
                 setShowForm(false);
                 setselectedMeal(null);
@@ -158,7 +139,7 @@ const MealsDetails = () => {
         const filteredMeals = meals.filter((meal) => {
                 const lowerSearchTerm = searchTerm.toLowerCase();
                 return (
-                        (meal.id && meal.id.toLowerCase().includes(lowerSearchTerm)) ||
+                        (meal.id && meal.incrementalId.toString().includes(lowerSearchTerm)) ||
                         (meal.breakfast && meal.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
                         (meal.lunch && meal.lunch.toLowerCase().includes(lowerSearchTerm)) ||
                         (meal.dinner && meal.dinner.toLowerCase().includes(lowerSearchTerm)) ||
@@ -432,10 +413,10 @@ const MealsDetails = () => {
                                                                 <br />
                                                                 <strong>comments:</strong>
                                                                 {readMore ? meal.comments : `${meal.comments.substring(0, 20)}`}
-                                                                {meal.comments.length > 20 && (
+                                                                {meal.comments.length > 500 && (
                                                                         <span className="read-more-link">
                                                                                 <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                                                                                        {readMore ? "...Show Less" : "...Read More"}
+                                                                                        {readMore ? "...Read Less" : "...Read More"}
                                                                                 </a>
                                                                         </span>
                                                                 )}
@@ -489,27 +470,32 @@ const MealsDetails = () => {
                                                         {({ blob, url, loading, error }) => (
                                                                 <button className="e-button-meals">
                                                                         <FontAwesomeIcon icon={faFilePdf} />
+                                                                        <span className="hover-text">Download</span>
+
                                                                 </button>
                                                         )}
                                                 </PDFDownloadLink>
 
+                                                <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
+                                                        <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+                                                        <span className="hover-text">Switch View</span>
 
+                                                </button>
+                                       
 
                                                 <button className="meal_button_style" onClick={() => handleOpenForm()}>
                                                         Meal update
                                                 </button>
-                                        </div>
+                                                </div>
+                                        {/* </div>
 
 
 
-                                        <div>
+                                        <div> */}
 
 
 
-                                                <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals">
-                                                        <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-                                                </button>
-                                        </div>
+                                               
                                         <div className="searchbar-meals">
                                                 <input
                                                         type="text"
