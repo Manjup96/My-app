@@ -27,24 +27,70 @@ body {
   justify-content: center;
   padding: 0 10px;
   margin-bottom: 20px;
-  margin-top: -47px;
+  margin-top: 21px;
   min-width: 20%;
   margin-left: 80%;
   padding: 6px;
   border-radius: 7px;
 }
 
-.switch_button_meals{
+// .switch_button_meals{
+//   background-color: #007bff;
+//   color: rgb(248, 240, 240);
+//   border: none;
+//   padding: 14px 0px;
+//   cursor: pointer;
+//   font-size: 20px;
+//   border-radius: 5px;
+//   padding-left: 22px;
+//   padding-right: 20px;
+//   &:hover {
+//     background-color: $secondary-color;
+//   } 
+// }
+
+
+.switch_button_meals {
   background-color: #007bff;
   color: rgb(248, 240, 240);
   border: none;
-  padding: 14px 0px;
+  padding: 14px 0;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
   padding-left: 22px;
   padding-right: 20px;
+  position: relative; /* Added for positioning the hover text */
+  display: inline-flex; /* Flex for alignment */
+  align-items: center; /* Center alignment */
+  justify-content: center; /* Center alignment */
 }
+
+.switch_button_meals:hover {
+  background-color: $secondary-color; /* Replace with the actual $secondary-color value */
+}
+
+.switch_button_meals .hover-text {
+  display: none; /* Hide the text by default */
+  position: absolute; /* Position relative to the button */
+  top: -40px; /* Position the text above the button */
+  left: 50%; /* Center the text horizontally */
+  transform: translateX(-50%); /* Adjust for center alignment */
+  background-color: rgba(0, 0, 0, 0.8); /* Background color for the text */
+  color: #fff; /* Text color */
+  padding: 5px 10px; /* Padding for the text */
+  border-radius: 3px; /* Rounded corners */
+  font-size: 16px; /* Font size for the text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.switch_button_meals:hover .hover-text {
+  display: block; /* Show the text on hover */
+}
+
+
+
+
 
 .table_meal_e_button{
   gap: 10px;
@@ -83,19 +129,61 @@ body {
 
 }
 
+// .e-button-meals {
+//   background-color:  #007bff;
+//   color: rgb(248, 240, 240);
+//   border: none;
+//   padding: 15px 24px;
+//   cursor: pointer;
+//   font-size: 20px;
+//   border-radius: 5px;
+//   align-items: flex-end;
+//   &:hover {
+//     background-color: $secondary-color;
+//   }
+// }
+
+
+
 .e-button-meals {
-  background-color:  #007bff;
+  background-color: #007bff;
   color: rgb(248, 240, 240);
   border: none;
   padding: 15px 24px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
-  align-items: flex-end;
-  &:hover {
-    background-color: $secondary-color;
-  }
+  position: relative; /* Added for positioning the hover text */
+  display: inline-flex; /* Flex for alignment */
+  align-items: center; /* Center alignment */
+  justify-content: center; /* Center alignment */
 }
+
+.e-button-meals:hover {
+  background-color:$secondary-color; /* Replace with the actual $secondary-color value */
+}
+
+.e-button-meals .hover-text {
+  display: none; /* Hide the text by default */
+  position: absolute; /* Position relative to the button */
+  top: -40px; /* Position the text above the button */
+  left: 50%; /* Center the text horizontally */
+  transform: translateX(-50%); /* Adjust for center alignment */
+  background-color: rgba(0, 0, 0, 0.8); /* Background color for the text */
+  color: #fff; /* Text color */
+  padding: 5px 10px; /* Padding for the text */
+  border-radius: 3px; /* Rounded corners */
+  font-size: 16px; /* Font size for the text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.e-button-meals:hover .hover-text {
+  display: block; /* Show the text on hover */
+}
+
+
+
+
 
 .meal_button_style {
   background-color:    #007bff;
@@ -107,7 +195,7 @@ body {
   border-radius: 5px;
   align-items: flex-end;
   &:hover {
-    background-color:  #007bff;
+    background-color:  $secondary-color;
   }
 }
 
