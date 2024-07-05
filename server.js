@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 // Helper function to generate the HTML table
 const generateEmailTable = (email, amount, paymentId) => {
   return `
-    <table style="width: 100%; border-collapse: collapse;">
+    <table style="width: 30%; border-collapse: collapse;">
       <tr>
         <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Field</th>
         <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Details</th>
@@ -42,31 +42,46 @@ const generateEmailTable = (email, amount, paymentId) => {
 
 // Endpoint to send email
 app.post('/send-email', (req, res) => {
-  const { manager_email, tenant_email, income_amount, razorpay_payment_id } = req.body;
+  const { manager_email, tenant_email, income_amount, razorpay_payment_id, building_name, tenant_name, comments } = req.body;
 
   // Configure the email message for the customer
   const customerEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "manjuprasad.4343@gmail.com", // Customer's email address
+    to: "asaikrishnachary@gmail.com", // Customer's email address
 
-    to: "bharathkusuma4953@gmail.com", // Customer's email address
+
     subject: 'Payment Confirmation',
     html: `
-      <p>Your payment has been successfully processed. Here are the details:</p>
-      ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
+      <p>Dear ${tenant_name},</p>
+  <p>Thank you for your payment on PG-Tenant. We are delighted to have you as a member of our community.</p>
+  <p>Below are your payment details:</p>
+  ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
+  <p>If you have any questions or need further assistance, please feel free to contact us (https://pg-tenant12.web.app/). We are here to help!</p>
+  <p>Best regards,</p>
+  <p>The PG-Tenant Team</p>
     `,
   };
+  console.log(customerEmailOptions);
 
   // Configure the email message for the admin
   const adminEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "manjuprasad.4343@gmail.com", // Admin's email address
+    to: "asaikrishnachary@gmail.com", // Admin's email address
+
+
     subject: 'Payment Notification',
     html: `
-      <p>The tenant has made a payment. Here are the details:</p>
-      ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
+     <p>Dear Admin,</p>
+  <p>We have received a new payment from a ${tenant_name} on PG-Tenant.</p>
+  <p>Here are the details:</p>
+  ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
+  <p>Please ensure that the payment is recorded and the tenant's account is updated accordingly.</p>
+  <p>Best regards,</p>
+  <p>The PG-Tenant System</p> 
     `,
   };
+
+  console.log(adminEmailOptions);
 
   // Send the email to the customer
   transporter.sendMail(customerEmailOptions, (error, info) => {

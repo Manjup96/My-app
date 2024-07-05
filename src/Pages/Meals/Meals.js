@@ -64,6 +64,26 @@ const MealsDetails = () => {
                 setselectedMeal(meal);
                 setShowForm(true);
         };
+<<<<<<< HEAD
+=======
+        const response = await fetch(TENANT_MEALS_GET_URL, requestOptions);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        // Sort data by id in descending order
+        const sortedData = data.sort((a, b) => b.id - a.id);
+        // Add incremental ID
+        const dataWithIncrementalId = sortedData.map((meal, index) => ({ ...meal, incrementalId: index + 1 }));
+        setMeals(dataWithIncrementalId);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, [user]);
+>>>>>>> 16fcd8de8f8436003fc66e4683bc86097016cf22
 
         const handleCloseForm = () => {
                 setShowForm(false);
