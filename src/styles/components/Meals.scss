@@ -11,6 +11,10 @@ $text-color: #333;
 }
 
 
+.meal-card .read-more-link{
+  cursor: pointer;
+}
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -38,7 +42,8 @@ body {
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
-  padding-left: 32px;
+  padding-left: 22px;
+  padding-right: 20px;
 }
 
 .table_meal_e_button{
@@ -69,17 +74,7 @@ body {
 }
 
 
-tbody {
-  tr {
-    &:nth-child(even) {
-      background-color: #f9f9f9;
-    }
 
-    &:hover {
-      background-color: #f1f1f1;
-    }
-  }
-}
 .content .container .one {
 
    display: 'flex';
@@ -92,7 +87,7 @@ tbody {
   background-color:  #007bff;
   color: rgb(248, 240, 240);
   border: none;
-  padding: 15px 35px;
+  padding: 15px 24px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
@@ -152,7 +147,7 @@ tbody {
       display: flex;
       gap: 10px; // Space between icons
       font-size: 20px;
-      margin-left: 150px;
+      margin-left: 71px;
     }
 
     button {
@@ -195,79 +190,78 @@ tbody {
 }
 
 
-  
+
+
+
+
+
+
+
+
+
+
 .meals_table {
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+  tbody {
     tr {
       &:nth-child(even) {
-        background-color: #f4f4f4;
+        background-color: #f9f9f9;
       }
 
       &:hover {
         background-color: #f1f1f1;
       }
-    }
 
-    th, td {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-    }
+      td {
+        &.actions {
+          // display: flex;
+          gap: 10px;
+          width: 120px;
 
-    thead {
-      background-color: #f4f4f4;
+          .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
 
-      th {
-        font-weight: bold;
-        text-transform: capitalize;
-      }
-    }
-
-    tbody {
-      tr {
-        &:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-
-        td {
-          &.actions {
-            display: flex;
-            gap: 10px;
-
-            .edit-btn, .delete-btn {
-              background: none;
-              border: none;
-              cursor: pointer;
-              font-size: 18px;
-              color: #555;
-
-              &:hover {
-                color: #000;
-              }
+            &:hover {
+              color: #000;
             }
+          }
 
-            .edit-btn {
-              color: #007bff;
+          .edit-btn {
+            color: #007bff;
 
-              &:hover {
-                color: #0056b3;
-              }
+            &:hover {
+              color: #0056b3;
             }
+          }
 
-            .delete-btn {
-              color: #dc3545;
+          .delete-btn {
+            color: #dc3545;
 
-              &:hover {
-                color: #c82333;
-              }
+            &:hover {
+              color: #c82333;
             }
           }
         }
@@ -275,7 +269,6 @@ tbody {
     }
   }
 }
-
 
 
   
@@ -381,8 +374,80 @@ tbody {
     margin-left: 6px;
   }
 
+  // .meals_table {
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   margin: 20px 0;
+  //   font-size: 16px;
+  //   text-align: left;
+  //   overflow-x:scroll
+
+  
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+  
+    thead {
+      background-color: #f4f4f4;
+  
+      th {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+  
+        &:hover {
+          background-color: #f1f1f1;
+        }
+  
+        td {
+          &.actions {
+            // display: flex;
+            gap: 10px;
+            width: 120px;
+  
+            .edit-btn, .delete-btn {
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              color: #555;
+  
+              &:hover {
+                color: #000;
+              }
+            }
+  
+            .edit-btn {
+              color: #007bff;
+  
+              &:hover {
+                color: #0056b3;
+              }
+            }
+  
+            .delete-btn {
+              color: #dc3545;
+  
+              &:hover {
+                color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
  
-}
+
 
 @media (max-width: 576px) {
 
@@ -399,12 +464,12 @@ tbody {
     margin-right: 1px;
     margin-left: 50px;
   }
-  .meals_table{
-    margin-top: 30px;
-    width: 101%;
-    margin-left: -2px;
-    overflow-x: auto;
-  }
+  // .meals_table{
+  //   margin-top: 30px;
+  //   width: 101%;
+  //   margin-left: -2px;
+  //   overflow-x: auto;
+  // }
   .meal_button_style {
     width: 50%;
     padding: 3px;
@@ -423,13 +488,13 @@ tbody {
     background-color: #007bff;
     color: rgb(248, 240, 240);
     border: none;
-    padding: 14px 9px;
+    padding: 17px;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
     margin-left: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 26px;
+    padding-right: 32px;
   }
 
 
@@ -493,6 +558,77 @@ tbody {
     margin-left: 30px;
 
 
+  }
+
+  .meals_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    overflow-x:scroll
+  
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+  
+    thead {
+      background-color: #f4f4f4;
+  
+      th {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+  
+        &:hover {
+          background-color: #f1f1f1;
+        }
+  
+        td {
+          &.actions {
+            // display: flex;
+            gap: 10px;
+            width: 120px;
+  
+            .edit-btn, .delete-btn {
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              color: #555;
+  
+              &:hover {
+                color: #000;
+              }
+            }
+  
+            .edit-btn {
+              color: #007bff;
+  
+              &:hover {
+                color: #0056b3;
+              }
+            }
+  
+            .delete-btn {
+              color: #dc3545;
+  
+              &:hover {
+                color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 }

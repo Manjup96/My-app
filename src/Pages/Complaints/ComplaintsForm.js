@@ -118,6 +118,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
             required
           />
           <label htmlFor="description">Description:</label>
+          
           <textarea
             id="description"
             value={description}
