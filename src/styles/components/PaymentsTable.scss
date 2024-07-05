@@ -76,6 +76,7 @@
   }
 
 
+  
 
   
     // h1 {
@@ -123,6 +124,14 @@
         // margin-left: 160px;
       
       }
+  }
+
+
+  .pagination-container-paymentstable {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: 14px;
   }
 
   @media (max-width: 768px) {

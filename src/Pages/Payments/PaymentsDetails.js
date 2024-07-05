@@ -6,6 +6,8 @@ import { useAuth } from './../../context/AuthContext';
 import PaymentForm from "./Payments_old";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faTable, faTh } from "@fortawesome/free-solid-svg-icons";
 
 const PaymentsDetails = () => {
   const [newsData, setNewsData] = useState([]);
@@ -177,10 +179,11 @@ const PaymentsDetails = () => {
 
   const renderTable = () => (
     
-     <div className="TableContainer">
+     <div className="TableContainer-payment">
   {loading && <div>Loading...</div>}
   {error && <div>Error: {error}</div>}
   {!loading && !error && (
+    
     <table className="payment-table">
       <thead>
         <tr>
@@ -193,7 +196,7 @@ const PaymentsDetails = () => {
       </thead>
       <tbody>
         {currentItems.map((news, index) => (
-          <tr key={index} className="payment-row">
+          <tr key={index} >
             <td>{indexOfFirstItem + index + 1}</td>
             <td>{news.date}</td>
             <td>{news.income_amount}</td>
@@ -216,6 +219,7 @@ const PaymentsDetails = () => {
         ))}
       </tbody>
     </table>
+    
   )}
 </div>
   );
@@ -279,84 +283,50 @@ const renderCards = () => (
       <div className="News-Title">
         <h2>Payment Details</h2>
       </div>
-      <div className="SearchContainer_payment">
-        <input
-          type="text"
-          placeholder="Search news..."
-          className="search-input"
-          value={searchInput}
-          onChange={handleSearchInputChange}
-        />
-      </div>
+     
       <div className="Payments_button"> 
         <PDFDownloadLink document={<AllPaymentsDocument news={filteredData} />} fileName="filtered_payments.pdf">
           {({ loading }) =>
             loading ? "Loading document..." : (
-              <button className="export-button-payment">
-                Export as Pdf
+              <button className="export-button-payment" data-tooltip="Download as PDF">
+               <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )
           }
         </PDFDownloadLink>
+
+        <div>
+          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_payment"
+             data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+            >
+          <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
+        </div>
+
         <button className="payments_button_style" onClick={handleOpenForm}>
           Make Payment
         </button>
       </div>
       {isPopupOpen && <ModalForm onClose={handleClose} />}
 
-      <div>
+      {/* <div>
           <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
-            Switch to {view === 'table' ? 'Cards' : 'Table'}
+          <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
           </button>
-        </div>
+        </div> */}
 
-      {/* <div className="TableContainer">
-        {loading && <div>Loading...</div>}
-        {error && <div>Error: {error}</div>} */}
-        {/* {!loading && !error && (
-          <div className="payment-row">
-            {currentItems.map((news, index) => (
-              <div key={index} className="payment">
-                <div className="payment-header">
-                  ID: {indexOfFirstItem + index + 1}
-                  
-                </div>
-                <div className="payment-body">
-                  <p className="payment-text">
-                    <small className="text-muted">
-                      <b>Date: </b>{new Date(news.date).toLocaleDateString("en-IN")} 
-                    </small>
-                  </p>
-                  <p className="payment-text">
-                    <small className="text-muted">
-                      <b>Amount Paid: </b> {news.income_amount}
-                    </small>
-                  </p>
-                  <p className="payment-text">
-                    <small className="text-muted">
-                      <b>Month-Year Paid for:</b>{" "}
-                      {new Date(news.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{news.year}
-                    </small>
-                  </p>
-                 
-                </div>
-                <div>
-                <PDFDownloadLink
-                    document={<IndividualPaymentDocument payment={news} />}
-                    fileName={`payment_${news.id}.pdf`}
-                  >
-                    {({ loading }) =>
-                      loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-                    }
-                  </PDFDownloadLink>
-                  </div>
-              </div>
-            ))}
-          </div>
-        )} */}
+        <div className="SearchContainer_payment">
+        <input
+          type="text"
+          placeholder="Search news..."
+          className="search-input-payment"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+      </div>
 
       {view === 'table' ? renderTable() : renderCards()}
-        <div className="pagination-container">
+        <div className="pagination-container-payment">
           <ul className="pagination">
             <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
               <button className="page-link" onClick={() => paginate(currentPage - 1)}>
