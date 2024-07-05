@@ -187,7 +187,7 @@ const UserDetails = () => {
                         </ul>
                         <div className="button-group">
                             <button type="button" onClick={handleSave}>Update</button>
-                            <button type="button" onClick={handleBack}>Back</button>
+                            <button type="button" onClick={handleBack}>Cancel</button>
                         </div>
                     </form>
                 ) : (
