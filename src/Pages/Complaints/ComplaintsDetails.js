@@ -321,9 +321,73 @@ const ComplaintsDetails = () => {
     }));
   };
 
+  // const renderTable = () => (
+  //   <div className="complaints-table">
+  //     <table className="table table-bordered table-striped table-hover thead">
+  //       <thead>
+  //         <tr>
+  //           <th>ID</th>
+  //           <th>Complaint Type</th>
+  //           <th>Description</th>
+  //           <th>Created Date</th>
+  //           <th>Resolved Date</th>
+  //           <th>Comments</th>
+  //           <th>Actions</th>
+  //         </tr>
+  //       </thead>
+  //       <tbody>
+  //         {currentComplaints.map((complaint) => {
+  //           const readMore = readMoreStates[complaint.id] || false;
+
+  //           return (
+  //             <tr key={complaint.id}>
+  //               <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
+  //               <td>{complaint.complaint_type}</td>
+  //               <td>
+  //                 {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
+  //                 {complaint.complaint_description.length > 80 && (
+  //                   <span className="read-more-link">
+                     
+  //                   </span>
+  //                 )}
+  //               </td>
+  //               <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
+  //               <td>{complaint.resolve_date}</td>
+  //               <td>{complaint.comments}</td>
+  //               <td className="complaint-table-actions">
+  //                 <div className="complaint-table-icons">
+  //                   <PDFDownloadLink
+  //                     document={<IndividualComplaintDocument complaint={complaint} />}
+  //                     fileName={`complaint_${complaint.displayId}.pdf`}
+  //                   >
+  //                     {({ blob, url, loading, error }) =>
+  //                       loading ? "" : <FontAwesomeIcon icon={faFileExport} />
+  //                     }
+  //                   </PDFDownloadLink>
+  //                   <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
+  //                     <FontAwesomeIcon icon={faEdit} />
+  //                   </button>
+  //                   <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
+  //                     <FontAwesomeIcon icon={faTrash} />
+  //                   </button>
+  //                 </div>
+  //               </td>
+  //             </tr>
+  //           );
+  //         })}
+  //       </tbody>
+  //     </table>
+  //   </div>
+
+
+  // );
+
+  
   const renderTable = () => (
-    <div className="complaints-table">
-      <table className="table table-bordered table-striped table-hover thead">
+    // <div className="complaints-table">
+    <div className="complaints-table-list">
+      <table className="complaints-table">
+        
         <thead>
           <tr>
             <th>ID</th>
@@ -338,18 +402,16 @@ const ComplaintsDetails = () => {
         <tbody>
           {currentComplaints.map((complaint) => {
             const readMore = readMoreStates[complaint.id] || false;
-
+  
             return (
               <tr key={complaint.id}>
                 <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
                 <td>{complaint.complaint_type}</td>
-                <td>
+                <td className="complaint-description">
                   {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
-                  {complaint.complaint_description.length > 100 && (
+                  {complaint.complaint_description.length > 150 && (
                     <span className="read-more-link">
-                      {/* <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
-                        {readMore ? "...Show Less" : "...Read More"}
-                      </a> */}
+                     
                     </span>
                   )}
                 </td>
@@ -378,11 +440,13 @@ const ComplaintsDetails = () => {
             );
           })}
         </tbody>
+        {/* </div> */}
       </table>
-    </div>
-
-
+     </div>
   );
+  
+  
+  
 
   const renderCards = () => (
 
