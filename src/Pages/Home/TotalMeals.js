@@ -36,7 +36,7 @@ const MealsData = () => {
   return (
     <div>
       <div>
-        <h2 className='meals_heading '>Meals Tracker</h2>
+        <h2 className='meals_heading '>Meals Data</h2>
       </div>
 
       <div className='main_meals'>
