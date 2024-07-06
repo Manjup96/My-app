@@ -64,13 +64,20 @@ const PaymentsDetails = () => {
     setSearchInput(searchValue);
 
     // Filter newsData based on searchValue for type, ID, description, and created date
-    const filteredNews = newsData.filter(
-      (news) =>
-        news.news_type.toLowerCase().includes(searchValue.toLowerCase()) ||
-        news.id.toString().includes(searchValue) ||
-        news.news_description.toLowerCase().includes(searchValue.toLowerCase()) ||
-        new Date(`${news.month}-${news.year}`).toLocaleDateString("en-IN").includes(searchValue)
-    );
+    const filteredNews = newsData.filter((news) => {
+  const newsType = news.news_type ? news.news_type.toLowerCase() : '';
+  const newsDescription = news.news_description ? news.news_description.toLowerCase() : '';
+  const newsId = news.id ? news.id.toString() : '';
+  const newsDate = news.month && news.year ? new Date(`${news.month}-${news.year}`).toLocaleDateString("en-IN") : '';
+
+  return (
+    newsType.includes(searchValue.toLowerCase()) ||
+    newsId.includes(searchValue) ||
+    newsDescription.includes(searchValue.toLowerCase()) ||
+    newsDate.includes(searchValue)
+  );
+});
+
     setFilteredData(filteredNews);
     setCurrentPage(1); // Reset to the first page when search changes
   };
@@ -285,6 +292,7 @@ const renderCards = () => (
       </div>
      
       <div className="Payments_button"> 
+        
         <PDFDownloadLink document={<AllPaymentsDocument news={filteredData} />} fileName="filtered_payments.pdf">
           {({ loading }) =>
             loading ? "Loading document..." : (
@@ -306,6 +314,7 @@ const renderCards = () => (
         <button className="payments_button_style" onClick={handleOpenForm}>
           Make Payment
         </button>
+
       </div>
       {isPopupOpen && <ModalForm onClose={handleClose} />}
 

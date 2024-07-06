@@ -33,7 +33,7 @@ const ComplaintsDetails = () => {
   const { user } = useAuth();
   const [showAlert, setShowAlert] = useState(false);
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,12 +78,12 @@ const ComplaintsDetails = () => {
     setSelectedComplaint(complaint);
     setShowForm(true);
   };
-  
+
   const handleCloseForm = () => {
     setShowForm(false);
     setSelectedComplaint(null);
   };
-  
+
   const handleFormSubmit = async (formData) => {
     try {
       const requestOptions = {
@@ -332,65 +332,7 @@ const ComplaintsDetails = () => {
 
 
 
-  //     <table className="table table-bordered table-striped table-hover thead">
-  //       <thead>
-  //         <tr>
-  //           <th>ID</th>
-  //           <th>Complaint Type</th>
-  //           <th>Description</th>
-  //           <th>Created Date</th>
-  //           <th>Resolved Date</th>
-  //           <th>Comments</th>
-  //           <th>Actions</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {currentComplaints.map((complaint) => {
-  //           const readMore = readMoreStates[complaint.id] || false;
-
-  //           return (
-  //             <tr key={complaint.id}>
-  //               <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
-  //               <td>{complaint.complaint_type}</td>
-  //               <td>
-  //                 {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
-  //                 {complaint.complaint_description.length > 80 && (
-  //                   <span className="read-more-link">
-
-  //                   </span>
-  //                 )}
-  //               </td>
-  //               <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-  //               <td>{complaint.resolve_date}</td>
-  //               <td>{complaint.comments}</td>
-  //               <td className="complaint-table-actions">
-  //                 <div className="complaint-table-icons">
-  //                   <PDFDownloadLink
-  //                     document={<IndividualComplaintDocument complaint={complaint} />}
-  //                     fileName={`complaint_${complaint.displayId}.pdf`}
-  //                   >
-  //                     {({ blob, url, loading, error }) =>
-  //                       loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-  //                     }
-  //                   </PDFDownloadLink>
-  //                   <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
-  //                     <FontAwesomeIcon icon={faEdit} />
-  //                   </button>
-  //                   <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
-  //                     <FontAwesomeIcon icon={faTrash} />
-  //                   </button>
-  //                 </div>
-  //               </td>
-  //             </tr>
-  //           );
-  //         })}
-  //       </tbody>
-  //     </table>
-  //   </div>
-
-
-  // );
-
+ 
 
   const renderTable = () => (
     // <div className="complaints-table">
@@ -414,7 +356,7 @@ const ComplaintsDetails = () => {
 
             return (
               <tr key={complaint.id}>
-                <td style={{ textAlign: "center" }}>{complaint.displayId}</td>
+                <td >{complaint.displayId}</td>
                 <td>{complaint.complaint_type}</td>
                 <td className="complaint-description">
                   {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
@@ -449,7 +391,7 @@ const ComplaintsDetails = () => {
             );
           })}
         </tbody>
-        {/* </div> */}
+        
       </table>
     </div>
   );
@@ -525,24 +467,27 @@ const ComplaintsDetails = () => {
         <h1 style={{ marginTop: '30px' }} className="text-center flex-grow-1">Complaints Details</h1>
       </div>
       <div className="container mt-4">
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+        {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}> */}
 
-
+        <div>
 
           <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
             {({ blob, url, loading, error }) => (
-              <button className="e_button_complaints" title="Download">
+              <button className="e_button_complaints" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )}
           </PDFDownloadLink>
-          <button
-            onClick={() => setView(view === 'table' ? 'cards' : 'table')}
-            className="switch-button-complaints switch-button-complaints1"
-            title={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
-          >
-            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-          </button>
+
+         
+            <button
+              onClick={() => setView(view === 'table' ? 'cards' : 'table')}
+              className="switch-button-complaints switch-button-complaints1"
+              data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+            >
+              <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+            </button>
+          
 
           <button className="complaints_button_style  " onClick={() => handleOpenForm()}>
             Add Complaint
@@ -555,7 +500,8 @@ const ComplaintsDetails = () => {
 
 
 
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints">
+          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch-button-complaints2"
+            data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}>
             <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
           </button>
           <input
@@ -563,19 +509,19 @@ const ComplaintsDetails = () => {
             placeholder="Search complaints"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="form-control w-25 search-bar SearchContainer_complaints"
+            className="form-control  search-bar SearchContainer_complaints"
           />
         </div>
 
 
 
         {showForm && (
-  <ComplaintsForm
-    onSubmit={handleFormSubmit}
-    onCloseForm={handleCloseForm}
-    initialData={selectedComplaint}
-  />
-)}
+          <ComplaintsForm
+            onSubmit={handleFormSubmit}
+            onCloseForm={handleCloseForm}
+            initialData={selectedComplaint}
+          />
+        )}
 
         <div className="complaints-list mt-4">
           <h2 className="complaints-list-heading">Complaints List</h2>
