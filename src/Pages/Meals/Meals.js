@@ -8,15 +8,8 @@ import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/components/Meals.scss";
-import Button from '@mui/material/Button';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import TableChartIcon from '@mui/icons-material/TableChart';
-import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { faTable, faTh } from "@fortawesome/free-solid-svg-icons"
-
-
-
 
 
 const MealsDetails = () => {
@@ -347,9 +340,7 @@ const MealsDetails = () => {
                 {readMore ? meal.comments : `${meal.comments.substring()}`}
                 {meal.comments.length > 100 && (
                   <span className="read-more-link">
-                    {/* <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                      {readMore ? "...Show Less" : "...Read More"}
-                    </a> */}
+                  
                   </span>
                 )}
               </td>

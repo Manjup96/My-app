@@ -38,10 +38,6 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  // padding-bottom: 10px;
-  // padding-top: 7px;
-  // padding-left: 24px;
-  // padding-right: 0px;
   padding: 8px 25px;
   cursor: pointer;
   font-size: 20px;
@@ -55,7 +51,8 @@ body {
 }
 
 .switch_button_meals:hover {
-  background-color: $secondary-color; /* Replace with the actual $secondary-color value */
+  background-color: $secondary-color;
+  border: none;
 }
 
 
@@ -95,9 +92,6 @@ body {
     margin-bottom: '40px';
 
 }
-
-
-
 
 
 .e-button-meals {
@@ -209,7 +203,6 @@ body {
 
   .meal-card-actions {
     display: flex;
-    // justify-content: flex-end; // Align actions to the right
     .meal-card-icons {
       display: flex;
       gap: 10px; // Space between icons
@@ -255,12 +248,7 @@ body {
   border-radius: 10px;
   margin-bottom: 10px;
 }
-// .meals_table{
-//   margin-top: 30px;
-//   width: 101%;
-//   margin-left: -2px;
-//   overflow-x: auto;
-// }
+
 
 .main_meals_table{
   width: 100%;
@@ -298,7 +286,6 @@ body {
 
       td {
         &.actions {
-          // display: flex;
           gap: 10px;
           width: 120px;
 
@@ -334,12 +321,6 @@ body {
     }
   }
 }
-
-
-  
-
-
-
 
 @media (max-width: 768px) {
   .meal_button_style {
@@ -419,7 +400,6 @@ body {
 
   .meal-card-actions .meal-card-icons .pdf-link{
     font-size: 20px;
-    // margin-left: 250px;
     margin-right: -25px;
     margin-top: 5px;
 
@@ -446,6 +426,51 @@ body {
     margin-left: -24px;
 
   }
+
+
+  //tooltip
+.e-button-meals {
+  position: relative;
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;  // Adjust as needed for positioning
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+}
+
+.switch_button_meals {
+  position: relative;
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;  // Adjust as needed for positioning
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+}
+
   .main_meals_table{
   .meals_table {
     width: 100%;
@@ -635,6 +660,50 @@ body {
     margin-left: 34px;
 
   }
+
+  //tooltip
+.e-button-meals {
+  position: relative;
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;  // Adjust as needed for positioning
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+}
+
+.switch_button_meals {
+  position: relative;
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;  // Adjust as needed for positioning
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+}
+
 
   .meals_table {
     width: 100%;
