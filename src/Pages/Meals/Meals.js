@@ -440,20 +440,21 @@ const MealsDetails = () => {
         </h1>
         <div className="container mt-4">
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-
-<PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
+            <div>
+             <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
             {({ blob, url, loading, error }) => (
               <button className="e-button-meals" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )}
           </PDFDownloadLink>
+          </div>
+          <div>
       <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals" 
-          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
-      >
+          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'} >
             <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-          </button>
-
+           </button>
+          </div>
           <div>
             <button className="meal_button_style" onClick={() => handleOpenForm()}>
                Meal update
