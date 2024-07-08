@@ -274,7 +274,8 @@
 .payment-row {
   display: flex;
   flex-wrap: wrap;
-  margin: -10px; /* Adjust margin as needed */
+  margin: -10px;
+    margin-left: -20px; /* Adjust margin as needed */
 }
 
 .payment-row .payment {
@@ -407,15 +408,23 @@
 
 @media (max-width: 991px) {
   .TableContainer-payment {
-    width: 84%;
+    width: 83%;
     margin: 3% auto;
     overflow-x: scroll;
-    margin-left: 59px; /* Centering the container with auto margins */
+    margin-left: 85px; /* Centering the container with auto margins */
   }
 
   .ind-export-payment{
     color: #007bff;
   }
+
+  .payment-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+    width: 107%;
+    margin-left: -65px;
+}
 
   .export-button-payment{
     background-color: #007bff;
@@ -456,6 +465,12 @@
   //           overflow-x: scroll;
   // }
 
+  .payment-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+      margin-left: -20px; /* Adjust margin as needed */
+  }
 
   .TableContainer-payment .payment-table {
     width: 100%;
@@ -596,7 +611,12 @@
     max-width: none;
   }
 
-  
+  .TableContainer-payment {
+    width: 83%;
+    margin: 3% auto;
+    overflow-x: scroll;
+    margin-left: 58px;
+}
 
   .Payments_button {
     justify-content: center; /* Center align button on smaller screens */
@@ -606,9 +626,9 @@
  
 
   .payment-row .payment {
-    width: 78%;
-    margin: 10px 0;
-    margin-left: 67px;
+    width: 94%;
+        margin: 10px 0;
+        margin-left: 7px;
   }
 }
 
@@ -756,7 +776,7 @@
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
-  margin-left: 30%;
+  margin-left: 31%;
   margin-top: 13px;
   margin-bottom: 10px;
   align-items: flex-end;

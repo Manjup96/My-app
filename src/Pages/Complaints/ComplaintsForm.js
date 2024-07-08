@@ -93,12 +93,13 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
       response: response,
     });
 
-    alert(initialData ? "Successfully updated" : "Successfully added");
+    
 
     setShowAlert();
     setLoading(false);
 
     setTimeout(() => {
+      alert(initialData ? "Successfully updated" : "Successfully added");
       window.location.reload();
     }, 1000);
   };

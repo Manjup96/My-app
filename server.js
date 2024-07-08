@@ -17,9 +17,9 @@ const transporter = nodemailer.createTransport({
 });
 
 // Helper function to generate the HTML table
-const generateEmailTable = (email, amount, paymentId) => {
+const generateEmailTable = (email, amount, paymentId, buildingName, month, year, balance) => {
   return `
-    <table style="width: 30%; border-collapse: collapse;">
+    <table style="width: 50%; border-collapse: collapse;">
       <tr>
         <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Field</th>
         <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Details</th>
@@ -36,52 +36,61 @@ const generateEmailTable = (email, amount, paymentId) => {
         <td style="border: 1px solid #ddd; padding: 8px;">Payment ID</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${paymentId}</td>
       </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Building Name</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${buildingName}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Month</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${month}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Year</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${year}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Balance</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">INR ${balance}</td>
+      </tr>
     </table>
   `;
 };
 
 // Endpoint to send email
 app.post('/send-email', (req, res) => {
-  const { manager_email, tenant_email, income_amount, razorpay_payment_id, building_name, tenant_name, comments } = req.body;
+  const { manager_email, tenant_email, income_amount, razorpay_payment_id, building_name, tenant_name, month, year, balance } = req.body;
 
   // Configure the email message for the customer
   const customerEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "asaikrishnachary@gmail.com", // Customer's email address
-
-
+    to: tenant_email, 
     subject: 'Payment Confirmation',
     html: `
       <p>Dear ${tenant_name},</p>
-  <p>Thank you for your payment on PG-Tenant. We are delighted to have you as a member of our community.</p>
-  <p>Below are your payment details:</p>
-  ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
-  <p>If you have any questions or need further assistance, please feel free to contact us (https://pg-tenant12.web.app/). We are here to help!</p>
-  <p>Best regards,</p>
-  <p>The PG-Tenant Team</p>
+      <p>Thank you for your payment on PG-Tenant. We are delighted to have you as a member of our community.</p>
+      <p>Below are your payment details:</p>
+      ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id, building_name, month, year, balance)}
+      <p>If you have any questions or need further assistance, please feel free to contact us (https://pg-tenant12.web.app/). We are here to help!</p>
+      <p>Best regards,</p>
+      
     `,
   };
-  console.log(customerEmailOptions);
 
   // Configure the email message for the admin
   const adminEmailOptions = {
     from: 'asaikrishnachary@gmail.com', // Sender's email address
-    to: "asaikrishnachary@gmail.com", // Admin's email address
-
-
+    to: manager_email, // Admin's email address
     subject: 'Payment Notification',
     html: `
-     <p>Dear Admin,</p>
-  <p>We have received a new payment from a ${tenant_name} on PG-Tenant.</p>
-  <p>Here are the details:</p>
-  ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id)}
-  <p>Please ensure that the payment is recorded and the tenant's account is updated accordingly.</p>
-  <p>Best regards,</p>
-  <p>The PG-Tenant System</p> 
+      <p>Dear Admin,</p>
+      <p>We have received a new payment from ${tenant_name} on PG-Tenant.</p>
+      <p>Here are the details:</p>
+      ${generateEmailTable(tenant_email, income_amount, razorpay_payment_id, building_name, month, year, balance)}
+      <p>Please ensure that the payment is recorded and the tenant's account is updated accordingly.</p>
+      <p>Best regards,</p>
+      <p>The PG-Tenant System</p> 
     `,
   };
-
-  console.log(adminEmailOptions);
 
   // Send the email to the customer
   transporter.sendMail(customerEmailOptions, (error, info) => {

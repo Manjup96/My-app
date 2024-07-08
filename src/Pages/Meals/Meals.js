@@ -8,15 +8,8 @@ import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/components/Meals.scss";
-import Button from '@mui/material/Button';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import TableChartIcon from '@mui/icons-material/TableChart';
-import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { faTable, faTh } from "@fortawesome/free-solid-svg-icons"
-
-
-
 
 
 const MealsDetails = () => {
@@ -347,9 +340,7 @@ const MealsDetails = () => {
                 {readMore ? meal.comments : `${meal.comments.substring()}`}
                 {meal.comments.length > 100 && (
                   <span className="read-more-link">
-                    {/* <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
-                      {readMore ? "...Show Less" : "...Read More"}
-                    </a> */}
+                  
                   </span>
                 )}
               </td>
@@ -440,20 +431,21 @@ const MealsDetails = () => {
         </h1>
         <div className="container mt-4">
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-
-<PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
+            <div>
+             <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
             {({ blob, url, loading, error }) => (
               <button className="e-button-meals" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
             )}
           </PDFDownloadLink>
+          </div>
+          <div>
       <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button_meals" 
-          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
-      >
+          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'} >
             <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-          </button>
-
+           </button>
+          </div>
           <div>
             <button className="meal_button_style" onClick={() => handleOpenForm()}>
                Meal update
