@@ -9,34 +9,34 @@ import Meals from './Pages/Meals/Meals';
 import PaymentsDetails from './Pages/Payments/PaymentsDetails';
 import { AuthProvider } from './context/AuthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
+// import { getStorage } from "firebase/storage";
+// import { getAuth } from "firebase/auth";
 
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBun2kPJ7T02ZWjgI_cf1vjNd39ChYB0E8",
-  authDomain: "pg-tenant12.firebaseapp.com",
-  projectId: "pg-tenant12",
-  storageBucket: "pg-tenant12.appspot.com",
-  messagingSenderId: "436149970935",
-  appId: "1:436149970935:web:796b32d72af63515f470f2"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBun2kPJ7T02ZWjgI_cf1vjNd39ChYB0E8",
+//   authDomain: "pg-tenant12.firebaseapp.com",
+//   projectId: "pg-tenant12",
+//   storageBucket: "pg-tenant12.appspot.com",
+//   messagingSenderId: "436149970935",
+//   appId: "1:436149970935:web:796b32d72af63515f470f2"
+// };
 
 
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
-const auth = getAuth(app);
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
+// const storage = getStorage(app);
+// const auth = getAuth(app);
 
-export { app, db, storage, getFirestore, auth };
+// export { app, db, storage, getFirestore, auth };
 
-const ProtectedRoute = ({ user, children }) => {
-  return user ? children : <Navigate to="/" replace />;
-};
+// const ProtectedRoute = ({ user, children }) => {
+//   return user ? children : <Navigate to="/" replace />;
+// };
 
 export default function App() {
     const queryClient = new QueryClient();
