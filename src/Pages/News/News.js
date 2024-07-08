@@ -230,9 +230,9 @@ const News = () => {
         </button>
       </div> */}
  <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
-  <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
+   <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
     {({ loading }) =>
-      loading ? "Loading document..." : (
+      // loading ? "Loading document..." : (
         <button 
           style={{ backgroundColor: '#007bff', position: 'relative' }} 
           className="export-button"
@@ -240,9 +240,11 @@ const News = () => {
         >
           <FontAwesomeIcon icon={faFilePdf} />
         </button>
-      )
+      // )
     }
-  </PDFDownloadLink>
+  </PDFDownloadLink> 
+
+
   <button 
     onClick={() => setView(view === 'table' ? 'cards' : 'table')} 
     className="switch_button"
