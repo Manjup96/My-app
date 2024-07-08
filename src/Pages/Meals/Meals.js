@@ -135,7 +135,9 @@ const MealsDetails = () => {
       (meal.breakfast && meal.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.lunch && meal.lunch.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.dinner && meal.dinner.toLowerCase().includes(lowerSearchTerm)) ||
-      (meal.date && meal.date.toLowerCase().includes(lowerSearchTerm))
+      (meal.date && meal.date.toLowerCase().includes(lowerSearchTerm)) ||
+      (meal.date && new Date(meal.date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm)) 
+
     );
   });
 
@@ -310,9 +312,6 @@ const MealsDetails = () => {
   };
 
 
-
-
-
   const renderTable = () => (
     <div className="main_meals_table">
     <table className="meals_table">
@@ -338,7 +337,7 @@ const MealsDetails = () => {
               <td>{meal.dinner}</td>
               <td>
                 {readMore ? meal.comments : `${meal.comments.substring()}`}
-                {meal.comments.length > 100 && (
+                {meal.comments.length > 150 && (
                   <span className="read-more-link">
                   
                   </span>
@@ -387,7 +386,7 @@ const MealsDetails = () => {
                 <br />
                 <strong>comments:</strong>
                 {readMore ? meal.comments : `${meal.comments.substring(0, 20)}`}
-                {meal.comments.length > 20 && (
+                {meal.comments.length > 15 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
                       {readMore ? "...Read Less" : "...Read More"}
@@ -421,6 +420,11 @@ const MealsDetails = () => {
     </div>
   );
   
+ 
+  
+  
+
+
   return (
     <div >
       <Sidebar />
