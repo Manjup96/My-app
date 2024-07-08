@@ -336,6 +336,28 @@ body {
   }
 }
 @media (min-width: 1024px){
+
+  .switch-button-complaints1 {
+    position: relative;
+  
+    &:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -1.5em;  // Adjust as needed for positioning
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0.8;
+      font-size: 12px;
+    }
+  }
+
 .switch-button-complaints2 {
   position: relative;
   display: none;
@@ -379,6 +401,27 @@ body {
     width: 100%;
     gap: 50px;
     max-width: none;
+  }
+
+  .switch-button-complaints1 {
+    position: relative;
+  
+    &:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -1.5em;  // Adjust as needed for positioning
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0.8;
+      font-size: 12px;
+    }
   }
 
   .switch-button-complaints2 {
