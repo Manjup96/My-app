@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/Sidebar";
 import ComplaintsForm from "./ComplaintsForm";
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
-import { faTable, faTh, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
-import { TENANAT_COMPLAINT_URL,
+import { faTable, faTh, faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  TENANAT_COMPLAINT_URL,
   TENANAT_COMPLAINT_UPDATE_URL,
-  TENANAT_COMPLAINT_DELETE_URL} 
-from "../../services/ApiUrls";
+  TENANAT_COMPLAINT_DELETE_URL
+}
+  from "../../services/ApiUrls";
 import "../../styles/components/ComplaintsDetails.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileExport, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +25,7 @@ const ComplaintsDetails = () => {
   const [readMoreStates, setReadMoreStates] = useState({});
   const [view, setView] = useState('table');
   const { user } = useAuth();
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [showAlert, setShowAlert] = useState(false);
 
 
@@ -56,7 +59,7 @@ const ComplaintsDetails = () => {
     fetchData();
   }, [user]);
 
-  
+
 
   useEffect(() => {
     if (!showForm && showAlert) {
@@ -122,7 +125,7 @@ const ComplaintsDetails = () => {
     }
   };
 
-  
+
 
   const handleDeleteComplaint = async (id) => {
     try {
@@ -328,173 +331,114 @@ const ComplaintsDetails = () => {
 
 
 
-  
-    const [sortBy, setSortBy] = useState({ field: null, order: null });
 
-    const handleSort = (field) => {
-        const sortOrder = sortBy.field === field && sortBy.order === 'asc' ? 'desc' : 'asc';
-        setSortBy({ field, order: sortOrder });
-    };
+  const [sortBy, setSortBy] = useState({ field: null, order: null });
 
-    const sortedComplaints = [...currentComplaints].sort((A, B) => {
-      if (sortBy.field) {
-          const order = sortBy.order === 'asc' ? 1 : -1;
-          if (sortBy.field === 'created_date' || sortBy.field === 'resolve_date') {
-              const dateA = new Date(A[sortBy.field]);
-              const dateB = new Date(B[sortBy.field]);
-              return order * (dateA.getTime() - dateB.getTime());
-          } else {
-              const valueA = typeof A[sortBy.field] === 'string' ? A[sortBy.field].toLowerCase() : A[sortBy.field];
-              const valueB = typeof B[sortBy.field] === 'string' ? B[sortBy.field].toLowerCase() : B[sortBy.field];
-              return order * (valueA > valueB ? 1 : -1);
-          }
-      }
-      return 0;
-  });
-  
-  
-
-    const renderSortIcon = (field) => {
-      if (sortBy.field === field) {
-          return sortBy.order === 'asc' ? <FontAwesomeIcon icon={faSortUp} /> : <FontAwesomeIcon icon={faSortDown} />;
-      }
-      return null;
+  const handleSort = (field) => {
+    const sortOrder = sortBy.field === field && sortBy.order === 'asc' ? 'desc' : 'asc';
+    setSortBy({ field, order: sortOrder });
   };
- 
 
-  // const renderTable = () => (
-  //   // <div className="complaints-table">
-  //   <div className="complaints-table-list">
-  //     <table className="complaints-table">
+  const sortedComplaints = [...currentComplaints].sort((A, B) => {
+    if (sortBy.field) {
+      const order = sortBy.order === 'asc' ? 1 : -1;
+      if (sortBy.field === 'created_date' || sortBy.field === 'resolve_date') {
+        const dateA = new Date(A[sortBy.field]);
+        const dateB = new Date(B[sortBy.field]);
+        return order * (dateA.getTime() - dateB.getTime());
+      } else {
+        const valueA = typeof A[sortBy.field] === 'string' ? A[sortBy.field].toLowerCase() : A[sortBy.field];
+        const valueB = typeof B[sortBy.field] === 'string' ? B[sortBy.field].toLowerCase() : B[sortBy.field];
+        return order * (valueA > valueB ? 1 : -1);
+      }
+    }
+    return 0;
+  });
 
-  //       <thead>
-  //         <tr>
-  //           <th>ID</th>
-  //           <th>Complaint Type</th>
-  //           <th>Description</th>
-  //           <th>Created Date</th>
-  //           <th>Resolved Date</th>
-  //           <th>Comments</th>
-  //           <th>Actions</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {currentComplaints.map((complaint) => {
-  //           const readMore = readMoreStates[complaint.id] || false;
 
-  //           return (
-  //             <tr key={complaint.id}>
-  //               <td >{complaint.displayId}</td>
-  //               <td>{complaint.complaint_type}</td>
-  //               <td className="complaint-description">
-  //                 {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring()}`}
-  //                 {complaint.complaint_description.length > 150 && (
-  //                   <span className="read-more-link">
 
-  //                   </span>
-  //                 )}
-  //               </td>
-  //               <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-  //               <td>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</td>
-  //               <td>{complaint.comments}</td>
-  //               <td className="complaint-table-actions">
-  //                 <div className="complaint-table-icons">
-  //                   <PDFDownloadLink
-  //                     document={<IndividualComplaintDocument complaint={complaint} />}
-  //                     fileName={`complaint_${complaint.displayId}.pdf`}
-  //                   >
-  //                     {({ blob, url, loading, error }) =>
-  //                       loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-  //                     }
-  //                   </PDFDownloadLink>
-  //                   <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
-  //                     <FontAwesomeIcon icon={faEdit} />
-  //                   </button>
-  //                   <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
-  //                     <FontAwesomeIcon icon={faTrash} />
-  //                   </button>
-  //                 </div>
-  //               </td>
-  //             </tr>
-  //           );
-  //         })}
-  //       </tbody>
-        
-  //     </table>
-  //   </div>
-  // );
+  const getSortIcon = (field) => {
+    if (sortBy.field !== field) {
+      return <FontAwesomeIcon icon={faSort} />;
+    }
+    if (sortBy.order === 'asc') {
+      return <FontAwesomeIcon icon={faSortUp} />;
+    }
+    return <FontAwesomeIcon icon={faSortDown} />;
+  };
+
 
   const renderTable = () => (
-    // <div className="complaints-table">
-    <div className="complaints-table-list">
-  <table className="complaints-table">
-  {/* Table headers */}
-  <thead>
-  <tr>
-                        <th onClick={() => handleSort('displayId')}>
-                            ID {renderSortIcon('displayId')}
-                        </th>
-                        <th onClick={() => handleSort('complaint_type')}>
-                            Complaint Type {renderSortIcon('complaint_type')}
-                        </th>
-                        <th onClick={() => handleSort('complaint_description')}>
-                         Description {renderSortIcon('complaint_descriptione')}
-                        </th>
-                        {/* <th>Description</th> */}
-                        <th onClick={() => handleSort('created_date')}>
-                            Created Date {renderSortIcon('created_date')}
-                        </th>
-                        <th onClick={() => handleSort('resolve_date')}>
-                            Resolved Date {renderSortIcon('resolve_date')}
-                        </th>
-          <th>Comments</th>
-          <th>Actions</th>
-      </tr>
-  </thead>
-  {/* Table body */}
-  <tbody>
-      {sortedComplaints.map((complaint) => {
-          const readMore = readMoreStates[complaint.id] || false;
 
-          return (
+    <div className="complaints-table-list">
+      <table className="complaints-table">
+        {/* Table headers */}
+        <thead>
+          <tr>
+            <th onClick={() => handleSort('displayId')}>
+              ID {getSortIcon('displayId')}
+            </th>
+            <th onClick={() => handleSort('complaint_type')}>
+              Complaint Type {getSortIcon('complaint_type')}
+            </th>
+            <th onClick={() => handleSort('complaint_description')}>
+              Description {getSortIcon('complaint_description')}
+            </th>
+            {/* <th>Description</th> */}
+            <th onClick={() => handleSort('created_date')}>
+              Created Date {getSortIcon('created_date')}
+            </th>
+            <th onClick={() => handleSort('resolve_date')}>
+              Resolved Date {getSortIcon('resolve_date')}
+            </th>
+            <th>Comments</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        {/* Table body */}
+        <tbody>
+          {sortedComplaints.map((complaint) => {
+            const readMore = readMoreStates[complaint.id] || false;
+
+            return (
               <tr key={complaint.id}>
-                  <td>{complaint.displayId}</td>
-                  <td>{complaint.complaint_type}</td>
-                  <td className="complaint-description">
-                      {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 150)}`}
-                      {complaint.complaint_description.length > 150 && (
-                          <span className="read-more-link">
-                              {/* Implement read more functionality if needed */}
-                          </span>
-                      )}
-                  </td>
-                  <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
-                  <td>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</td>
-                  <td>{complaint.comments}</td>
-                  <td className="complaint-table-actions">
-                      <div className="complaint-table-icons">
-                          <PDFDownloadLink
-                              document={<IndividualComplaintDocument complaint={complaint} />}
-                              fileName={`complaint_${complaint.displayId}.pdf`}
-                          >
-                              {({ blob, url, loading, error }) =>
-                                  loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-                              }
-                          </PDFDownloadLink>
-                          <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
-                              <FontAwesomeIcon icon={faEdit} />
-                          </button>
-                          <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
-                              <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                      </div>
-                  </td>
+                <td>{complaint.displayId}</td>
+                <td>{complaint.complaint_type}</td>
+                <td className="complaint-description">
+                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 150)}`}
+                  {complaint.complaint_description.length > 150 && (
+                    <span className="read-more-link">
+                      {/* Implement read more functionality if needed */}
+                    </span>
+                  )}
+                </td>
+                <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
+                <td>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</td>
+                <td>{complaint.comments}</td>
+                <td className="complaint-table-actions">
+                  <div className="complaint-table-icons">
+                    <PDFDownloadLink
+                      document={<IndividualComplaintDocument complaint={complaint} />}
+                      fileName={`complaint_${complaint.displayId}.pdf`}
+                    >
+                      {({ blob, url, loading, error }) =>
+                        loading ? "" : <FontAwesomeIcon icon={faFileExport} />
+                      }
+                    </PDFDownloadLink>
+                    <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                    <button className="btn-delete-complaints" onClick={() => handleDeleteComplaint(complaint.id)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </td>
               </tr>
-          );
-      })}
-  </tbody>
-</table>
-</div>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 
   const renderCards = () => (
@@ -514,7 +458,7 @@ const ComplaintsDetails = () => {
                 <strong>Complaint Type:</strong> {complaint.complaint_type}
                 <br />
                 <strong>Description:</strong>
-                
+
                 {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
                 {complaint.complaint_description.length > 15 && (
                   <span className="read-more-link">
@@ -578,15 +522,15 @@ const ComplaintsDetails = () => {
             )}
           </PDFDownloadLink>
 
-         
-            <button
-              onClick={() => setView(view === 'table' ? 'cards' : 'table')}
-              className="switch-button-complaints switch-button-complaints1"
-              data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
-            >
-              <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-            </button>
-          
+
+          <button
+            onClick={() => setView(view === 'table' ? 'cards' : 'table')}
+            className="switch-button-complaints switch-button-complaints1"
+            data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+          >
+            <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
+          </button>
+
 
           <button className="complaints_button_style  " onClick={() => handleOpenForm()}>
             Add Complaint

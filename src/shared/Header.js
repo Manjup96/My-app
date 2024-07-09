@@ -8,7 +8,7 @@ const Header = () => {
     <div className="header">
       <img src={companyLogo} alt="Logo" className="company-logo" />
       <h2>PG Tenant</h2>
-      <div className="logout-button">
+      <div className="logout-button" data-tooltip="Log out">
         <Logout />
       </div>
     </div>
