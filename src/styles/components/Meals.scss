@@ -32,6 +32,7 @@ body {
   margin-left: 80%;
   padding: 6px;
   border-radius: 7px;
+  border: 1px solid #ccc;
 }
 
 .switch_button_meals {
@@ -46,8 +47,8 @@ body {
   justify-content: center;
   margin-right: 854px;
   margin-left: -66px;
-  width: 76px;
-  height: 46px;
+  width: 73px;
+  height: 48px;
 }
 
 .switch_button_meals:hover {
@@ -356,9 +357,11 @@ body {
         font-size: 18px;
         border-radius:5px;
         margin-right: 854px;
-        padding-left: 28px;
+        padding-left: 26px;
         padding-right: 24px;
         padding-bottom: 0px;
+        width: 78px;
+        height: 45px;
   }
 
   .search-bar-meals{

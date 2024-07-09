@@ -4,7 +4,7 @@ import MealsTable from "./MealsTable"
 import { TENANT_MEALS_GET_URL, TENANT_MEALS_UPDATE_URL, TENANT_MEALS_POST_URL } from "../../services/ApiUrls";
 import { useAuth } from './../../context/AuthContext';
 import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
-import { faFileExport, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport, faEdit, faTrash, faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { View, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/components/Meals.scss";
@@ -15,6 +15,7 @@ import { faTable, faTh } from "@fortawesome/free-solid-svg-icons"
 const MealsDetails = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedMeal, setselectedMeal] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
   const [meals, setMeals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,6 +23,8 @@ const MealsDetails = () => {
   const { user } = useAuth();
   const [readMoreStates, setReadMoreStates] = useState({});
   const [view, setView] = useState('table');
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -140,6 +143,8 @@ const MealsDetails = () => {
 
     );
   });
+
+
 
 
 
@@ -312,22 +317,72 @@ const MealsDetails = () => {
   };
 
 
+
+  const [sortBy, setSortBy] = useState({ field: null, order: null });
+
+  const handleSort = (field) => {
+    const sortOrder = sortBy.field === field && sortBy.order === 'asc' ? 'desc' : 'asc';
+    setSortBy({ field, order: sortOrder });
+  };
+
+  const sortedMeals = [...currentMeals].sort((A, B) => {
+    if (sortBy.field) {
+      const order = sortBy.order === 'asc' ? 1 : -1;
+      if (sortBy.field === 'date') {
+        const dateA = new Date(A[sortBy.field]);
+        const dateB = new Date(B[sortBy.field]);
+        return order * (dateA.getTime() - dateB.getTime());
+      } else {
+        const valueA = typeof A[sortBy.field] === 'string' ? A[sortBy.field].toLowerCase() : A[sortBy.field];
+        const valueB = typeof B[sortBy.field] === 'string' ? B[sortBy.field].toLowerCase() : B[sortBy.field];
+        return order * (valueA > valueB ? 1 : -1);
+      }
+    }
+    return 0;
+  });
+
+  const getSortIcon = (field) => {
+    if (sortBy.field !== field) {
+      return <FontAwesomeIcon icon={faSort} />;
+    }
+    if (sortBy.order === 'asc') {
+      return <FontAwesomeIcon icon={faSortUp} />;
+    }
+    return <FontAwesomeIcon icon={faSortDown} />;
+  };
+
+
+
   const renderTable = () => (
+  
+
     <div className="main_meals_table">
     <table className="meals_table">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Breakfast</th>
-          <th>Lunch</th>
-          <th>Dinner</th>
-          <th>Comments</th>
-          <th>Date</th>
+          <th onClick={() => handleSort('incrementalId')}>
+            ID {getSortIcon('incrementalId')}
+          </th>
+          <th onClick={() => handleSort('breakfast')}>
+            Breakfast {getSortIcon('breakfast')}
+          </th>
+          <th onClick={() => handleSort('lunch')}>
+            Lunch {getSortIcon('lunch')}
+          </th>
+          <th onClick={() => handleSort('dinner')}>
+            Dinner {getSortIcon('dinner')}
+          </th>
+          <th onClick={() => handleSort('comments')}>
+            Comments {getSortIcon('comments')}
+          </th>
+                    <th onClick={() => handleSort('date')}>
+            Date {getSortIcon('date')}
+          </th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {currentMeals.map((meal, index) => {
+        {sortedMeals.map((meal, index) => {
           const readMore = readMoreStates[meal.id] || false;
           return (
             <tr key={index}>
@@ -336,10 +391,10 @@ const MealsDetails = () => {
               <td>{meal.lunch}</td>
               <td>{meal.dinner}</td>
               <td>
-                {readMore ? meal.comments : `${meal.comments.substring()}`}
+                {readMore ? meal.comments : `${meal.comments.substring(0, 150)}`}
                 {meal.comments.length > 150 && (
                   <span className="read-more-link">
-                  
+                    {/* Implement read more functionality if needed */}
                   </span>
                 )}
               </td>
@@ -364,7 +419,7 @@ const MealsDetails = () => {
         })}
       </tbody>
     </table>
-    </div>
+  </div>
   );
   
   const renderCards = () => (
