@@ -38,17 +38,34 @@ const Payment = ({ onClose }) => {
     setShowForm(false);
   };
 
+  const sendEmailNotification = (apiData) => {
+    axios.post('https://kodamharish.pythonanywhere.com/pg_tenant_send_mail', {
+      tenant_name: apiData.tenant_name,
+      to_email: "asaikrishnachary@gmail.com", // or specify your recipient email here
+      subject: "Payment Confirmation",
+      amount: apiData.income_amount,
+      payment_id: apiData.razorpay_payment_id,
+      building_name: apiData.building_name,
+      month: apiData.month,
+      year: apiData.year,
+      balance: 1000 // example balance, adjust as needed
+    })
+    .then(emailResponse => {
+      console.log('Email sent successfully', emailResponse.data);
+    })
+    .catch(emailError => {
+      console.error('Email sending error', emailError);
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     var options = {
-      // Live enviroment
+      // Live environment
       key: "rzp_live_meYRQwcQTdON8u",
       key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
 
-      // Test enviroment
-      // key: "rzp_test_jIUzBukJnwE5kE",
-      // key_secret: "ZhnhUtHuusGrZBSqBAnwXhAI",
       amount: parseInt(formData.income_amount) * 100,
       currency: "INR",
       name: "iiiQbets",
@@ -78,13 +95,7 @@ const Payment = ({ onClose }) => {
             console.log("API response", response.data);
 
             // Send email notification
-            axios.post('http://localhost:3001/send-email', apiData)
-              .then(emailResponse => {
-                console.log('Email sent successfully', emailResponse.data);
-              })
-              .catch(emailError => {
-                console.error('Email sending error', emailError);
-              });
+            sendEmailNotification(apiData);
 
             setFormData({
               month: "",
