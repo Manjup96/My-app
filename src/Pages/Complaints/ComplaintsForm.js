@@ -74,6 +74,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
       alert("Description should be at least 20 characters long.");
       return;
     }
+    
 
     onSubmit({
       complaint_type: complaintType,
@@ -120,7 +121,7 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
           />
           <label htmlFor="description">Description:</label>
           
-          <textarea
+          {/* <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -128,6 +129,21 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
           ></textarea>
           {!isValidDescription && (
             <p style={{ color: "red" }}>Minimum 20 characters required.</p>
+          )} */}
+
+<textarea
+            id="description"
+            value={description}
+            onChange={(e) => {
+              if (e.target.value.length <= 500) {
+                setDescription(e.target.value);
+              }
+            }}
+            maxLength={500}
+            required
+          ></textarea>
+          {!isValidDescription && (
+            <p style={{ color: "red" }}>Description should be between 20 and 500 characters.</p>
           )}
           <button type="submit" disabled={loading || !isValidDescription}>
             {loading ? "Submitting..." : initialData ? "Update" : "Submit"}

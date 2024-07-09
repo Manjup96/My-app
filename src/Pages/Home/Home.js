@@ -9,6 +9,7 @@ import DashboardChart from "./DashboardChart";
 import Sidebar from "../../shared/Sidebar";
 import "../../styles/components/Home.scss";
 import { useAuth } from "../../context/AuthContext";
+import TotalNews from "./TotalNews";
 
 const Home = () => {
   const { user } = useAuth();
@@ -35,6 +36,9 @@ const Home = () => {
             </div>
             <div className="dashborad-meal-card" >
             <TotalMeals/>
+            </div>
+            <div>
+              <TotalNews/>
             </div>
             <div className="chart">
             <DashboardChart />
