@@ -133,8 +133,8 @@
   }
 }
 
-// @media (min-width: 1025px) and (max-width: 1920px) {
-@media (min-width: 1600px) and (max-width: 1920px) {
+
+@media (min-width: 1400px) and (max-width: 1920px) {
   .switch_button {
     margin-left: 19%;
     margin-top: 0px;
@@ -162,22 +162,22 @@
   }
   .export-button {
     background-color: blue;
-    color: white;
-    border: none;
-    padding: 9px 25px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 5px;
-    margin-left: 420%;
-    align-items: flex-end;
-     width: 69px;
+        color: white;
+        border: none;
+        padding: 7px 22px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+        margin-left: 445%;
+        align-items: flex-end;
+     
       &:hover {
         background-color: blue;
       }
     }
 }
 
-@media (min-width: 1025px) and (max-width: 1599px) {
+@media (min-width: 1025px) and (max-width: 1399px) {
   .switch_button {
     margin-left: 19%;
     margin-top: 0px;
@@ -205,16 +205,15 @@
   }
   .export-button {
     background-color: blue;
-    color: white;
-    border: none;
-    padding: 11px 17px;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 5px;
-    margin-left: 497%;
-    align-items: flex-end;
-    /* width: 67px; */
-    height: 40px;
+        color: white;
+        border: none;
+        padding: 11px 17px;
+        cursor: pointer;
+        font-size: 15px;
+        border-radius: 5px;
+        margin-left: 498%;
+        align-items: flex-end;
+   
     &:hover {
       background-color: blue;
     }

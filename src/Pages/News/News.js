@@ -5,7 +5,7 @@ import "../../styles/components/News.scss";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { useAuth } from './../../context/AuthContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf, faTable, faTh } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faTable, faTh, faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -16,6 +16,7 @@ const News = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8); // Changed from 6 to 8
   const [view, setView] = useState('table');
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const { user } = useAuth();
 
   useEffect(() => {
@@ -66,6 +67,36 @@ const News = () => {
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleSort = (key) => {
+    let direction = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+
+    const sortedData = [...filteredData].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === 'ascending' ? -1 : 1;
+      }
+      if (a[key] > b[key]) {
+        return direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    });
+
+    setFilteredData(sortedData);
+  };
+
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) {
+      return <FontAwesomeIcon icon={faSort} />;
+    }
+    if (sortConfig.direction === 'ascending') {
+      return <FontAwesomeIcon icon={faSortUp} />;
+    }
+    return <FontAwesomeIcon icon={faSortDown} />;
+  };
 
   const styles = StyleSheet.create({
     table: {
@@ -160,10 +191,10 @@ const News = () => {
     <table className="news-table">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Created Date</th>
+          <th onClick={() => handleSort('seqId')}>ID {getSortIcon('seqId')}</th>
+          <th onClick={() => handleSort('news_type')}>Type {getSortIcon('news_type')}</th>
+          <th onClick={() => handleSort('news_description')}>Description {getSortIcon('news_description')}</th>
+          <th onClick={() => handleSort('created_at')}>Created Date {getSortIcon('created_at')}</th>
         </tr>
       </thead>
       <tbody>
@@ -215,46 +246,26 @@ const News = () => {
       <div className="News-Title">
         <h2>News Details</h2>
       </div>
-      {/* <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
+      <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
         <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
           {({ loading }) =>
-            loading ? "Loading document..." : (
-              <button style={{ backgroundColor: '#007bff' }} className="export-button">
-                <FontAwesomeIcon icon={faFilePdf} />
-              </button>
-            )
+            <button 
+              style={{ backgroundColor: '#007bff', position: 'relative' }} 
+              className="export-button"
+              data-tooltip="Download as PDF"
+            >
+              <FontAwesomeIcon icon={faFilePdf} />
+            </button>
           }
-        </PDFDownloadLink>
-        <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
+        </PDFDownloadLink> 
+        <button 
+          onClick={() => setView(view === 'table' ? 'cards' : 'table')} 
+          className="switch_button"
+          data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
+        >
           <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
         </button>
-      </div> */}
- <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
-   <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
-    {({ loading }) =>
-      // loading ? "Loading document..." : (
-        <button 
-          style={{ backgroundColor: '#007bff', position: 'relative' }} 
-          className="export-button"
-          data-tooltip="Download as PDF"
-        >
-          <FontAwesomeIcon icon={faFilePdf} />
-        </button>
-      // )
-    }
-  </PDFDownloadLink> 
-
-
-  <button 
-    onClick={() => setView(view === 'table' ? 'cards' : 'table')} 
-    className="switch_button"
-    data-tooltip={view === 'table' ? 'Switch to Cards View' : 'Switch to Table View'}
-  >
-    <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-  </button>
-</div>
-
-
+      </div>
       <div className="SearchContainer_news">
         <input
           type="text"
@@ -262,7 +273,6 @@ const News = () => {
           className="search-input"
           value={searchInput}
           onChange={handleSearchInputChange}
-          
         />
       </div>
       <div className="TableContainer">
