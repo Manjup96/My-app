@@ -522,7 +522,7 @@ const MealsDetails = () => {
           </div>
 
           <div className="meals-list mt-4">
-            <h2 className="meals-heading2">Meals List</h2>
+            {/* <h2 className="meals-heading2">Meals List</h2> */}
                         {view === 'table' ? renderTable() : renderCards()}
             {showForm && (
               <div className="form-container">

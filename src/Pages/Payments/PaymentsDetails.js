@@ -7,7 +7,7 @@ import PaymentForm from "./Payments_old";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
-import { faTable, faTh } from "@fortawesome/free-solid-svg-icons";
+import { faTable, faTh, faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 const PaymentsDetails = () => {
   const [newsData, setNewsData] = useState([]);
@@ -183,6 +183,39 @@ const PaymentsDetails = () => {
     </Document>
   );
 
+  const [sortBy, setSortBy] = useState({ field: null, order: null });
+
+  const handleSort = (field) => {
+    const sortOrder = sortBy.field === field && sortBy.order === 'asc' ? 'desc' : 'asc';
+    setSortBy({ field, order: sortOrder });
+  };
+
+  const sortedItems = [...currentItems].sort((A, B) => {
+    if (sortBy.field) {
+      const order = sortBy.order === 'asc' ? 1 : -1;
+      if (sortBy.field === 'date' || sortBy.field === 'month') {
+        const dateA = new Date(A[sortBy.field]);
+        const dateB = new Date(B[sortBy.field]);
+        return order * (dateA.getTime() - dateB.getTime());
+      } else {
+        const valueA = typeof A[sortBy.field] === 'string' ? A[sortBy.field].toLowerCase() : A[sortBy.field];
+        const valueB = typeof B[sortBy.field] === 'string' ? B[sortBy.field].toLowerCase() : B[sortBy.field];
+        return order * (valueA > valueB ? 1 : -1);
+      }
+    }
+    return 0;
+  });
+
+  const getSortIcon = (field) => {
+    if (sortBy.field !== field) {
+      return <FontAwesomeIcon icon={faSort} />;
+    }
+    if (sortBy.order === 'asc') {
+      return <FontAwesomeIcon icon={faSortUp} />;
+    }
+    return <FontAwesomeIcon icon={faSortDown} />;
+  };
+
 
   const renderTable = () => (
     
@@ -191,41 +224,84 @@ const PaymentsDetails = () => {
   {error && <div>Error: {error}</div>}
   {!loading && !error && (
     
+    // <table className="payment-table">
+    //   <thead>
+    //     <tr>
+    //       <th>ID</th>
+    //       <th>Date</th>
+    //       <th>Amount Paid</th>
+    //       <th>Month-Year Paid for</th>
+    //       <th className="download">Download</th>
+    //     </tr>
+    //   </thead>
+    //   <tbody>
+    //     {currentItems.map((news, index) => (
+    //       <tr key={index} >
+    //         <td>{indexOfFirstItem + index + 1}</td>
+    //         <td>{news.date}</td>
+    //         <td>{news.income_amount}</td>
+    //         <td>
+    //           {new Date(news.month)
+    //             .toLocaleDateString("en-IN", { month: "long" })
+    //             .replace(" ", "-")}-{news.year}
+    //         </td>
+    //         <td className="download">
+    //           <PDFDownloadLink
+    //             document={<IndividualPaymentDocument payment={news} />}
+    //             fileName={`payment_${news.id}.pdf`}
+    //           >
+    //             {({ loading }) =>
+    //               loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
+    //             }
+    //           </PDFDownloadLink>
+    //         </td>
+    //       </tr>
+    //     ))}
+    //   </tbody>
+    // </table>
     <table className="payment-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Amount Paid</th>
-          <th>Month-Year Paid for</th>
-          <th className="download">Download</th>
+    <thead>
+      <tr>
+        <th onClick={() => handleSort('id')}>
+          ID {getSortIcon('id')}
+        </th>
+        <th onClick={() => handleSort('date')}>
+          Date {getSortIcon('date')}
+        </th>
+        <th onClick={() => handleSort('income_amount')}>
+          Amount Paid {getSortIcon('income_amount')}
+        </th>
+        <th onClick={() => handleSort('month-year')}>
+          Month-Year Paid for {getSortIcon('month-year')}
+        </th>
+        <th className="download">Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sortedItems.map((news, index) => (
+        <tr key={index}>
+          <td>{indexOfFirstItem + index + 1}</td>
+          <td>{news.date}</td>
+          <td>{news.income_amount}</td>
+          <td>
+            {new Date(news.month)
+              .toLocaleDateString("en-IN", { month: "long" })
+              .replace(" ", "-")}-{news.year}
+          </td>
+          <td className="download">
+            <PDFDownloadLink
+              document={<IndividualPaymentDocument payment={news} />}
+              fileName={`payment_${news.id}.pdf`}
+            >
+              {({ loading }) =>
+                loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
+              }
+            </PDFDownloadLink>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {currentItems.map((news, index) => (
-          <tr key={index} >
-            <td>{indexOfFirstItem + index + 1}</td>
-            <td>{news.date}</td>
-            <td>{news.income_amount}</td>
-            <td>
-              {new Date(news.month)
-                .toLocaleDateString("en-IN", { month: "long" })
-                .replace(" ", "-")}-{news.year}
-            </td>
-            <td className="download">
-              <PDFDownloadLink
-                document={<IndividualPaymentDocument payment={news} />}
-                fileName={`payment_${news.id}.pdf`}
-              >
-                {({ loading }) =>
-                  loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-                }
-              </PDFDownloadLink>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+      ))}
+    </tbody>
+  </table>
     
   )}
 </div>

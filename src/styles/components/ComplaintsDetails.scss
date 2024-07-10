@@ -183,7 +183,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 0 10px;
-  margin-bottom: 0px;
+  margin-bottom: -25px;
   margin-top: 15px;
   width: 97%;
   max-width: 240px;
@@ -395,6 +395,20 @@ body {
 
 @media (min-width: 1025px) and (max-width: 1399px) {
 
+  .complaint-card {
+    position: relative;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    min-height: 400px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-left: 112px;
+    overflow: hidden;
+}
   .Complaints-count{
     margin-left: 925px;
       margin-right: -167px;

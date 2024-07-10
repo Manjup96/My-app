@@ -462,7 +462,7 @@ const ComplaintsDetails = () => {
                 <br />
                 <strong>Description:</strong>
 
-                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
+                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 10)}`}
                 {complaint.complaint_description.length > 15 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
@@ -570,7 +570,7 @@ const ComplaintsDetails = () => {
         )}
 
         <div className="complaints-list mt-4">
-          <h2 className="complaints-list-heading">Complaints List</h2>
+          {/* <h2 className="complaints-list-heading">Complaints List</h2> */}
 
           {view === 'table' ? renderTable() : renderCards()}
           <div className="Complaints-count">
