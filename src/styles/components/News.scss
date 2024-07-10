@@ -27,6 +27,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    height: 270px;
   }
   .news-text {
     font-size: 18px;
@@ -54,12 +55,12 @@
   border-color: blue; // Example of changing border color on focus
 }
 
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-left: 560px;
-}
+// .pagination-container {
+//   display: flex;
+//   justify-content: center;
+//   margin-top: 20px;
+//   margin-left: 560px;
+// }
 
 // .export-button {
 //   background-color: blue;
@@ -175,6 +176,12 @@
         background-color: blue;
       }
     }
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      margin-left: 449px;
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1399px) {
@@ -218,6 +225,12 @@
       background-color: blue;
     }
   }
+  .pagination-container {
+    display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: 390px;
+}
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -229,12 +242,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
-  .pagination-container {
+
+  .News-Title {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-left: 218px;
+    align-items: center;
+    margin-top: 40px;
   }
+   
   .SearchContainer_news {
     display: flex;
     justify-content: flex-end;
@@ -273,17 +288,29 @@
     border-radius: 5px;
     width: 15%;
   }
+  .pagination-container {
+    display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: 200px;
+}
 }
 
 @media (max-width: 767px) {
+  .News-Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+  }
   .TableContainer .news {
-    width: calc(76% - 20px);
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-left: 85px;
+    width: calc(90% - 19px);
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-left: 3px;
   }
 
   .pagination-container {
@@ -299,36 +326,42 @@
     padding: 0 10px;
     margin-bottom: 20px;
     margin-top: 20px;
-    width: 89%;
-    margin-left: -103px;
+    width: 120%;
+    margin-left: -1px;
   }
   .export-button {
     background-color: blue;
     color: white;
     border: none;
-    padding: 10px 43px;
+    padding: 8px 20px;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 16px;
     border-radius: 5px;
-    margin-left: 90px;
-    width: 18%;
+    margin-left: 105px;
+    width: -12%;
     margin-top: 10px;
     &:hover {
       background-color: blue;
     }
   }
   .switch_button {
-    margin-left: 5%;
+    margin-left: 16%;
     margin-top: 10px;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 25px;
+    padding: 8px 14px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
-    width: 83px;
+    width: 55px;
   }
+  .pagination-container {
+    display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: -31px;
+}
 }
 
 // TableStyles.scss

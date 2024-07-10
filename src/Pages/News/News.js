@@ -17,6 +17,7 @@ const News = () => {
   const [itemsPerPage] = useState(8); // Changed from 6 to 8
   const [view, setView] = useState('table');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
   const { user } = useAuth();
 
   useEffect(() => {
@@ -96,6 +97,13 @@ const News = () => {
       return <FontAwesomeIcon icon={faSortUp} />;
     }
     return <FontAwesomeIcon icon={faSortDown} />;
+  };
+
+  const toggleDescription = (index) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   const styles = StyleSheet.create({
@@ -202,7 +210,23 @@ const News = () => {
           <tr key={index}>
             <td>{news.seqId}</td>
             <td>{news.news_type}</td>
-            <td>{news.news_description}</td>
+            <td>
+              {news.news_description.length > 20 ? (
+                <>
+                  {expandedDescriptions[index]
+                    ? news.news_description
+                    : `${news.news_description.substring(0, 10)}...`}
+                  <span
+                    onClick={() => toggleDescription(index)}
+                    style={{ color: "blue", cursor: "pointer" }}
+                  >
+                    {expandedDescriptions[index] ? " Read less" : " Read more"}
+                  </span>
+                </>
+              ) : (
+                news.news_description
+              )}
+            </td>
             <td>{new Date(news.created_at).toLocaleDateString("en-IN")}</td>
           </tr>
         ))}
@@ -212,31 +236,45 @@ const News = () => {
 
   const renderCards = () => (
     <div className="news-row">
-      {currentItems.map((news, index) => (
-        <div key={index} className="news">
-          <div className="news-header" style={{ textAlign: "center" }}>
-            ID: {news.seqId}
+      {currentItems.map((news, index) => {
+        const isExpanded = expandedDescriptions[index];
+        const shouldShowReadMore = news.news_description.length > 20;
+        const displayDescription = isExpanded ? news.news_description : `${news.news_description.substring(0, 5)}...`;
+
+        return (
+          <div key={index} className="news">
+            <div className="news-header" style={{ textAlign: "center" }}>
+              ID: {news.seqId}
+            </div>
+            <div className="news-body">
+              <p className="news-text">
+                <small className="text-muted">
+                  <b>Type : </b> {news.news_type}
+                </small>
+              </p>
+              <p className="news-text">
+                <small className="text-muted">
+                  <b>Description : </b> {displayDescription}
+                  {shouldShowReadMore && (
+                    <span
+                      onClick={() => toggleDescription(index)}
+                      style={{ color: "blue", cursor: "pointer" }}
+                    >
+                      {isExpanded ? " Read less" : " Read more"}
+                    </span>
+                  )}
+                </small>
+              </p>
+              <p className="news-text">
+                <small className="text-muted">
+                  <b>Created On :</b>{" "}
+                  {new Date(news.created_at).toLocaleDateString("en-IN")}
+                </small>
+              </p>
+            </div>
           </div>
-          <div className="news-body">
-            <p className="news-text">
-              <small className="text-muted">
-                <b>Type : </b> {news.news_type}
-              </small>
-            </p>
-            <p className="news-text">
-              <small className="text-muted">
-                <b>Description : </b> {news.news_description}
-              </small>
-            </p>
-            <p className="news-text">
-              <small className="text-muted">
-                <b>Created On :</b>{" "}
-                {new Date(news.created_at).toLocaleDateString("en-IN")}
-              </small>
-            </p>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 
