@@ -1,7 +1,10 @@
+
+
+
 // import React, { useState, useEffect } from "react";
 // import "../../styles/components/MealsTable.scss";
 
-// const MealsTable = ({ onSubmit, onCloseForm, initialData }) => {
+// const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
 //   const [id, setId] = useState("");
 //   const [tenant_name, setTenantname] = useState("");
 //   const [breakfast, setBreakfast] = useState("No");
@@ -18,7 +21,6 @@
 
 //   useEffect(() => {
 //     if (initialData) {
-//       console.log("Initial Data:", initialData); // Debugging line
 //       setId(initialData.id || "");
 //       setTenantname(initialData.tenant_name || "");
 //       setBreakfast(initialData.breakfast || "No");
@@ -27,7 +29,6 @@
 
 //       if (initialData.date) {
 //         const formattedDate = formatDate(initialData.date);
-//         console.log("Formatted Date:", formattedDate); // Debugging line
 //         setDate(formattedDate);
 //       } else {
 //         setDate("");
@@ -38,15 +39,12 @@
 //   }, [initialData]);
 
 //   const formatDate = (dateString) => {
-//     // Handle the non-ISO date format (e.g., "16-10-2017")
 //     const [day, month, year] = dateString.split("-");
 //     if (!day || !month || !year) {
-//       console.error("Invalid Date:", dateString); // Debugging line
 //       return "";
 //     }
 //     const date = new Date(`${year}-${month}-${day}`);
 //     if (isNaN(date.getTime())) {
-//       console.error("Invalid Date:", dateString); // Debugging line
 //       return "";
 //     }
 //     const formattedYear = date.getFullYear();
@@ -57,8 +55,9 @@
 
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
+
 //     if (!isValidComment) {
-//       alert("Description should be at least 20 characters long.");
+//       alert(" Comment should be at least 20 characters long.");
 //       return;
 //     }
 //     setLoading(true);
@@ -73,13 +72,15 @@
 //       comments: comments
 //     });
 
-//     alert(initialData ? "Meals updated Successfully" : "Meals added Successfully");
-
 //     setLoading(false);
 
+//     // Close the form before showing the alert
+//     onCloseForm(view);
+
 //     setTimeout(() => {
+//       alert(initialData ? "Meals updated Successfully" : "Meals added Successfully");
 //       window.location.reload();
-//     }, 1000);
+//     }, 100);
 //   };
 
 //   // Get today's date in YYYY-MM-DD format
@@ -132,21 +133,25 @@
 //             />
 //           </div>
 //           <label htmlFor="comments">Comments:</label>
-//           <textarea
+       
+// <textarea
 //             id="comments"
 //             value={comments}
-//             onChange={(e) => setComments(e.target.value)}
+//             onChange={(e) => {
+//               if (e.target.value.length <= 500) {
+//                 setComments(e.target.value);
+//               }
+//             }}
+//             maxLength={500}
 //             required
 //           ></textarea>
 //           {!isValidComment && (
-//             <p style={{ color: "red" }}>Minimum 20 characters required.</p>
-//           )}
+//             <p style={{ color: "red" }}>Comments should be between 20 and 500 characters.</p>
+//           )}
 //           <div className="form_div">
-
 //             <button type="submit" disabled={loading || !isValidComment}>
 //               {loading ? "Submitting..." : initialData ? "Update" : "Submit"}
 //             </button>
-
 //             <button className="close-button" type="button" onClick={onCloseForm}>
 //               Close
 //             </button>
@@ -219,7 +224,7 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
     e.preventDefault();
 
     if (!isValidComment) {
-      alert("Description should be at least 20 characters long.");
+      alert(" Comment should be at least 20 characters long.");
       return;
     }
     setLoading(true);
@@ -245,8 +250,11 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
     }, 100);
   };
 
-  // Get today's date in YYYY-MM-DD format
-  const today = new Date().toISOString().split('T')[0];
+  // Get tomorrow's date in YYYY-MM-DD format
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const minDate = tomorrow.toISOString().split('T')[0];
 
   return (
     <div className="meals_1">
@@ -289,7 +297,7 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
               type="date"
               id="date"
               value={date}
-              min={today} // Set the minimum date to today's date
+              min={minDate} // Set the minimum date to tomorrow's date
               onChange={(e) => setDate(e.target.value)}
               required
             />
@@ -325,4 +333,3 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
 };
 
 export default MealsTable;
-
