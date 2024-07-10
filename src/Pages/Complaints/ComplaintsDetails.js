@@ -17,6 +17,7 @@ import { useAuth } from "./../../context/AuthContext";
 
 const ComplaintsDetails = () => {
   const [showForm, setShowForm] = useState(false);
+ // const [filteredComplaints, setFilteredComplaints] = useState([]);
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -438,7 +439,9 @@ const ComplaintsDetails = () => {
           })}
         </tbody>
       </table>
+      
     </div>
+    
   );
 
   const renderCards = () => (
@@ -507,7 +510,7 @@ const ComplaintsDetails = () => {
     <div>
       <Sidebar />
       <div>
-        <h1 style={{ marginTop: '30px' }} className="text-center flex-grow-1">Complaints Details</h1>
+        <h1  className="heading-complaints">Complaints Details</h1>
       </div>
       <div className="container mt-4">
         {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}> */}
@@ -570,6 +573,9 @@ const ComplaintsDetails = () => {
           <h2 className="complaints-list-heading">Complaints List</h2>
 
           {view === 'table' ? renderTable() : renderCards()}
+          <div className="Complaints-count">
+                Total Complaints: {filteredComplaints.length}
+              </div>
           <nav className="mt-4">
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
@@ -588,10 +594,12 @@ const ComplaintsDetails = () => {
                 <button className="page-link" onClick={nextPage}>
                   Next
                 </button>
+                
               </li>
             </ul>
           </nav>
         </div>
+        
       </div>
     </div>
   );

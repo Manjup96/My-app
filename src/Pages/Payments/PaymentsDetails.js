@@ -198,7 +198,7 @@ const PaymentsDetails = () => {
           <th>Date</th>
           <th>Amount Paid</th>
           <th>Month-Year Paid for</th>
-          <th>Download</th>
+          <th className="download">Download</th>
         </tr>
       </thead>
       <tbody>
@@ -212,7 +212,7 @@ const PaymentsDetails = () => {
                 .toLocaleDateString("en-IN", { month: "long" })
                 .replace(" ", "-")}-{news.year}
             </td>
-            <td>
+            <td className="download">
               <PDFDownloadLink
                 document={<IndividualPaymentDocument payment={news} />}
                 fileName={`payment_${news.id}.pdf`}
@@ -288,7 +288,7 @@ const renderCards = () => (
     <div className={`news-container ${isPopupOpen ? 'overlay' : ''}`}>
       <Sidebar />
       <div className="News-Title">
-        <h2>Payment Details</h2>
+        <h1>Payment Details</h1>
       </div>
      
       <div className="Payments_button"> 
@@ -335,6 +335,9 @@ const renderCards = () => (
       </div>
 
       {view === 'table' ? renderTable() : renderCards()}
+      <div className="payments-count">
+                Total Payments: {filteredData.length}
+              </div>
         <div className="pagination-container-payment">
           <ul className="pagination">
             <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>

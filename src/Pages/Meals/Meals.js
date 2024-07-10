@@ -485,7 +485,7 @@ const MealsDetails = () => {
       <Sidebar />
 
       <div className="main">
-        <h1 style={{ marginTop: "30px" }} className="text-center flex-grow-1">
+        <h1  className="heading-meals">
           Meals Details
         </h1>
         <div className="container mt-4">
@@ -522,7 +522,7 @@ const MealsDetails = () => {
           </div>
 
           <div className="meals-list mt-4">
-            <h2 style={{ marginBottom: "30px" }}>Meals List</h2>
+            <h2 className="meals-heading2">Meals List</h2>
                         {view === 'table' ? renderTable() : renderCards()}
             {showForm && (
               <div className="form-container">
@@ -533,6 +533,9 @@ const MealsDetails = () => {
                 />
               </div>
             )}
+            <div className="meals-count">
+                Total Meals: {filteredMeals.length}
+              </div>
             <nav className="mt-4">
               <ul className="pagination justify-content-center">
                 <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
