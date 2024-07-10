@@ -207,7 +207,63 @@
   }
 }
 
+@media (min-width: 1400px) and (max-width: 1920px) {
 
+
+
+}
+
+
+@media (min-width: 1025px) and (max-width: 1399px) {
+
+  .payments_button_style {
+    align-items: end;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px;
+    height: 50px;
+    width: 210px;
+    margin-right: 25px;
+  }
+  .search-input-payment {
+    width: 80%;
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: -9px;
+    margin-left: 7px;
+    margin-right: -44px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.export-button-payment {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-right: -12px;
+  min-width: 75px;
+}
+.switch_button_payment {
+  margin-left: -1113%;
+  margin-top: 1px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 11px 25px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+}
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
