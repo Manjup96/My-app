@@ -66,7 +66,7 @@ const MealsDetails = () => {
     setselectedMeal(null);
   };
 
-  const handleFormSubmit = async (formData) => {
+  const handleFormSubmit = async (formData, currentView) => {
     try {
       const requestOptions = {
         method: "POST",
@@ -102,6 +102,8 @@ const MealsDetails = () => {
         setMeals([...meals, data]);
       }
       handleCloseForm();
+      setView(currentView); // Maintain the current view
+
     } catch (error) {
       console.error("Error submitting form:", error);
     }

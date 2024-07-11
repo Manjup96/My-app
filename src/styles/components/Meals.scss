@@ -50,16 +50,16 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 25px;
+  padding: 7px 11px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 19px;
   border-radius: 5px;
   align-items: center; 
   justify-content: center;
   margin-right: 854px;
-  margin-left: -20px;
-  width: 73px;
-  height: 48px;
+  margin-left: -75px;
+  width: 57px;
+  height: 43px;
 }
 
 .switch_button_meals:hover {
@@ -115,9 +115,9 @@ body {
   color: rgb(248, 240, 240);
   border: none;
   margin-left: 15px;
-  padding: 14px 24px;
+  padding: 11px 20px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 19px;
   border-radius: 5px;
   position: relative; /* Added for positioning the hover text */
   display: inline-flex; /* Flex for alignment */
@@ -134,8 +134,8 @@ body {
   background-color:    #007bff;
   color: white;
   border: none;
-  padding: 10px 35px;
-  margin-right: 14px;
+  padding: 8px 32px;
+    margin-right: 14px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
@@ -436,7 +436,7 @@ body {
 
   .switch_button_meals{
 
-    margin-left: 40px;
+    margin-left: 28px;
         margin-top: 1px;
         margin-bottom: -30px;
         background-color: #007bff;
@@ -469,7 +469,7 @@ body {
   .container .pdf-container .meal_button_style{
     font-size: 17px;
     max-width: 217%;
-    margin-left: -582%;
+    margin-left: -556%;
     height: 61px;
     background-color: #007bff;
     color: white;
@@ -486,7 +486,7 @@ body {
     color: white;
     border: none;
     padding: 13px 32px;
-    margin-left: -34px;
+    margin-left: -46px;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
@@ -686,17 +686,17 @@ body {
     color: rgb(248, 240, 240);
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 5px;
-    margin-left: -97px;
+    margin-left: -103px;
     padding-left: 13px;
     padding-right: 21px;
-    margin-top: 83px;
+    margin-top: 64px;
     padding-top: 12px;
     padding-bottom: 0px;
     margin-right: 868px;
-    height: 57px;
-    width: 77px;
+    height: 45px;
+    width: 70px;
   }
 
 
@@ -744,20 +744,21 @@ body {
   }
 
   .container .pdf-container .e-button-meals {
-    width: 122%;
-    padding: 20px;
+    width: 101%;
+    padding: 23px;
     font-size: 18px;
     margin-right: 41px;
     margin-left: -35px;
     background-color: $primary-color;
     color: white;
     border: none;
+    height: 29px;
   }
   .container .pdf-container .meal_button_style{
     font-size: 15px;
     padding: 17px;
     width: 150%;
-    margin-left: -922%;
+    margin-left: -913%;
 
     background-color: #007bff;
     color: white;

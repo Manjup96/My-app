@@ -73,7 +73,9 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
       dinner: dinner,
       date: date,
       comments: comments
-    });
+    },
+    view
+  );
 
     setLoading(false);
 
