@@ -17,6 +17,7 @@ import { useAuth } from "./../../context/AuthContext";
 
 const ComplaintsDetails = () => {
   const [showForm, setShowForm] = useState(false);
+ // const [filteredComplaints, setFilteredComplaints] = useState([]);
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -439,7 +440,9 @@ const ComplaintsDetails = () => {
           })}
         </tbody>
       </table>
+      
     </div>
+    
   );
 
   const renderCards = () => (
@@ -460,7 +463,7 @@ const ComplaintsDetails = () => {
                 <br />
                 <strong>Description:</strong>
 
-                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
+                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 10)}`}
                 {complaint.complaint_description.length > 15 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
@@ -508,7 +511,7 @@ const ComplaintsDetails = () => {
     <div>
       <Sidebar />
       <div>
-        <h1 style={{ marginTop: '30px' }} className="text-center flex-grow-1">Complaints Details</h1>
+        <h1  className="heading-complaints">Complaints Details</h1>
       </div>
       <div className="container mt-4">
         {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}> */}
@@ -568,9 +571,12 @@ const ComplaintsDetails = () => {
         )}
 
         <div className="complaints-list mt-4">
-          <h2 className="complaints-list-heading">Complaints List</h2>
+          {/* <h2 className="complaints-list-heading">Complaints List</h2> */}
 
           {view === 'table' ? renderTable() : renderCards()}
+          <div className="Complaints-count">
+                Total Complaints: {filteredComplaints.length}
+              </div>
           <nav className="mt-4">
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
@@ -589,10 +595,12 @@ const ComplaintsDetails = () => {
                 <button className="page-link" onClick={nextPage}>
                   Next
                 </button>
+                
               </li>
             </ul>
           </nav>
         </div>
+        
       </div>
     </div>
   );

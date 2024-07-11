@@ -37,11 +37,12 @@ const Home = () => {
             <div className="dashborad-meal-card" >
             <TotalMeals/>
             </div>
-            <div>
-              <TotalNews/>
-            </div>
-            <div className="chart">
-            <DashboardChart />
+            <div >
+              
+              <TotalNews />
+              </div>
+              <div className="chart">
+            <DashboardChart  />
             </div>
             <div>
               <PaymentsTable/>

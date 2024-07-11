@@ -12,6 +12,10 @@ body {
  overflow-x: hidden;
 }
 
+.heading-complaints{
+  margin-top: 20px;
+  text-align: center;
+}
 .Complaints-Title {
   display: flex;
   justify-content: flex-end;
@@ -91,6 +95,7 @@ body {
   max-width: 300px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  margin-top: 25px;
   margin-left: 112px;
   // height: 300px;
   overflow: hidden;
@@ -178,7 +183,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 0 10px;
-  margin-bottom: 0px;
+  margin-bottom: -25px;
   margin-top: 15px;
   width: 97%;
   max-width: 240px;
@@ -293,6 +298,7 @@ body {
   }
 }
 
+
  //tooltip
  .e_button_complaints {
   position: relative;
@@ -334,6 +340,11 @@ body {
       font-size: 12px;
     }
   }
+}
+
+.Complaints-count{
+  margin-left: 1109px;
+    margin-right: -167px;
 }
 @media (min-width: 1024px){
 
@@ -383,6 +394,50 @@ body {
 
 
 @media (min-width: 1025px) and (max-width: 1399px) {
+
+  .complaint-card {
+    position: relative;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    min-height: 400px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-left: 112px;
+    overflow: hidden;
+}
+  .Complaints-count{
+    margin-left: 925px;
+      margin-right: -167px;
+  }
+  .e_button_complaints {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    margin-left: 145px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: -10px;
+    border-radius: 5px;
+    margin-top: -14px;
+}
+
+.switch-button-complaints1 {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 25px;
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-bottom: -34px;
+  margin-top: -80px;
+}
   .complaints_button_style {
     background-color: $primary-color;
     color: white;
@@ -390,7 +445,7 @@ body {
     padding: 8px 25px;
     cursor: pointer;
     margin-right: -93px;
-    margin-left: 704px;
+    margin-left: 719px;
     font-size: 20px;
     border-radius: 5px;
     align-items: flex-end;
@@ -418,10 +473,15 @@ body {
   font-size: 15px;
   text-align: left;
 }
+.complaints-table thead th {
+  font-weight: bold;
+  text-transform: capitalize;
+  width: 0px;
+}
 
 td {
   &.complaint-table-actions {
-    width: 120px;
+    width: 80px;
     justify-content: center;
     gap: 10px;
 
@@ -469,6 +529,10 @@ td {
     font-size: 20px;
   }
  
+  .Complaints-count{
+    margin-left: 570px;
+      margin-right: 0px;
+  }
 
   .complaints-list {
     padding: 0 10px;
@@ -608,6 +672,16 @@ td {
 }
 
 @media (max-width: 576px) {
+
+  .Complaints-count{
+    margin-left: 38px;
+     
+  }
+  .heading-complaints {
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 15px;
+}
   .flex-grow-1 {
     justify-content: center;
     padding: 0 10px;
@@ -660,7 +734,7 @@ td {
 
   .complaints-list-heading {
        margin-bottom: 10px;
-        margin-left: 43px;
+        margin-left: 20px;
         margin-top: 8px;
     }
 
