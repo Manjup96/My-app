@@ -65,18 +65,18 @@ const PaymentsDetails = () => {
 
     // Filter newsData based on searchValue for type, ID, description, and created date
     const filteredNews = newsData.filter((news) => {
-  const newsType = news.news_type ? news.news_type.toLowerCase() : '';
-  const newsDescription = news.news_description ? news.news_description.toLowerCase() : '';
-  const newsId = news.id ? news.id.toString() : '';
-  const newsDate = news.month && news.year ? new Date(`${news.month}-${news.year}`).toLocaleDateString("en-IN") : '';
+      const newsType = news.news_type ? news.news_type.toLowerCase() : '';
+      const newsDescription = news.news_description ? news.news_description.toLowerCase() : '';
+      const newsId = news.id ? news.id.toString() : '';
+      const newsDate = news.month && news.year ? new Date(`${news.month}-${news.year}`).toLocaleDateString("en-IN") : '';
 
-  return (
-    newsType.includes(searchValue.toLowerCase()) ||
-    newsId.includes(searchValue) ||
-    newsDescription.includes(searchValue.toLowerCase()) ||
-    newsDate.includes(searchValue)
-  );
-});
+      return (
+        newsType.includes(searchValue.toLowerCase()) ||
+        newsId.includes(searchValue) ||
+        newsDescription.includes(searchValue.toLowerCase()) ||
+        newsDate.includes(searchValue)
+      );
+    });
 
     setFilteredData(filteredNews);
     setCurrentPage(1); // Reset to the first page when search changes
@@ -126,7 +126,7 @@ const PaymentsDetails = () => {
               <Text style={styles.tableCell}>{payment.id}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{payment.date}</Text>
+              <Text style={styles.tableCell}>{new Date(payment.date).toLocaleDateString("en-IN")}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>{payment.income_amount}</Text>
@@ -166,7 +166,7 @@ const PaymentsDetails = () => {
                 <Text style={styles.tableCell}>{index + 1}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.date}</Text>
+                <Text style={styles.tableCell}>{new Date(item.date).toLocaleDateString("en-IN")}</Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{item.income_amount}</Text>
@@ -186,103 +186,94 @@ const PaymentsDetails = () => {
 
   const renderTable = () => (
     
-     <div className="TableContainer-payment">
-  {loading && <div>Loading...</div>}
-  {error && <div>Error: {error}</div>}
-  {!loading && !error && (
-    
-    <table className="payment-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Amount Paid</th>
-          <th>Month-Year Paid for</th>
-          <th className="download">Download</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentItems.map((news, index) => (
-          <tr key={index} >
-            <td>{indexOfFirstItem + index + 1}</td>
-            <td>{news.date}</td>
-            <td>{news.income_amount}</td>
-            <td>
-              {new Date(news.month)
-                .toLocaleDateString("en-IN", { month: "long" })
-                .replace(" ", "-")}-{news.year}
-            </td>
-            <td className="download">
-              <PDFDownloadLink
-                document={<IndividualPaymentDocument payment={news} />}
-                fileName={`payment_${news.id}.pdf`}
-              >
-                {({ loading }) =>
-                  loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-                }
-              </PDFDownloadLink>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    
-  )}
-</div>
+    <div className="TableContainer-payment">
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+      {!loading && !error && (
+        <table className="payment-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Amount Paid</th>
+              <th>Month-Year Paid for</th>
+              <th className="download">Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((news, index) => (
+              <tr key={index}>
+                <td>{indexOfFirstItem + index + 1}</td>
+                <td>{new Date(news.date).toLocaleDateString("en-IN")}</td>
+                <td>{news.income_amount}</td>
+                <td>
+                  {new Date(news.month)
+                    .toLocaleDateString("en-IN", { month: "long" })
+                    .replace(" ", "-")}-{news.year}
+                </td>
+                <td className="download">
+                  <PDFDownloadLink
+                    document={<IndividualPaymentDocument payment={news} />}
+                    fileName={`payment_${news.id}.pdf`}
+                  >
+                    {({ loading }) =>
+                      loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
+                    }
+                  </PDFDownloadLink>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 
-const renderCards = () => (
-  <div className="TableContainer">
-  {loading && <div>Loading...</div>}
-  {error && <div>Error: {error}</div>}
-  {!loading && !error && (
-
-    
-    <div className="payment-row">
-      {currentItems.map((news, index) => (
-        <div key={index} className="payment">
-          <div className="payment-header">
-            ID: {indexOfFirstItem + index + 1}
-            
-          </div>
-          <div className="payment-body">
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Date: </b> {news.date}
-              </small>
-            </p>
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Amount Paid: </b> {news.income_amount}
-              </small>
-            </p>
-            <p className="payment-text">
-              <small className="text-muted">
-                <b>Month-Year Paid for:</b>{" "}
-                {new Date(news.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{news.year}
-              </small>
-            </p>
-           
-          </div>
-          <div>
-          <PDFDownloadLink
-              document={<IndividualPaymentDocument payment={news} />}
-              fileName={`payment_${news.id}.pdf`}
-            >
-              {({ loading }) =>
-                loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-              }
-            </PDFDownloadLink>
+  const renderCards = () => (
+    <div className="TableContainer">
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+      {!loading && !error && (
+        <div className="payment-row">
+          {currentItems.map((news, index) => (
+            <div key={index} className="payment">
+              <div className="payment-header">
+                ID: {indexOfFirstItem + index + 1}
+              </div>
+              <div className="payment-body">
+                <p className="payment-text">
+                  <small className="text-muted">
+                    <b>Date: </b> {new Date(news.date).toLocaleDateString("en-IN")}
+                  </small>
+                </p>
+                <p className="payment-text">
+                  <small className="text-muted">
+                    <b>Amount Paid: </b> {news.income_amount}
+                  </small>
+                </p>
+                <p className="payment-text">
+                  <small className="text-muted">
+                    <b>Month-Year Paid for:</b>{" "}
+                    {new Date(news.month).toLocaleDateString("en-IN", { month: 'long'}).replace(' ', '-')}-{news.year}
+                  </small>
+                </p>
+              </div>
+              <div>
+                <PDFDownloadLink
+                  document={<IndividualPaymentDocument payment={news} />}
+                  fileName={`payment_${news.id}.pdf`}
+                >
+                  {({ loading }) =>
+                    loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
+                  }
+                </PDFDownloadLink>
+              </div>
             </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
-  )}
-  </div>
-);
-
-    
-  
+  );
 
   return (
     <div className={`news-container ${isPopupOpen ? 'overlay' : ''}`}>
@@ -318,13 +309,7 @@ const renderCards = () => (
       </div>
       {isPopupOpen && <ModalForm onClose={handleClose} />}
 
-      {/* <div>
-          <button onClick={() => setView(view === 'table' ? 'cards' : 'table')} className="switch_button">
-          <FontAwesomeIcon icon={view === 'table' ? faTh : faTable} />
-          </button>
-        </div> */}
-
-        <div className="SearchContainer_payment">
+      <div className="SearchContainer_payment">
         <input
           type="text"
           placeholder="Search news..."
@@ -336,31 +321,30 @@ const renderCards = () => (
 
       {view === 'table' ? renderTable() : renderCards()}
       <div className="payments-count">
-                Total Payments: {filteredData.length}
-              </div>
-        <div className="pagination-container-payment">
-          <ul className="pagination">
-            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-              <button className="page-link" onClick={() => paginate(currentPage - 1)}>
-                Prev
-              </button>
-            </li>
-            {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map((number) => (
-              <li key={number + 1} className={`page-item ${currentPage === number + 1 ? "active" : ""}`}>
-                <button className="page-link" onClick={() => paginate(number + 1)}>
-                  {number + 1}
-                </button>
-              </li>
-            ))}
-            <li className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}>
-              <button className="page-link" onClick={() => paginate(currentPage + 1)}>
-                Next
-              </button>
-            </li>
-          </ul>
-        </div>
+        Total Payments: {filteredData.length}
       </div>
-    // </div>
+      <div className="pagination-container-payment">
+        <ul className="pagination">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage - 1)}>
+              Prev
+            </button>
+          </li>
+          {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map((number) => (
+            <li key={number + 1} className={`page-item ${currentPage === number + 1 ? "active" : ""}`}>
+              <button className="page-link" onClick={() => paginate(number + 1)}>
+                {number + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === Math.ceil(filteredData.length / itemsPerPage) ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };
 
