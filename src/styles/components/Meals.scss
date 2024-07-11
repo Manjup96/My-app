@@ -37,10 +37,10 @@ body {
   display: flex;
   justify-content: center;
   padding: 0 10px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-top: -38px;
   min-width: 20%;
-  margin-left: 80%;
+  margin-left: 79%;
   padding: 6px;
   border-radius: 7px;
   border: 1px solid #ccc;
@@ -57,7 +57,7 @@ body {
   align-items: center; 
   justify-content: center;
   margin-right: 854px;
-  margin-left: -66px;
+  margin-left: -20px;
   width: 73px;
   height: 48px;
 }
@@ -114,6 +114,7 @@ body {
   background-color: #007bff;
   color: rgb(248, 240, 240);
   border: none;
+  margin-left: 15px;
   padding: 14px 24px;
   cursor: pointer;
   font-size: 20px;
@@ -134,6 +135,7 @@ body {
   color: white;
   border: none;
   padding: 10px 35px;
+  margin-right: 14px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 5px;
@@ -267,7 +269,7 @@ body {
 
 
 .main_meals_table{
-  width: 100%;
+  width: 98%;
 }
 .meals_table {
   width: 100%;
@@ -340,6 +342,16 @@ body {
 
 @media (min-width: 1025px) and (max-width: 1399px) {
 
+  .meal-card {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    min-height: 350px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
   .meals-count{
     margin-left: 770px;
       margin-right: -167px;
