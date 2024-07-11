@@ -491,7 +491,7 @@ const MealsDetails = () => {
           Meals Details
         </h1>
         <div className="container mt-4">
-          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
             <div>
              <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
             {({ blob, url, loading, error }) => (
