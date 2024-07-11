@@ -66,7 +66,7 @@ const MealsDetails = () => {
     setselectedMeal(null);
   };
 
-  const handleFormSubmit = async (formData) => {
+  const handleFormSubmit = async (formData, currentView) => {
     try {
       const requestOptions = {
         method: "POST",
@@ -102,6 +102,8 @@ const MealsDetails = () => {
         setMeals([...meals, data]);
       }
       handleCloseForm();
+      setView(currentView); // Maintain the current view
+
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -489,7 +491,7 @@ const MealsDetails = () => {
           Meals Details
         </h1>
         <div className="container mt-4">
-          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+          <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
             <div>
              <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
             {({ blob, url, loading, error }) => (

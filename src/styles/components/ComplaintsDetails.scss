@@ -36,10 +36,10 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 25px;
-  margin-left: 150px;
+  padding: 7px 21px;
+  margin-left: 146px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: -10px;
   border-radius: 5px;
   margin-top: -14px;
@@ -53,11 +53,11 @@ body {
   background-color: $primary-color;
   color: white;
   border: none;
-  padding: 8px 25px;
-  cursor: pointer;
-  margin-right: -93px;
-  margin-left: 883px;
-  font-size: 20px;
+  padding: 7px 22px;
+    cursor: pointer;
+    margin-right: -93px;
+    margin-left: 942px;
+    font-size: 17px;
   border-radius: 5px;
   align-items: flex-end;
   &:hover {
@@ -199,10 +199,10 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 25px;
-  margin-left: 25px;
+  padding: 7px 21px;
+  margin-left: 15px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 5px;
   margin-bottom: -34px;
 
@@ -417,10 +417,10 @@ body {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 8px 25px;
-    margin-left: 145px;
-    cursor: pointer;
-    font-size: 20px;
+    padding: 6px 17px;
+        margin-left: 145px;
+        cursor: pointer;
+        font-size: 17px;
     margin-bottom: -10px;
     border-radius: 5px;
     margin-top: -14px;
@@ -430,10 +430,10 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 25px;
-  margin-left: 15px;
-  cursor: pointer;
-  font-size: 20px;
+  padding: 6px 18px;
+        margin-left: 15px;
+        cursor: pointer;
+        font-size: 17px;
   border-radius: 5px;
   margin-bottom: -34px;
   margin-top: -80px;
@@ -442,11 +442,11 @@ body {
     background-color: $primary-color;
     color: white;
     border: none;
-    padding: 8px 25px;
+    padding: 7px 22px;
     cursor: pointer;
     margin-right: -93px;
-    margin-left: 719px;
-    font-size: 20px;
+    margin-left: 793px;
+    font-size: 15px;
     border-radius: 5px;
     align-items: flex-end;
     &:hover {
@@ -596,10 +596,11 @@ td {
     background-color: $primary-color;
     color: white;
     border: none;
-    padding: 10px 35px;
-    margin-left: 23px;
-    cursor: pointer;
-    font-size: 20px;
+    padding: 7px 25px;
+        margin-left: 23px;
+        cursor: pointer;
+        font-size: 17px;
+        width: 9%;
     border-radius: 5px;
     //align-items: flex-end;
     &:hover {
@@ -611,22 +612,23 @@ td {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 35px;
-    margin-left: 25px;
-    cursor: pointer;
-    font-size: 20px;
+    padding: 7px 25px;
+        margin-left: 26px;
+        cursor: pointer;
+        font-size: 17px;
     border-radius: 5px;
   }
   .complaints_button_style {
     background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 12px 21px;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 5px;
-        margin-left: 309px;
-        margin-right: -30px;
+    color: white;
+    border: none;
+    padding: 10px 21px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-bottom: -20px;
+    border-radius: 5px;
+    margin-left: 378px;
+    margin-right: -30px;
         /* gap: 12px; */
         align-items: flex-end;
 
@@ -639,9 +641,8 @@ td {
     display: flex;
     justify-content: center;
     padding: 0 10px;
-    margin-bottom: 38px;
-    margin-top: 15px;
-    
+    margin-bottom: 10px;
+    margin-top: 10px;
     max-width: 256px;
     height: 46px;
     margin-left: 456px;
@@ -689,11 +690,11 @@ td {
   }
 
   .e_button_complaints {
-   width: 18%;
-        padding: 6px 2px;
-        font-size: 20px;
-        margin-right: 2px;
-        margin-left: 50px;
+    width: 16%;
+    padding: 6px 2px;
+    font-size: 15px;
+    margin-right: 2px;
+    margin-left: 50px;
   }
   .switch-button-complaints{
     display: none;
@@ -708,7 +709,8 @@ td {
         margin-left: 50px;
         margin-top: 10px;
         cursor: pointer;
-        font-size: 20px;
+        width: 16%;
+        font-size: 15px;
         border-radius: 5px;
     &:hover {
       background-color: $secondary-color;
@@ -744,9 +746,9 @@ td {
   border: none;
   padding: 7px 25px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 5px;
-  margin-left: 68px;
+  margin-left: 109px;
   margin-right: -3px;
   margin-top: -41px;
         /* gap: 12px; */
@@ -767,9 +769,10 @@ td {
   .search-bar {
     
     max-width: 188px;
-    margin-top: -43px;
-    margin-left: 182px;
-    margin-bottom: -6px;
+        margin-top: -33px;
+        height: 37px;
+        margin-left: 182px;
+        margin-bottom: -6px;
   }
 
   .complaint_card_style {
