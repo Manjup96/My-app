@@ -73,8 +73,9 @@ const PaymentsTable = () => {
 
   return (
     <div>
-    <div className="payments-table">
       <h1 className='payments-table-heading'>Payment Details</h1>
+    <div className="payments-table">
+      {/* <h1 className='payments-table-heading'>Payment Details</h1> */}
       <table className='tables'>
         <thead>
           <tr>
