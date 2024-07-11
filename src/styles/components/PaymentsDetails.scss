@@ -75,6 +75,29 @@
   pointer-events: auto; // Enable interaction with the modal
 }
 
+.export-button-payment{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 22px;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 5px;
+  margin-left: -1521%;
+  width: 97%;
+}
+
+.switch_button_payment {
+  margin-left: -1502%;
+        margin-top: 1px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 7px 22px;
+        cursor: pointer;
+        font-size: 17px;
+  border-radius: 5px;
+}
 .modal-content {
   background-color: #fff; // Light color for the modal content
   padding: 20px;
@@ -127,9 +150,10 @@
   border-radius: 4px;
   cursor: pointer;
   /* margin: 20px; */
-  height: 50px;
-  font-size: 20px;
-  width: 210px;
+  height: 42px;
+  padding: 7px 21px;
+  font-size: 17px;
+  width: 162px;
   margin-right: 35px;
 
   &:hover {
@@ -252,8 +276,11 @@
     border-radius: 4px;
     cursor: pointer;
     margin: 20px;
-    height: 50px;
-    width: 210px;
+    padding: 7px 21px;
+    font-size: 15px;
+    height: 40px;
+        width: 170px;
+        margin-bottom: 5px;
     margin-right: 25px;
   }
   .search-input-payment {
@@ -272,24 +299,25 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 25px;
+  padding: 7px 22px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 5px;
-  margin-right: -16px;
-  min-width: 75px;
+  margin-right: -6px;
+  margin-top: 12px;
+  min-width: 39px;
 }
 .switch_button_payment {
   position: relative;
-  margin-left: -1113%;
+  margin-left: -2265%;
   margin-right: -12px;
-  margin-top: 1px;
+  margin-top: 12px;
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 11px 25px;
+  padding: 7px 16px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 5px;
 }
 
@@ -325,15 +353,15 @@
 
 
   .switch_button_payment {
-        margin-left: 80px;
+        margin-left: 65px;
         margin-top: 13px;
         margin-bottom: -30px;
         background-color: #007bff;
         color: white;
         border: none;
-        padding: 11px 25px;
+        padding: 7px 21px;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 17px;
         border-radius: 5px;
     }
 
@@ -442,17 +470,17 @@ td {
   }
 }
 
-.switch_button_payment {
-  margin-left: -1246%;
-  margin-top: 1px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 11px 25px;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 5px;
-}
+// .switch_button_payment {
+//   margin-left: -1502%;
+//         margin-top: 1px;
+//         background-color: #007bff;
+//         color: white;
+//         border: none;
+//         padding: 7px 22px;
+//         cursor: pointer;
+//         font-size: 17px;
+//   border-radius: 5px;
+// }
 
 //tooltip
 .export-button-payment {
@@ -497,17 +525,17 @@ td {
   }
 }
 
-.export-button-payment{
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 5px;
-  margin-left: -1237%;
-  width: 97%;
-}
+// .export-button-payment{
+//   background-color: #007bff;
+//   color: white;
+//   border: none;
+//   padding: 7px 22px;
+//   cursor: pointer;
+//   font-size: 17px;
+//   border-radius: 5px;
+//   margin-left: -1521%;
+//   width: 97%;
+// }
 
 .ind-export-payment{
   color: #007bff;
@@ -669,11 +697,12 @@ td {
 
 .search-input-payment {
   width: 56%;
-  max-width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: -54px;
+  height: 36px;
+        max-width: 200px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: -49px;
   margin-left: 91px;
   margin-bottom: 10px;
   font-size: 16px;
@@ -694,29 +723,29 @@ td {
         background-color: #007bff;
         color: white;
         border: none;
-        padding: 7px 9px;
+        padding: 7px 12px;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 17px;
         border-radius: 5px;
-        margin-left: 70px;
-        width: 41%;
-        height: 56px;
-        margin-left: 93px;
+        margin-left: 94px;
+        width: 40%;
+        height: 39px;
+       
         margin-right: -24px;
         margin-bottom: 10px;
         margin-top: 33px;
     }
 
     .switch_button_payment {
-        margin-left: -50px;
-        margin-top: 100px;
-        margin-bottom: -30px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 11px 25px;
-        cursor: pointer;
-        font-size: 18px;
+      margin-left: -28px;
+      margin-top: 85px;
+      margin-bottom: -30px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 7px 22px;
+      cursor: pointer;
+      font-size: 15px;
         border-radius: 5px;
     }
 
@@ -731,12 +760,12 @@ td {
     background-color: #007bff;
       color: white;
       border: none;
-      padding: 10px 25px;
+      padding: 7px 22px;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 15px;
       margin-top: 35px;
         border-radius: 5px;
-        margin-left: 26%;
+        margin-left: 54%;
   }
 
   .SearchContainer .search-input-payment {
@@ -893,27 +922,27 @@ td {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 9px 20px;
+  padding: 7px 20px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
   border-radius: 5px;
-  margin-left: 60%;
-  width: 136%;
+  margin-left: 74%;
+        width: 110%;
   margin-top: 13px;
 }
 .payments_button_style {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 25px;
+  padding: 7px 22px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
   border-radius: 5px;
-  margin-left: 31%;
+  margin-left: 40%;
   margin-top: 13px;
   margin-bottom: 10px;
   align-items: flex-end;
-  width: 29%;
+  width: 24%;
   &:hover {
     background-color:blue;
   }
