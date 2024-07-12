@@ -699,6 +699,12 @@ body {
     margin-left: -205px;
     overflow-x: scroll;
   }
+
+  .complaints-table tbody tr td.complaint-table-actions {
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+}
 }
 
 @media (max-width: 576px) {
