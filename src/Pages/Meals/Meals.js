@@ -431,7 +431,7 @@ const MealsDetails = () => {
         const readMore = readMoreStates[meal.id] || false;
         return (
           <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-            <div className="meal-card p-3">
+            <div className="meal-card">
               <div className="meal-card-content">
                 <div className="card-header" style={{ textAlign: "center", marginLeft: "-10px" }}>
                    ID: {meal.incrementalId}

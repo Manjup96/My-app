@@ -1,4 +1,3 @@
-
 $primary-color: #007bff;
 $secondary-color: #0056b3;
 $danger-color: #dc3545;
@@ -9,13 +8,14 @@ $text-color: #333;
 
 body {
   font-family: Arial, sans-serif;
- overflow-x: hidden;
+  overflow-x: hidden;
 }
 
-.heading-complaints{
+.heading-complaints {
   margin-top: 20px;
   text-align: center;
 }
+
 .Complaints-Title {
   display: flex;
   justify-content: flex-end;
@@ -43,6 +43,7 @@ body {
   margin-bottom: -10px;
   border-radius: 5px;
   margin-top: -14px;
+
   //align-items: flex-end;
   &:hover {
     background-color: $secondary-color;
@@ -54,12 +55,13 @@ body {
   color: white;
   border: none;
   padding: 7px 22px;
-    cursor: pointer;
-    margin-right: -93px;
-    margin-left: 942px;
-    font-size: 17px;
+  cursor: pointer;
+  margin-right: -93px;
+  margin-left: 942px;
+  font-size: 17px;
   border-radius: 5px;
   align-items: flex-end;
+
   &:hover {
     background-color: $secondary-color;
   }
@@ -71,26 +73,28 @@ body {
   align-items: center;
   margin-top: 20px;
   margin-left: 26px;
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .complaints-cards {
   display: flex;
   flex-wrap: wrap;
-  width: 100%; /* Ensure the cards container takes the full width */
+  width: 100%;
+  /* Ensure the cards container takes the full width */
 }
 
 .read-more-link a {
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
+  /* Remove underline */
   /* Optionally, you can add more styling here */
 }
 
 .complaint-card {
   position: relative; // Ensure the card positions its children relative to itself
- // background: $background-color;
+  // background: $background-color;
   border: 1px solid $border-color;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
   max-width: 300px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -115,10 +119,14 @@ body {
 
 
 .complaint-description {
-  max-width: 60ch; /* Adjust the value as needed to achieve the desired width */
-  white-space: pre-wrap; /* Ensures that whitespace is preserved and text wraps correctly */
-  word-wrap: break-word; /* Allows breaking long words */
-  overflow-wrap: break-word; /* Same as word-wrap, ensures text wrapping */
+  max-width: 60ch;
+  /* Adjust the value as needed to achieve the desired width */
+  white-space: pre-wrap;
+  /* Ensures that whitespace is preserved and text wraps correctly */
+  word-wrap: break-word;
+  /* Allows breaking long words */
+  overflow-wrap: break-word;
+  /* Same as word-wrap, ensures text wrapping */
 }
 
 
@@ -126,6 +134,7 @@ body {
   margin-bottom: 10px;
   margin: 25px;
   overflow: hidden;
+
   strong {
     color: $text-color;
   }
@@ -143,13 +152,15 @@ body {
     gap: 10px; // Space between icons
     font-size: 20px;
 
-    a, button {
+    a,
+    button {
       z-index: 1; // Ensure the buttons are on top
       background: none;
       border: none;
       cursor: pointer;
       font-size: 14px;
       color: $primary-color;
+
       &:hover {
         color: $secondary-color;
       }
@@ -157,6 +168,7 @@ body {
 
     .btn-delete-complaints {
       color: $danger-color;
+
       &:hover {
         color: $danger-hover-color;
       }
@@ -176,13 +188,13 @@ body {
   margin-bottom: 10px;
 }
 
-.complaints-list-heading{
+.complaints-list-heading {
   margin-bottom: 3px;
   margin-top: 3px;
   margin-left: -15px;
 }
 
-.SearchContainer_complaints{
+.SearchContainer_complaints {
   display: flex;
   justify-content: center;
   padding: 0 10px;
@@ -193,11 +205,12 @@ body {
   margin-left: 1141px;
   padding: 10px;
 }
-.body{
+
+.body {
   overflow: hidden;
 }
 
-.switch-button-complaints1{
+.switch-button-complaints1 {
 
   background-color: #007bff;
   color: white;
@@ -210,6 +223,7 @@ body {
   margin-bottom: -34px;
 
   margin-top: -80px;
+
   //align-items: flex-end;
   &:hover {
     background-color: $secondary-color;
@@ -221,12 +235,12 @@ body {
 
 .complaints-table-list {
   display: flex;
-    flex-direction: column;
-   // align-items: center;
-    margin-top: 10px;
-    width: 98%;
-    margin-left: 5px;
-    margin-right: -206px;
+  flex-direction: column;
+  // align-items: center;
+  margin-top: 10px;
+  width: 98%;
+  margin-left: 5px;
+  margin-right: -206px;
 }
 
 .complaints-table {
@@ -236,9 +250,10 @@ body {
   font-size: 15px;
   text-align: left;
 
-  
-  
-  th, td {
+
+
+  th,
+  td {
     padding: 12px 15px;
     border: 1px solid #ddd;
   }
@@ -252,7 +267,7 @@ body {
     }
   }
 
-   tbody {
+  tbody {
     tr {
       &:nth-child(even) {
         background-color: #f9f9f9;
@@ -264,11 +279,12 @@ body {
 
       td {
         &.complaint-table-actions {
-          
+
           justify-content: center;
           gap: 10px;
 
-          .btn-edit-complaints, .btn-delete-complaints {
+          .btn-edit-complaints,
+          .btn-delete-complaints {
             background: none;
             border: none;
             cursor: pointer;
@@ -302,14 +318,14 @@ body {
 }
 
 
- //tooltip
- .e_button_complaints {
+//tooltip
+.e_button_complaints {
   position: relative;
 
   &:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    top: -1.5em;  // Adjust as needed for positioning
+    top: -1.5em; // Adjust as needed for positioning
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -325,11 +341,11 @@ body {
 
   .switch-button-complaints1 {
     position: relative;
-  
+
     &:hover::after {
       content: attr(data-tooltip);
       position: absolute;
-      top: -1.5em;  // Adjust as needed for positioning
+      top: -1.5em; // Adjust as needed for positioning
       left: 50%;
       transform: translateX(-50%);
       background-color: #333;
@@ -345,19 +361,20 @@ body {
   }
 }
 
-.Complaints-count{
+.Complaints-count {
   margin-left: 1109px;
-    margin-right: -167px;
+  margin-right: -167px;
 }
-@media (min-width: 1024px){
+
+@media (min-width: 1024px) {
 
   .switch-button-complaints1 {
     position: relative;
-  
+
     &:hover::after {
       content: attr(data-tooltip);
       position: absolute;
-      top: -1.5em;  // Adjust as needed for positioning
+      top: -1.5em; // Adjust as needed for positioning
       left: 50%;
       transform: translateX(-50%);
       background-color: #333;
@@ -372,27 +389,27 @@ body {
     }
   }
 
-.switch-button-complaints2 {
-  position: relative;
-  display: none;
+  .switch-button-complaints2 {
+    position: relative;
+    display: none;
 
-  &:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: -1.5em;  // Adjust as needed for positioning
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    white-space: nowrap;
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0.8;
-    font-size: 12px;
+    &:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -1.5em; // Adjust as needed for positioning
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0.8;
+      font-size: 12px;
+    }
   }
-}
 }
 
 
@@ -411,36 +428,39 @@ body {
     margin-top: 25px;
     margin-left: 112px;
     overflow: hidden;
-}
-  .Complaints-count{
-    margin-left: 925px;
-      margin-right: -167px;
   }
+
+  .Complaints-count {
+    margin-left: 925px;
+    margin-right: -167px;
+  }
+
   .e_button_complaints {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 6px 17px;
-        margin-left: 145px;
-        cursor: pointer;
-        font-size: 17px;
+    margin-left: 145px;
+    cursor: pointer;
+    font-size: 17px;
     margin-bottom: -10px;
     border-radius: 5px;
     margin-top: -14px;
-}
+  }
 
-.switch-button-complaints1 {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 6px 18px;
-        margin-left: 15px;
-        cursor: pointer;
-        font-size: 17px;
-  border-radius: 5px;
-  margin-bottom: -34px;
-  margin-top: -80px;
-}
+  .switch-button-complaints1 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 18px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+    margin-bottom: -34px;
+    margin-top: -80px;
+  }
+
   .complaints_button_style {
     background-color: $primary-color;
     color: white;
@@ -452,6 +472,7 @@ body {
     font-size: 15px;
     border-radius: 5px;
     align-items: flex-end;
+
     &:hover {
       background-color: $secondary-color;
     }
@@ -467,62 +488,65 @@ body {
     max-width: 240px;
     margin-left: 961px;
     padding: 10px;
-}
+  }
 
-.complaints-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 15px;
-  text-align: left;
-}
-.complaints-table thead th {
-  font-weight: bold;
-  text-transform: capitalize;
-  width: 0px;
-}
+  .complaints-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+    text-align: left;
+  }
 
-td {
-  &.complaint-table-actions {
-    width: 80px;
-    justify-content: center;
-    gap: 10px;
+  .complaints-table thead th {
+    font-weight: bold;
+    text-transform: capitalize;
+    width: 0px;
+  }
 
-    .btn-edit-complaints, .btn-delete-complaints {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      color: #555;
+  td {
+    &.complaint-table-actions {
+      width: 80px;
+      justify-content: center;
+      gap: 10px;
 
-      &:hover {
-        color: #000;
+      .btn-edit-complaints,
+      .btn-delete-complaints {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        color: #555;
+
+        &:hover {
+          color: #000;
+        }
       }
-    }
 
-    .btn-edit-complaints {
-      color: #007bff;
+      .btn-edit-complaints {
+        color: #007bff;
 
-      &:hover {
-        color: #0056b3;
+        &:hover {
+          color: #0056b3;
+        }
       }
-    }
 
-    .btn-delete-complaints {
-      color: #dc3545;
+      .btn-delete-complaints {
+        color: #dc3545;
 
-      &:hover {
-        color: #c82333;
+        &:hover {
+          color: #c82333;
+        }
       }
     }
   }
-}
-// .complaint-table-actions {
-//  // justify-content: center;
-//   display: flex;
-//   width: 150px;
-//   gap: 10px;
-// }
+
+  // .complaint-table-actions {
+  //  // justify-content: center;
+  //   display: flex;
+  //   width: 150px;
+  //   gap: 10px;
+  // }
 }
 
 
@@ -531,10 +555,10 @@ td {
     padding: 10px 20px;
     font-size: 20px;
   }
- 
-  .Complaints-count{
+
+  .Complaints-count {
     margin-left: 570px;
-      margin-right: 0px;
+    margin-right: 0px;
   }
 
   .complaints-list {
@@ -552,11 +576,11 @@ td {
 
   .switch-button-complaints1 {
     position: relative;
-  
+
     &:hover::after {
       content: attr(data-tooltip);
       position: absolute;
-      top: -1.5em;  // Adjust as needed for positioning
+      top: -1.5em; // Adjust as needed for positioning
       left: 50%;
       transform: translateX(-50%);
       background-color: #333;
@@ -572,14 +596,14 @@ td {
   }
 
   .switch-button-complaints2 {
-   // position: relative;
+    // position: relative;
     //display: none;
     margin-left: -100px;
-  
+
     &:hover::after {
       content: attr(data-tooltip);
       position: absolute;
-      top: -1.5em;  // Adjust as needed for positioning
+      top: -1.5em; // Adjust as needed for positioning
       left: 50%;
       transform: translateX(-50%);
       background-color: #333;
@@ -594,33 +618,35 @@ td {
     }
   }
 
-  .switch-button-complaints{
+  .switch-button-complaints {
 
     background-color: $primary-color;
     color: white;
     border: none;
     padding: 7px 25px;
-        margin-left: 23px;
-        cursor: pointer;
-        font-size: 17px;
-        width: 9%;
+    margin-left: 23px;
+    cursor: pointer;
+    font-size: 17px;
+    width: 9%;
     border-radius: 5px;
+
     //align-items: flex-end;
     &:hover {
       background-color: $secondary-color;
     }
   }
- 
+
   .e_button_complaints {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 7px 25px;
-        margin-left: 26px;
-        cursor: pointer;
-        font-size: 17px;
+    margin-left: 26px;
+    cursor: pointer;
+    font-size: 17px;
     border-radius: 5px;
   }
+
   .complaints_button_style {
     background-color: #007bff;
     color: white;
@@ -632,15 +658,15 @@ td {
     border-radius: 5px;
     margin-left: 378px;
     margin-right: -30px;
-        /* gap: 12px; */
-        align-items: flex-end;
+    /* gap: 12px; */
+    align-items: flex-end;
 
     &:hover {
       background-color: $secondary-color;
     }
   }
 
-  .SearchContainer_complaints{
+  .SearchContainer_complaints {
     display: flex;
     justify-content: center;
     padding: 0 10px;
@@ -652,7 +678,7 @@ td {
     padding: 10px;
   }
 
-  .complaints-table{
+  .complaints-table {
     margin-top: 30px;
     // width: 100%;
     margin-left: 80px;
@@ -661,31 +687,33 @@ td {
 
   .complaints-list-heading {
     margin-bottom: 10px;
-     margin-left: 39px;
-     margin-top: 8px;
- }
+    margin-left: 39px;
+    margin-top: 8px;
+  }
 
   .complaints-table-list {
     display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        width: 105%;
-        margin-left: -205px;
-        overflow-x: scroll;
-}
+    flex-direction: column;
+    margin-top: 10px;
+    width: 105%;
+    margin-left: -205px;
+    overflow-x: scroll;
+  }
 }
 
 @media (max-width: 576px) {
 
-  .Complaints-count{
+  .Complaints-count {
     margin-left: 38px;
-     
+
   }
+
   .heading-complaints {
     margin-top: 20px;
     text-align: center;
     margin-left: 15px;
-}
+  }
+
   .flex-grow-1 {
     justify-content: center;
     padding: 0 10px;
@@ -699,38 +727,42 @@ td {
     margin-right: 2px;
     margin-left: 50px;
   }
-  .switch-button-complaints{
+
+  .switch-button-complaints {
     display: none;
   }
 
   .switch-button-complaints2 {
     position: relative;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 7px 23px;
-        margin-left: 50px;
-        margin-top: 10px;
-        cursor: pointer;
-        width: 16%;
-        font-size: 15px;
-        border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 23px;
+    margin-left: 50px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 16%;
+    font-size: 15px;
+    border-radius: 5px;
+
     &:hover {
       background-color: $secondary-color;
     }
-    
+
   }
 
-  .switch-button-complaints{
+  .switch-button-complaints {
 
     background-color: $primary-color;
     color: white;
     border: none;
     padding: 5px 24px;
-    margin-left: 52px;;
+    margin-left: 52px;
+    ;
     cursor: pointer;
     font-size: 20px;
     border-radius: 5px;
+
     //align-items: flex-end;
     &:hover {
       background-color: $secondary-color;
@@ -738,24 +770,24 @@ td {
   }
 
   .complaints-list-heading {
-       margin-bottom: 10px;
-        margin-left: 20px;
-        margin-top: 8px;
-    }
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 8px;
+  }
 
-.complaints_button_style {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 7px 25px;
-  cursor: pointer;
-  font-size: 15px;
-  border-radius: 5px;
-  margin-left: 109px;
-  margin-right: -3px;
-  margin-top: -41px;
-        /* gap: 12px; */
-        align-items: flex-end;
+  .complaints_button_style {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 25px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left: 109px;
+    margin-right: -3px;
+    margin-top: -41px;
+    /* gap: 12px; */
+    align-items: flex-end;
 
     &:hover {
       background-color: $secondary-color;
@@ -767,15 +799,15 @@ td {
     padding: 0 6px;
     margin-left: -8px;
     width: 106%;
-}
+  }
 
   .search-bar {
-    
+
     max-width: 188px;
-        margin-top: -33px;
-        height: 37px;
-        margin-left: 182px;
-        margin-bottom: -6px;
+    margin-top: -33px;
+    height: 37px;
+    margin-left: 182px;
+    margin-bottom: -6px;
   }
 
   .complaint_card_style {
@@ -788,22 +820,23 @@ td {
 
   .complaint-card {
     padding: 15px;
-    width: 90%; /* Ensure the card takes the full width on small screens */
+    width: 90%;
+    /* Ensure the card takes the full width on small screens */
     margin-left: 40px;
     overflow: hidden;
   }
 
- 
 
-  .complaints-table-list  {
+
+  .complaints-table-list {
     display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        width: 108%;
-        margin-left: -228px;
-        margin-right: -197px;
-        overflow-x: scroll;
-}
+    flex-direction: column;
+    margin-top: 10px;
+    width: 108%;
+    margin-left: -228px;
+    margin-right: -197px;
+    overflow-x: scroll;
+  }
 
 
 
@@ -816,18 +849,20 @@ td {
 @media (min-width: 768px) and (max-width: 1024px) {
   .complaint-card {
     padding: 15px;
-    width: 95%;
-    margin-left: 40px;
+    width: 92%;
+    margin-left: 49px;
     height: 350px;
     overflow: hidden;
   }
 
 
-   html, body {
-    max-width: 100vw; 
- overflow-x: hidden;
-   }
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 }
+
 // Define variables for grid breakpoints
 $lg-columns: 12;
 $md-columns: 12;
@@ -838,11 +873,12 @@ $sm-columns: 12;
   @media (min-width: 1200px) {
     width: percentage($lg / $lg-columns);
   }
+
   @media (min-width: 992px) and (max-width: 1199px) {
     width: percentage($md / $md-columns);
   }
+
   @media (min-width: 576px) and (max-width: 991px) {
     width: percentage($sm / $sm-columns);
   }
 }
-
