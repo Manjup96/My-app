@@ -215,7 +215,7 @@ const News = () => {
                 <>
                   {expandedDescriptions[index]
                     ? news.news_description
-                    : `${news.news_description.substring(0, 10)}...`}
+                    : `${news.news_description.substring(0, 20)}...`}
                   <span
                     onClick={() => toggleDescription(index)}
                     style={{ color: "blue", cursor: "pointer" }}
@@ -239,7 +239,7 @@ const News = () => {
       {currentItems.map((news, index) => {
         const isExpanded = expandedDescriptions[index];
         const shouldShowReadMore = news.news_description.length > 20;
-        const displayDescription = isExpanded ? news.news_description : `${news.news_description.substring(0, 5)}...`;
+        const displayDescription = isExpanded ? news.news_description : `${news.news_description.substring(0, 20)}...`;
 
         return (
           <div key={index} className="news">

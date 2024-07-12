@@ -244,8 +244,8 @@ const ComplaintsDetails = () => {
               </View>
               <View style={styles.tableCol}>
                 {/* <Text style={styles.tableCell}>{complaint.created_date}</Text> */}
-                {/* <Text style={styles.tableCell}>{formatDate(complaint.created_date)}</Text> */}
-                <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>
+                 <Text style={styles.tableCell}>{formatDate(complaint.created_date)}</Text>
+                {/* // <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>  */}
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</Text>
@@ -608,7 +608,9 @@ const ComplaintsDetails = () => {
 
 
 const formatDate = (dateString) => {
-  const [year, month, day] = dateString.split(' ')[0].split('-');
+   console.log('Date recived from function calling', dateString)
+  // const [year, month, day] = dateString.split(' ')[0].split('-');
+  const [day, month, year] = dateString.split(' ')[0].split('-');
   console.log('day', day);
   console.log('month', month);
   console.log('year', year);
