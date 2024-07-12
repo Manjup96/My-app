@@ -42,19 +42,21 @@ const MealsTable = ({ onSubmit, onCloseForm, initialData, view }) => {
   }, [initialData]);
 
   const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split("-");
+    const [day, month, year] = dateString.split("/");
     if (!day || !month || !year) {
       return "";
     }
-    const date = new Date(`${year}-${month}-${day}`);
+    const date = new Date(`${year}/${month}/${day}`);
     if (isNaN(date.getTime())) {
       return "";
     }
     const formattedYear = date.getFullYear();
     const formattedMonth = String(date.getMonth() + 1).padStart(2, '0');
     const formattedDay = String(date.getDate()).padStart(2, '0');
-    return `${formattedYear}-${formattedMonth}-${formattedDay}`;
+    return `${formattedYear}/${formattedMonth}/${formattedDay}`;
   };
+  const formattedDate = date.split("-").reverse().join("/");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

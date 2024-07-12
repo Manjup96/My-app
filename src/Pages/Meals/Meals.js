@@ -140,8 +140,9 @@ const MealsDetails = () => {
       (meal.breakfast && meal.breakfast.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.lunch && meal.lunch.toLowerCase().includes(lowerSearchTerm)) ||
       (meal.dinner && meal.dinner.toLowerCase().includes(lowerSearchTerm)) ||
-      (meal.date && meal.date.toLowerCase().includes(lowerSearchTerm)) ||
-      (meal.date && new Date(meal.date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm)) 
+      (meal.date && meal.date.toLowerCase().includes(lowerSearchTerm)) 
+      // (meal.date && new Date(meal.date).toLocaleDateString("en-IN").toLowerCase().includes(lowerSearchTerm)) 
+
 
     );
   });
@@ -401,7 +402,10 @@ const MealsDetails = () => {
                     </a>                  </span>
                 )}
               </td>
-              <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
+              {/* <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td> */}
+              <td>{meal.date}</td>
+
+
               <td className="actions">
                 <PDFDownloadLink
                   className="pdf-link"
@@ -452,7 +456,10 @@ const MealsDetails = () => {
                   </span>
                 )}
                 <br />
-                <strong>date:</strong> {new Date(meal.date).toLocaleDateString("en-IN")}
+                {/* <strong>date:</strong> {new Date(meal.date).toLocaleDateString("en-IN")} */}
+                <strong>date:</strong> {meal.date}
+
+
               </div>
               <div className="meal-card-actions mt-2">
                 <div className="meal-card-icons">
