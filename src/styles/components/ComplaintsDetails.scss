@@ -108,6 +108,9 @@ body {
   cursor: pointer;
 }
 
+.complaints-table .read-more-link {
+  cursor: pointer;
+}
 
 
 
@@ -399,9 +402,9 @@ body {
     position: relative;
     border: 1px solid #dee2e6;
     border-radius: 5px;
-    padding: 20px;
+    padding: 0px;
     width: 100%;
-    min-height: 400px;
+    min-height: 330px;
     max-width: 300px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
