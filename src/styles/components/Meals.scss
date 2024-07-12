@@ -25,6 +25,9 @@ $text-color: #333;
 .meal-card .read-more-link{
   cursor: pointer;
 }
+.main_meals_table .read-more-link{
+  cursor: pointer;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -57,9 +60,9 @@ body {
   align-items: center; 
   justify-content: center;
   margin-right: 854px;
-  margin-left: -75px;
+  margin-left: -99px;
   width: 57px;
-  height: 43px;
+  height: 42px;
 }
 
 .switch_button_meals:hover {
