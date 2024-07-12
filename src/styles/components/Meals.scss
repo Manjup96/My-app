@@ -227,6 +227,7 @@ body {
 
   .meal-card-actions {
     display: flex;
+    margin-left: 80px;
     .meal-card-icons {
       display: flex;
       gap: 10px; // Space between icons
@@ -348,6 +349,10 @@ body {
 
 @media (min-width: 1025px) and (max-width: 1399px) {
 
+  .meal-card .meal-card-actions {
+    display: flex;
+    margin-left: 60px;
+}
   .meal-card {
     border: 1px solid #dee2e6;
     border-radius: 5px;
@@ -676,6 +681,10 @@ body {
 
 @media (max-width: 576px) {
 
+  .meal-card .meal-card-actions {
+    display: flex;
+    margin-left: 135px;
+}
   .meals-count{
     margin-left: 200px;
       margin-right: 0px;

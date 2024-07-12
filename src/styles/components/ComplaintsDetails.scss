@@ -415,18 +415,22 @@ body {
 
 @media (min-width: 1025px) and (max-width: 1399px) {
 
+  .meal-card .meal-card-actions {
+    display: flex;
+    margin-left: 60px;
+}
   .complaint-card {
     position: relative;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     padding: 0px;
-    width: 100%;
-    min-height: 330px;
+    width: 105%;
+    min-height: 310px;
     max-width: 300px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     margin-top: 25px;
-    margin-left: 112px;
+    margin-left: 91px;
     overflow: hidden;
   }
 
@@ -845,7 +849,11 @@ body {
   }
 
 
-
+  .complaints-table tbody tr td.complaint-table-actions {
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+}
 
 
 }
