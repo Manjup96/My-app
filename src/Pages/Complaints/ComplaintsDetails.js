@@ -407,11 +407,16 @@ const ComplaintsDetails = () => {
                 <td>{complaint.displayId}</td>
                 <td>{complaint.complaint_type}</td>
                 <td className="complaint-description">
-                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 150)}`}
-                  {complaint.complaint_description.length > 150 && (
+                  {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
+                  {complaint.complaint_description.length > 20 && (
+                    // <span className="read-more-link">
+                    //   {/* Implement read more functionality if needed */}
+                    // </span>
                     <span className="read-more-link">
-                      {/* Implement read more functionality if needed */}
-                    </span>
+                    <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">
+                      {readMore ? "...Read Less" : "...Read More"}
+                    </a>
+                  </span>
                   )}
                 </td>
                 <td>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</td>
@@ -453,7 +458,7 @@ const ComplaintsDetails = () => {
 
         return (
           <div key={complaint.id} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-            <div className="complaint-card p-3">
+            <div className="complaint-card">
               <div className="complaint-card-content">
                 <div className="card-header" style={{ textAlign: "center" }}>
                   ID: {complaint.displayId}
@@ -463,7 +468,7 @@ const ComplaintsDetails = () => {
                 <br />
                 <strong>Description:</strong>
 
-                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 10)}`}
+                {readMore ? complaint.complaint_description : `${complaint.complaint_description.substring(0, 20)}`}
                 {complaint.complaint_description.length > 15 && (
                   <span className="read-more-link">
                     <a onClick={() => handleToggleReadMore(complaint.id)} className="btn-read-more">

@@ -393,11 +393,12 @@ const MealsDetails = () => {
               <td>{meal.lunch}</td>
               <td>{meal.dinner}</td>
               <td>
-                {readMore ? meal.comments : `${meal.comments.substring(0, 150)}`}
-                {meal.comments.length > 150 && (
+                {readMore ? meal.comments : `${meal.comments.substring(0, 10)}`}
+                {meal.comments.length > 15 && (
                   <span className="read-more-link">
-                    {/* Implement read more functionality if needed */}
-                  </span>
+ <a onClick={() => handleToggleReadMore(meal.id)} className="btn-read-more">
+                      {readMore ? "...Read Less" : "...Read More"}
+                    </a>                  </span>
                 )}
               </td>
               <td>{new Date(meal.date).toLocaleDateString("en-IN")}</td>
@@ -430,7 +431,7 @@ const MealsDetails = () => {
         const readMore = readMoreStates[meal.id] || false;
         return (
           <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-            <div className="meal-card p-3">
+            <div className="meal-card">
               <div className="meal-card-content">
                 <div className="card-header" style={{ textAlign: "center", marginLeft: "-10px" }}>
                    ID: {meal.incrementalId}
