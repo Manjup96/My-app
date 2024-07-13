@@ -405,6 +405,7 @@ const MealsDetails = () => {
               <td>{meal.date}</td>
 
 
+
               <td className="actions">
                 <PDFDownloadLink
                   className="pdf-link"
@@ -495,7 +496,7 @@ const MealsDetails = () => {
 
       <div className="main">
         <h1  className="heading-meals">
-          Meals Details
+          Meals Tracker
         </h1>
         <div className="container mt-4">
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
