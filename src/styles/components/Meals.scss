@@ -41,9 +41,10 @@ body {
   justify-content: center;
   padding: 0 10px;
   margin-bottom: 50px;
-  margin-top: -30px;
+  margin-top: -24px;
   min-width: 20%;
   margin-left: 79%;
+  height: 38px;
   padding: 6px;
   border-radius: 7px;
   border: 1px solid #ccc;
@@ -284,6 +285,7 @@ body {
   margin: -17px 0;
   font-size: 16px;
   text-align: left;
+  margin-top: -24px;
 
   th, td {
     padding: 12px 15px;
@@ -749,7 +751,7 @@ body {
         margin-left: -29%;
         margin-right: -15px;
         padding: 6px;
-        height: 58px;
+        height: 50px;
         border-radius: 5px;
   }
 
