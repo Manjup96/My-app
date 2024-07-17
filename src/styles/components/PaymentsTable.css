@@ -1,0 +1,120 @@
+.payments-table-heading {
+  margin-left: 368px;
+  margin-bottom: 30px;
+}
+
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  margin-top: 60px;
+}
+.payments-table th, .payments-table td {
+  padding: 15px 100px;
+  border: 1px solid #ddd;
+}
+.payments-table thead {
+  background-color: #f4f4f4;
+}
+.payments-table thead th {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.payments-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+  padding: auto;
+}
+.payments-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.payments-table tbody tr td.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.payments-table tbody tr td.actions .edit-btn, .payments-table tbody tr td.actions .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+.payments-table tbody tr td.actions .edit-btn:hover, .payments-table tbody tr td.actions .delete-btn:hover {
+  color: #000;
+}
+.payments-table tbody tr td.actions .edit-btn {
+  color: #007bff;
+}
+.payments-table tbody tr td.actions .edit-btn:hover {
+  color: #0056b3;
+}
+.payments-table tbody tr td.actions .delete-btn {
+  color: #dc3545;
+}
+.payments-table tbody tr td.actions .delete-btn:hover {
+  color: #c82333;
+}
+.payments-table .pagination-container-paymentstable .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.pagination-container-paymentstable {
+  display: flex;
+  justify-content: center;
+  margin-top: 90px;
+  margin-left: 14px;
+}
+
+@media (max-width: 768px) {
+  .payments-table-heading {
+    margin-left: 130px;
+    margin-bottom: 30px;
+  }
+  .payments-table {
+    width: 122%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 60px;
+    overflow-x: scroll;
+    margin-left: -101px;
+  }
+  .pagination-container-paymentstable .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    overflow-x: hidden;
+  }
+}
+@media (max-width: 576px) {
+  .payments-table-heading {
+    margin-left: 76px;
+    margin-bottom: 30px;
+  }
+  .payments-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 60px;
+    overflow-x: scroll;
+    margin-left: 35px;
+  }
+  th, td {
+    padding: 15px 100px;
+    border: 1px solid #ddd;
+  }
+  thead {
+    background-color: #f4f4f4;
+  }
+  thead th {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+}/*# sourceMappingURL=PaymentsTable.css.map */

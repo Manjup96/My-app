@@ -1,0 +1,168 @@
+.Profile-card {
+  max-width: 600px;
+  margin: 40px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
+  margin-left: 80px;
+}
+.Profile-card .card-header {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+  width: 101%;
+}
+.Profile-card .card-header .Profile-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+.Profile-card .card-body {
+  padding: 16px;
+}
+.Profile-card .card-body .list-group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.Profile-card .card-body .list-group .list-group-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+.Profile-card .card-body .list-group .list-group-item:last-child {
+  border-bottom: none;
+}
+.Profile-card .card-body .list-group .list-group-item b {
+  font-weight: 600;
+}
+.Profile-card .card-body .edit-section {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+.Profile-card .card-body .edit-section .edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 1.5em;
+}
+.Profile-card .card-body .edit-section .edit-icon:hover {
+  color: #0056b3;
+}
+@media (max-width: 1200px) {
+  .Profile-card {
+    max-width: 80%;
+  }
+}
+@media (max-width: 992px) {
+  .Profile-card {
+    max-width: 90%;
+  }
+}
+@media (max-width: 1024px) {
+  .Profile-card {
+    max-width: 80%;
+    margin: 20px auto;
+    margin-right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .Profile-card {
+    max-width: 75%;
+    margin: 20px auto;
+    margin-right: 20px;
+  }
+  .Profile-card .card-header {
+    padding: 12px;
+  }
+  .Profile-card .card-header .Profile-Title {
+    font-size: 1.2em;
+  }
+  .Profile-card .card-body {
+    padding: 12px;
+  }
+  .Profile-card .card-body .list-group-item {
+    padding: 8px 0;
+    font-size: 0.9em;
+  }
+  .Profile-card .card-body .edit-section {
+    padding-top: 8px;
+  }
+  .Profile-card .card-body .edit-section .edit-icon {
+    font-size: 1.2em;
+  }
+}
+@media (max-width: 576px) {
+  .Profile-card .card-header {
+    padding: 8px;
+  }
+  .Profile-card .card-header .Profile-Title {
+    font-size: 1em;
+  }
+  .Profile-card .card-body {
+    padding: 8px;
+  }
+  .Profile-card .card-body .list-group-item {
+    padding: 6px 0;
+    font-size: 0.8em;
+  }
+  .Profile-card .card-body .edit-section {
+    padding-top: 6px;
+  }
+  .Profile-card .card-body .edit-section .edit-icon {
+    font-size: 1em;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+.button-group button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-group button:hover {
+  background-color: #0056b3;
+}
+.button-group button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+.button-group button:active {
+  background-color: #004085;
+}
+.button-group button[type=button]:last-child {
+  background-color: #6c757d;
+}
+.button-group button[type=button]:last-child:hover {
+  background-color: #5a6268;
+}
+.button-group button[type=button]:last-child:active {
+  background-color: #4e555b;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Profile-card {
+    max-width: 75%;
+    margin: 20px auto;
+    margin-right: 140px;
+  }
+}/*# sourceMappingURL=Profile.css.map */

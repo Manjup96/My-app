@@ -1,0 +1,79 @@
+.payment_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.payment_card {
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 80%;
+}
+
+.Payment_title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: black;
+}
+
+.Payment_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.Payment_pay_button {
+  background-color: #007bff;
+  border-color: rgba(7, 162, 145, 0.8588235294);
+  font-size: 19px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+}
+
+.Payment_label {
+  margin-left: -76%;
+}
+
+.dropdown-symbol {
+  margin-left: 100px;
+}
+
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .Payment_label {
+    margin-left: -76%;
+  }
+  .Payment_label_income {
+    margin-left: -71%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Payment_label {
+    margin-left: -85%;
+  }
+  .Payment_label_income {
+    margin-left: -88%;
+  }
+}
+@media (max-width: 768px) {
+  .Payment_label {
+    margin-left: -85%;
+  }
+  .Payment_label_income {
+    margin-left: -80%;
+  }
+}/*# sourceMappingURL=Payment.css.map */

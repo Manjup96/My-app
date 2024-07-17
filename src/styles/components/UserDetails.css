@@ -1,0 +1,59 @@
+.user-details-container {
+  display: flex;
+  text-align: left;
+}
+.user-details-container .card-container {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-top: 140px;
+  margin-left: -30px;
+}
+.user-details-container .card {
+  flex: 1;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.user-details-container .card:hover {
+  transform: scale(1.05);
+}
+.user-details-container .card .card-header {
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.user-details-container .card:nth-child(1) .card-header {
+  background-color: #584df5;
+}
+.user-details-container .card:nth-child(2) .card-header {
+  background-color: #459dfc;
+}
+.user-details-container .card:nth-child(3) .card-header {
+  background-color: #584df5;
+}
+.user-details-container .card .card-body {
+  padding: 1rem;
+}
+.user-details-container .card .card-body .list-group-item {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+.user-details-container .card .card-body .list-group-item:nth-child(even) {
+  background-color: #f8f9fa;
+}
+.user-details-container .card .card-body .list-group-item .key {
+  min-width: 120px;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 10px;
+}
+.user-details-container .card .card-body .list-group-item b {
+  margin-right: 200px;
+}/*# sourceMappingURL=UserDetails.css.map */

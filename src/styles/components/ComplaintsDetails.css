@@ -1,0 +1,727 @@
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.heading-complaints {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Complaints-Title {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: -170px;
+}
+
+.e_button_complaints {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 21px;
+  margin-left: 146px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  margin-top: -14px;
+}
+.e_button_complaints:hover {
+  background-color: #0056b3;
+}
+
+.complaints_button_style {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 22px;
+  cursor: pointer;
+  margin-right: -93px;
+  margin-left: 942px;
+  font-size: 17px;
+  border-radius: 5px;
+  align-items: flex-end;
+}
+.complaints_button_style:hover {
+  background-color: #0056b3;
+}
+
+.complaints-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 26px;
+  margin-right: 8px;
+}
+
+.complaints-cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  /* Ensure the cards container takes the full width */
+}
+
+.read-more-link a {
+  text-decoration: none;
+  /* Remove underline */
+  /* Optionally, you can add more styling here */
+}
+
+.complaint-card {
+  position: relative;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 25px;
+  margin-left: 112px;
+  overflow: hidden;
+}
+
+.complaint-card .read-more-link {
+  cursor: pointer;
+}
+
+.complaints-table .read-more-link {
+  cursor: pointer;
+}
+
+.complaint-description {
+  max-width: 60ch;
+  /* Adjust the value as needed to achieve the desired width */
+  white-space: pre-wrap;
+  /* Ensures that whitespace is preserved and text wraps correctly */
+  word-wrap: break-word;
+  /* Allows breaking long words */
+  overflow-wrap: break-word;
+  /* Same as word-wrap, ensures text wrapping */
+}
+
+.complaint-card-content {
+  margin-bottom: 10px;
+  margin: 25px;
+  overflow: hidden;
+}
+.complaint-card-content strong {
+  color: #333;
+}
+
+.complaint-card-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+.complaint-card-actions .complaint-card-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 20px;
+}
+.complaint-card-actions .complaint-card-icons a,
+.complaint-card-actions .complaint-card-icons button {
+  z-index: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #007bff;
+}
+.complaint-card-actions .complaint-card-icons a:hover,
+.complaint-card-actions .complaint-card-icons button:hover {
+  color: #0056b3;
+}
+.complaint-card-actions .complaint-card-icons .btn-delete-complaints {
+  color: #dc3545;
+}
+.complaint-card-actions .complaint-card-icons .btn-delete-complaints:hover {
+  color: #c82333;
+}
+
+.fas {
+  margin-right: 5px;
+}
+
+.complaint-card-content .card-header {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.complaints-list-heading {
+  margin-bottom: 3px;
+  margin-top: 3px;
+  margin-left: -15px;
+}
+
+.SearchContainer_complaints {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  margin-bottom: -25px;
+  margin-top: 15px;
+  width: 97%;
+  max-width: 240px;
+  margin-left: 1141px;
+  padding: 10px;
+}
+
+.body {
+  overflow: hidden;
+}
+
+.switch-button-complaints1 {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 21px;
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-bottom: -34px;
+  margin-top: -80px;
+}
+.switch-button-complaints1:hover {
+  background-color: #0056b3;
+}
+
+.complaints-table-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 98%;
+  margin-left: 5px;
+  margin-right: -206px;
+}
+
+.complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+}
+.complaints-table th,
+.complaints-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+.complaints-table thead {
+  background-color: #f4f4f4;
+}
+.complaints-table thead th {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.complaints-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.complaints-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.complaints-table tbody tr td.complaint-table-actions {
+  justify-content: center;
+  gap: 10px;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-edit-complaints,
+.complaints-table tbody tr td.complaint-table-actions .btn-delete-complaints {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-edit-complaints:hover,
+.complaints-table tbody tr td.complaint-table-actions .btn-delete-complaints:hover {
+  color: #000;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-edit-complaints {
+  color: #007bff;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-edit-complaints:hover {
+  color: #0056b3;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-delete-complaints {
+  color: #dc3545;
+}
+.complaints-table tbody tr td.complaint-table-actions .btn-delete-complaints:hover {
+  color: #c82333;
+}
+
+.e_button_complaints {
+  position: relative;
+}
+.e_button_complaints:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.8;
+  font-size: 12px;
+}
+.e_button_complaints .switch-button-complaints1 {
+  position: relative;
+}
+.e_button_complaints .switch-button-complaints1:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+.Complaints-count {
+  margin-left: 1109px;
+  margin-right: -167px;
+}
+
+@media (min-width: 1024px) {
+  .switch-button-complaints1 {
+    position: relative;
+  }
+  .switch-button-complaints1:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+  .switch-button-complaints2 {
+    position: relative;
+    display: none;
+  }
+  .switch-button-complaints2:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1399px) {
+  .complaint-card {
+    position: relative;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 0px;
+    width: 105%;
+    min-height: 310px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-left: 91px;
+    overflow: hidden;
+  }
+  .Complaints-count {
+    margin-left: 925px;
+    margin-right: -167px;
+  }
+  .e_button_complaints {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 17px;
+    margin-left: 145px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-bottom: -10px;
+    border-radius: 5px;
+    margin-top: -14px;
+  }
+  .switch-button-complaints1 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 18px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+    margin-bottom: -34px;
+    margin-top: -80px;
+  }
+  .complaints_button_style {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 22px;
+    cursor: pointer;
+    margin-right: -93px;
+    margin-left: 793px;
+    font-size: 15px;
+    border-radius: 5px;
+    align-items: flex-end;
+  }
+  .complaints_button_style:hover {
+    background-color: #0056b3;
+  }
+  .SearchContainer_complaints {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    width: 97%;
+    max-width: 240px;
+    margin-left: 961px;
+    padding: 10px;
+  }
+  .complaints-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+    text-align: left;
+  }
+  .complaints-table thead th {
+    font-weight: bold;
+    text-transform: capitalize;
+    width: 0px;
+  }
+  td.complaint-table-actions {
+    width: 80px;
+    justify-content: center;
+    gap: 10px;
+  }
+  td.complaint-table-actions .btn-edit-complaints,
+  td.complaint-table-actions .btn-delete-complaints {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+  }
+  td.complaint-table-actions .btn-edit-complaints:hover,
+  td.complaint-table-actions .btn-delete-complaints:hover {
+    color: #000;
+  }
+  td.complaint-table-actions .btn-edit-complaints {
+    color: #007bff;
+  }
+  td.complaint-table-actions .btn-edit-complaints:hover {
+    color: #0056b3;
+  }
+  td.complaint-table-actions .btn-delete-complaints {
+    color: #dc3545;
+  }
+  td.complaint-table-actions .btn-delete-complaints:hover {
+    color: #c82333;
+  }
+}
+@media (max-width: 768px) {
+  .complaints_button_style {
+    padding: 10px 20px;
+    font-size: 20px;
+  }
+  .Complaints-count {
+    margin-left: 570px;
+    margin-right: 0px;
+  }
+  .complaints-list {
+    padding: 0 10px;
+    margin-left: -44px;
+    width: 109%;
+  }
+  .complaint-card {
+    padding: 15px;
+    width: 100%;
+    gap: 50px;
+    max-width: none;
+  }
+  .switch-button-complaints1 {
+    position: relative;
+  }
+  .switch-button-complaints1:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+  .switch-button-complaints2 {
+    margin-left: -100px;
+  }
+  .switch-button-complaints2:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+  .switch-button-complaints {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 25px;
+    margin-left: 23px;
+    cursor: pointer;
+    font-size: 17px;
+    width: 9%;
+    border-radius: 5px;
+  }
+  .switch-button-complaints:hover {
+    background-color: #0056b3;
+  }
+  .e_button_complaints {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 25px;
+    margin-left: 26px;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  .complaints_button_style {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 21px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-bottom: -20px;
+    border-radius: 5px;
+    margin-left: 378px;
+    margin-right: -30px;
+    /* gap: 12px; */
+    align-items: flex-end;
+  }
+  .complaints_button_style:hover {
+    background-color: #0056b3;
+  }
+  .SearchContainer_complaints {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    max-width: 256px;
+    height: 46px;
+    margin-left: 456px;
+    padding: 10px;
+  }
+  .complaints-table {
+    margin-top: 30px;
+    margin-left: 80px;
+    overflow-x: scroll;
+  }
+  .complaints-list-heading {
+    margin-bottom: 10px;
+    margin-left: 39px;
+    margin-top: 8px;
+  }
+  .complaints-table-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 105%;
+    margin-left: -205px;
+    overflow-x: scroll;
+  }
+  .complaints-table tbody tr td.complaint-table-actions {
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+  }
+}
+@media (max-width: 576px) {
+  .Complaints-count {
+    margin-left: 38px;
+  }
+  .heading-complaints {
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 15px;
+  }
+  .flex-grow-1 {
+    justify-content: center;
+    padding: 0 10px;
+    margin-left: 50px;
+  }
+  .e_button_complaints {
+    width: 16%;
+    padding: 6px 2px;
+    font-size: 15px;
+    margin-right: 2px;
+    margin-left: 50px;
+  }
+  .switch-button-complaints {
+    display: none;
+  }
+  .switch-button-complaints2 {
+    position: relative;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 23px;
+    margin-left: 50px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 16%;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+  .switch-button-complaints2:hover {
+    background-color: #0056b3;
+  }
+  .switch-button-complaints {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 24px;
+    margin-left: 52px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  .switch-button-complaints:hover {
+    background-color: #0056b3;
+  }
+  .complaints-list-heading {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 8px;
+  }
+  .complaints_button_style {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 25px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left: 109px;
+    margin-right: -3px;
+    margin-top: -41px;
+    /* gap: 12px; */
+    align-items: flex-end;
+  }
+  .complaints_button_style:hover {
+    background-color: #0056b3;
+  }
+  .complaints-list {
+    padding: 0 6px;
+    margin-left: -8px;
+    width: 106%;
+  }
+  .search-bar {
+    max-width: 188px;
+    margin-top: -33px;
+    height: 37px;
+    margin-left: 182px;
+    margin-bottom: -6px;
+  }
+  .complaint_card_style {
+    width: 50%;
+    padding: 3px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+  .complaint-card {
+    padding: 15px;
+    width: 90%;
+    /* Ensure the card takes the full width on small screens */
+    margin-left: 40px;
+    overflow: hidden;
+  }
+  .complaints-table-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 108%;
+    margin-left: -228px;
+    margin-right: -197px;
+    overflow-x: scroll;
+  }
+  .complaints-table tbody tr td.complaint-table-actions {
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .complaint-card {
+    padding: 15px;
+    width: 92%;
+    margin-left: 49px;
+    height: 350px;
+    overflow: hidden;
+  }
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}/*# sourceMappingURL=ComplaintsDetails.css.map */
