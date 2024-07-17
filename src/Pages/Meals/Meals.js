@@ -412,7 +412,7 @@ const MealsDetails = () => {
                   document={<IndividualMealDocument meal={meal} />}
                   fileName={`meal_${meal.id}.pdf`}
                 >
-                  {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
+                  <FontAwesomeIcon icon={faFileExport} />
                 </PDFDownloadLink>
                 <button className="edit-btn" onClick={() => handleOpenForm(meal)}>
                   <FontAwesomeIcon icon={faEdit} />
@@ -468,7 +468,7 @@ const MealsDetails = () => {
                     document={<IndividualMealDocument meal={meal} />}
                     fileName={`meal_${meal.incrementalId}.pdf`}
                   >
-                    {({ blob, url, loading, error }) => <FontAwesomeIcon icon={faFileExport} />}
+                    <FontAwesomeIcon icon={faFileExport} />
                   </PDFDownloadLink>
                   <button className="btn btn-secondary blue me-2" onClick={() => handleOpenForm(meal)}>
                     <FontAwesomeIcon icon={faEdit} />
@@ -502,11 +502,11 @@ const MealsDetails = () => {
           <div className="pdf-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
             <div>
              <PDFDownloadLink document={<MyDocument meals={filteredMeals} />} fileName="filtered_meals.pdf">
-            {({ blob, url, loading, error }) => (
+        
               <button className="e-button-meals" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
-            )}
+            
           </PDFDownloadLink>
           </div>
           <div>

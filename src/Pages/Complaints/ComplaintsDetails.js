@@ -428,9 +428,8 @@ const ComplaintsDetails = () => {
                       document={<IndividualComplaintDocument complaint={complaint} />}
                       fileName={`complaint_${complaint.displayId}.pdf`}
                     >
-                      {({ blob, url, loading, error }) =>
-                        loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-                      }
+                      <FontAwesomeIcon icon={faFileExport} />
+                      
                     </PDFDownloadLink>
                     <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
                       <FontAwesomeIcon icon={faEdit} />
@@ -489,9 +488,8 @@ const ComplaintsDetails = () => {
                     document={<IndividualComplaintDocument complaint={complaint} />}
                     fileName={`complaint_${complaint.id}.pdf`}
                   >
-                    {({ blob, url, loading, error }) =>
-                      loading ? "" : <FontAwesomeIcon icon={faFileExport} />
-                    }
+                     <FontAwesomeIcon icon={faFileExport} />
+                    
                   </PDFDownloadLink>
 
                   <button className="btn-edit-complaints" onClick={() => handleOpenForm(complaint)}>
@@ -524,11 +522,11 @@ const ComplaintsDetails = () => {
         <div>
 
           <PDFDownloadLink document={<MyDocument complaints={filteredComplaints} />} fileName="filtered_complaints.pdf">
-            {({ blob, url, loading, error }) => (
+          
               <button className="e_button_complaints" data-tooltip="Download as PDF">
                 <FontAwesomeIcon icon={faFilePdf} />
               </button>
-            )}
+          
           </PDFDownloadLink>
 
 

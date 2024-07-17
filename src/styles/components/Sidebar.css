@@ -1,0 +1,80 @@
+.Title {
+  margin-left: 30px;
+}
+
+.Title h4 {
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(208, 209, 215);
+  color: #464343;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  padding-top: 20px;
+  width: 220px;
+  z-index: 100;
+}
+.sidebar .sidebar-toggle {
+  cursor: pointer;
+  text-align: center;
+  font-size: 21px;
+  transition: all 0.3s ease;
+  margin-left: 72%;
+  width: 37px;
+  margin-bottom: 6px;
+  background-color: #f0f0f0;
+  color: #0a98d8;
+}
+.sidebar .sidebar-toggle.collapsed {
+  background-color: #f0f0f0; /* Example different background color */
+  color: #0a98d8;
+  margin-left: 10%;
+  /* Add any other styles you want for the collapsed state */
+}
+.sidebar.collapsed {
+  width: 50px;
+}
+.sidebar .top_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.sidebar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+.sidebar .bars {
+  font-size: 24px;
+  cursor: pointer;
+}
+.sidebar .link {
+  display: flex;
+  align-items: center;
+  color: #464343;
+  text-decoration: none;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+}
+.sidebar .link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.sidebar .icon {
+  margin-right: 10px;
+}
+.sidebar .link_text {
+  display: inline-block;
+  margin-left: 10px; /* Adjust this as needed */
+  font-size: 16px; /* Adjust this as needed */
+  color: #000; /* Adjust this as needed */
+}
+.sidebar .nav-item.active {
+  background-color: #f0f0f0;
+}/*# sourceMappingURL=Sidebar.css.map */
