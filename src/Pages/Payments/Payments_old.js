@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useAuth } from './../../context/AuthContext';
 import logo from "../../../src/Asset/images/company logo.png"
 import axios from "axios";
+import { Navigate} from "react-router-dom";
 import "../../styles/components/Payment.scss";
 
 const Payment = ({ onClose }) => {
   const { user } = useAuth();
-  const [showForm, setShowForm] = useState(false);
+ 
   const [formData, setFormData] = useState({
     month: "",
     year: "",
@@ -32,10 +33,6 @@ const Payment = ({ onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  const handleClose = () => {
-    setShowForm(false);
   };
 
   const sendEmailNotification = (apiData) => {
@@ -103,7 +100,10 @@ const Payment = ({ onClose }) => {
               income_amount: "",
               comments: "",
             });
-            handleClose();
+
+            // Alert and navigate to /payments
+            alert("Payment successful!");
+            Navigate("/payments");
           })
           .catch((error) => {
             console.error("API error", error);
@@ -113,6 +113,7 @@ const Payment = ({ onClose }) => {
         color: "#07a291db",
       },
     };
+
     var pay = new window.Razorpay(options);
     pay.open();
   };

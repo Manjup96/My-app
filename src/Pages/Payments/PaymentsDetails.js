@@ -221,7 +221,7 @@ const PaymentsDetails = () => {
     
     
      <div className="TableContainer-payment">
-  {loading && <div>Loading...</div>}
+  
   {error && <div>Error: {error}</div>}
   {!loading && !error && (
     <table className="payment-table">
@@ -258,9 +258,8 @@ const PaymentsDetails = () => {
               document={<IndividualPaymentDocument payment={news} />}
               fileName={`payment_${news.id}.pdf`}
             >
-              {({ loading }) =>
-                loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-              }
+              <FontAwesomeIcon icon={faFileExport} />
+              
             </PDFDownloadLink>
           </td>
         </tr>
@@ -275,7 +274,7 @@ const PaymentsDetails = () => {
 
   const renderCards = () => (
     <div className="TableContainer">
-      {loading && <div>Loading...</div>}
+      
       {error && <div>Error: {error}</div>}
       {!loading && !error && (
         <div className="payment-row">
@@ -307,9 +306,8 @@ const PaymentsDetails = () => {
                   document={<IndividualPaymentDocument payment={news} />}
                   fileName={`payment_${news.id}.pdf`}
                 >
-                  {({ loading }) =>
-                    loading ? "Loading document..." : <FontAwesomeIcon icon={faFileExport} />
-                  }
+                 <FontAwesomeIcon icon={faFileExport} />
+                  
                 </PDFDownloadLink>
               </div>
             </div>
@@ -329,13 +327,11 @@ const PaymentsDetails = () => {
       <div className="Payments_button"> 
         
         <PDFDownloadLink document={<AllPaymentsDocument news={filteredData} />} fileName="filtered_payments.pdf">
-          {({ loading }) =>
-            loading ? "Loading document..." : (
+          
               <button className="export-button-payment" data-tooltip="Download as PDF">
                <FontAwesomeIcon icon={faFilePdf} />
               </button>
-            )
-          }
+          
         </PDFDownloadLink>
 
         <div>
