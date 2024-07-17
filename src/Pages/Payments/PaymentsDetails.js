@@ -327,12 +327,9 @@ const PaymentsDetails = () => {
       <div className="Payments_button"> 
         
         <PDFDownloadLink document={<AllPaymentsDocument news={filteredData} />} fileName="filtered_payments.pdf">
-<<<<<<< HEAD
+
           
-=======
-          {({ }) =>
-            loading ? "Loading document..." : (
->>>>>>> 6071945e142e0a5d1dc30f6bb66520da190c657e
+
               <button className="export-button-payment" data-tooltip="Download as PDF">
                <FontAwesomeIcon icon={faFilePdf} />
               </button>
