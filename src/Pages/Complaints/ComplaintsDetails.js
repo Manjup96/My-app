@@ -245,7 +245,7 @@ const ComplaintsDetails = () => {
               <View style={styles.tableCol}>
                 {/* <Text style={styles.tableCell}>{complaint.created_date}</Text> */}
                  <Text style={styles.tableCell}>{formatDate(complaint.created_date)}</Text>
-                {/* // <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>  */}
+                {/* <Text style={styles.tableCell}>{new Date(complaint.created_date).toLocaleDateString("en-IN")}</Text>   */}
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{new Date(complaint.resolve_date).toLocaleDateString("en-IN")}</Text>
@@ -613,13 +613,46 @@ const ComplaintsDetails = () => {
 
 
 const formatDate = (dateString) => {
-   console.log('Date recived from function calling', dateString)
-  // const [year, month, day] = dateString.split(' ')[0].split('-');
-  const [day, month, year] = dateString.split(' ')[0].split('-');
+  //  console.log('Date recived from function calling', dateString)
+    // const [year, month, day] = dateString.split(' ')[0].split('-');
+   const [day, month, year] = dateString.split(' ')[0].split('-');
   console.log('day', day);
   console.log('month', month);
   console.log('year', year);
   return `${day}/${month}/${year}`;
 };
+
+
+const formatDate1 = (dateString) => {
+  console.log('Date received from function calling', dateString);
+
+  // Check if dateString is in YYYY-MM-DD format
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+    const [year, month, day] = dateString.split(' ')[0].split('-');
+    console.log('day', day);
+    console.log('month', month);
+    console.log('year', year);
+    return `${day}/${month}/${year}`;
+  }
+
+  // Check if dateString is in DD-MM-YYYY format
+  if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) {
+    const [day, month, year] = dateString.split(' ')[0].split('-');
+    console.log('day', day);
+    console.log('month', month);
+    console.log('year', year);
+    return `${day}/${month}/${year}`;
+  }
+
+  // Default return if the format is not recognized
+  return dateString;
+};
+
+// Example usage
+const date1 = "2024-07-13"; // "YYYY-MM-DD"
+const date2 = "13-07-2024"; // "DD-MM-YYYY"
+console.log(formatDate1(date1)); // Output: 13/07/2024
+console.log(formatDate1(date2)); // Output: 13/07/2024
+
 
 export default ComplaintsDetails;

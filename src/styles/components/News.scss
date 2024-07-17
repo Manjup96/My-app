@@ -144,7 +144,7 @@
     border: none;
     padding: 5px 20px;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 18px;
     border-radius: 5px;
   }
   .SearchContainer_news {
@@ -156,10 +156,12 @@
     margin-top: -38px;
   }
   .News-Title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // margin-top: 40px;
+    margin-top: 15px;
+    text-align: center;
   }
   .export-button {
     background-color: blue;
@@ -186,15 +188,28 @@
 
 @media (min-width: 1025px) and (max-width: 1399px) {
   .switch_button {
-    margin-left: 19%;
-    margin-top: 0px;
+    // margin-left: 14px;
+    // margin-top: 0px;
+    // background-color: #007bff;
+    // color: white;
+    // border: none;
+    // padding: 5px 16px;
+    // cursor: pointer;
+    // font-size: 17px;
+    // border-radius: 5px;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 5px 16px;
+    padding: 7px 12px;
     cursor: pointer;
     font-size: 15px;
     border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 669px; */
+    margin-left: 12px;
+    width: 49px;
+    height: 37px;
   }
   .SearchContainer_news {
     display: flex;
@@ -205,21 +220,28 @@
     margin-top: -38px;
   }
   .News-Title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // margin-top: 40px;
+    margin-top: 15px;
+    text-align: center;
   }
   .export-button {
-    background-color: blue;
-        color: white;
-        border: none;
-        padding: 11px 17px;
-        cursor: pointer;
-        font-size: 15px;
-        border-radius: 5px;
-        margin-left: 498%;
-        align-items: flex-end;
+    background-color: #007bff;
+    color: rgb(248, 240, 240);
+    border: none;
+    padding: 11px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 50px;
+    margin-left: 243px;
+    border-radius: 5px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
    
     &:hover {
       background-color: blue;

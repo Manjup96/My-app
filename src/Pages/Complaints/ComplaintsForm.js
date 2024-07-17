@@ -32,8 +32,14 @@ const ComplaintsForm = ({ onSubmit, onCloseForm, initialData }) => {
       setTenantName(initialData.tenant_name || "");
       setTenantMobile(initialData.tenant_mobile || "");
       setTenantEmail(initialData.tenant_email || "");
-      setCreatedDate(initialData.created_date || "");
-      setResolvedDate(initialData.resolved_date || "");
+      // setCreatedDate(initialData.created_date || "");
+      // setResolvedDate(initialData.resolved_date || "");
+
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+         setCreatedDate(formattedDate);
+         setResolvedDate(formattedDate);
+    
       setComments(initialData.comments || "");
       setFloorNo(initialData.floor_no || "");
       setRoomNo(initialData.room_no || "");

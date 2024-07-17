@@ -282,7 +282,7 @@ const News = () => {
     <div>
       <Sidebar />
       <div className="News-Title">
-        <h2>News Details</h2>
+        <h1>News Details</h1>
       </div>
       <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>
         <PDFDownloadLink document={<MyDocument news={filteredData} />} fileName="filtered_news.pdf">
