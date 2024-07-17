@@ -320,14 +320,19 @@ const PaymentsDetails = () => {
   return (
     <div className={`news-container ${isPopupOpen ? 'overlay' : ''}`}>
       <Sidebar />
-      <div className="News-Title">
+      <div className="payment-Title">
         <h1>Payment Details</h1>
       </div>
      
       <div className="Payments_button"> 
         
         <PDFDownloadLink document={<AllPaymentsDocument news={filteredData} />} fileName="filtered_payments.pdf">
+<<<<<<< HEAD
           
+=======
+          {({ }) =>
+            loading ? "Loading document..." : (
+>>>>>>> 6071945e142e0a5d1dc30f6bb66520da190c657e
               <button className="export-button-payment" data-tooltip="Download as PDF">
                <FontAwesomeIcon icon={faFilePdf} />
               </button>
@@ -352,7 +357,7 @@ const PaymentsDetails = () => {
       <div className="SearchContainer_payment">
         <input
           type="text"
-          placeholder="Search news..."
+          placeholder="Search payments..."
           className="search-input-payment"
           value={searchInput}
           onChange={handleSearchInputChange}

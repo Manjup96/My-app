@@ -5,6 +5,10 @@
 //   margin-top: 40px;
 // }
 
+.payment-Title{
+  text-align: center;
+  margin-top: 15px;
+}
 .TableContainer-payment {
   width: 80%;
   margin: 3% 18%;
@@ -17,10 +21,12 @@
   width: 80%;
   max-width: 250px;
   padding: 10px;
+  height: 38px;
+  max-width: 240px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: -9px;
-  margin-left: 7px;
+  margin-left: 8px;
   margin-right: -73px;
   margin-bottom: -10px;
   font-size: 16px;
@@ -83,12 +89,12 @@
   cursor: pointer;
   font-size: 17px;
   border-radius: 5px;
-  margin-left: -1521%;
+  margin-left: -1508%;
   width: 97%;
 }
 
 .switch_button_payment {
-  margin-left: -1502%;
+  margin-left: -1490%;
         margin-top: 1px;
         background-color: #007bff;
         color: white;
@@ -343,8 +349,9 @@
     max-width: 250px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: -9px;
+    border-radius: 8px;
+        margin-top: -9px;
+        height: 46px;
     margin-left: 111px;
     margin-right: -73px;
     margin-bottom: 20px;
