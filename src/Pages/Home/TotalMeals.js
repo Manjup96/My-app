@@ -26,8 +26,8 @@ const MealsData = () => {
           },
           body: JSON.stringify({
             manager_email: 'ssy.balu@gmail.com',
-            building_name: 'Building 2',
-            tenant_mobile: '9785734903',
+            building_name: 'bhadra',
+            tenant_mobile: '9381850288',
           }),
         });
 
