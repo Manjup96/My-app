@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useAuth } from './../../context/AuthContext';
-import logo from "../../../src/Asset/images/company logo.png"
 import axios from "axios";
-import { Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../styles/components/Payment.scss";
 
 const Payment = ({ onClose }) => {
   const { user } = useAuth();
- 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     month: "",
     year: "",
@@ -38,14 +38,14 @@ const Payment = ({ onClose }) => {
   const sendEmailNotification = (apiData) => {
     axios.post('https://kodamharish.pythonanywhere.com/pg_tenant_send_mail', {
       tenant_name: apiData.tenant_name,
-      to_email: "asaikrishnachary@gmail.com", // or specify your recipient email here
+      to_email: "asaikrishnachary@gmail.com",
       subject: "Payment Confirmation",
       amount: apiData.income_amount,
       payment_id: apiData.razorpay_payment_id,
       building_name: apiData.building_name,
       month: apiData.month,
       year: apiData.year,
-      balance: 1000 // example balance, adjust as needed
+      balance: 1000
     })
     .then(emailResponse => {
       console.log('Email sent successfully', emailResponse.data);
@@ -58,64 +58,41 @@ const Payment = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    var options = {
-      // Live environment
-      key: "rzp_live_meYRQwcQTdON8u",
-      key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
-
-      amount: parseInt(formData.income_amount) * 100,
-      currency: "INR",
-      name: "iiiQbets",
-      image: logo,
-      description: "for testing purpose",
-      handler: function (response) {
-        const paymentId = response.razorpay_payment_id;
-
-        const apiData = {
-          manager_email: user.manager_email,
-          building_name: user.building_name,
-          tenant_mobile: user.mobile,
-          tenant_name: user.username,
-          tenant_email: user.email,
-          date: new Date().toISOString().split("T")[0],
-          type: "1",
-          month: monthMapping[formData.month],
-          year: formData.year,
-          income_amount: formData.income_amount,
-          comments: formData.comments,
-          razorpay_payment_id: paymentId,
-        };
-
-        axios
-          .post("https://iiiqbets.com/pg-management/razorpay-orderID-tenant-fee-pay-update-API.php", apiData)
-          .then((response) => {
-            console.log("API response", response.data);
-
-            // Send email notification
-            sendEmailNotification(apiData);
-
-            setFormData({
-              month: "",
-              year: "",
-              income_amount: "",
-              comments: "",
-            });
-
-            // Alert and navigate to /payments
-            alert("Payment successful!");
-            Navigate("/payments");
-          })
-          .catch((error) => {
-            console.error("API error", error);
-          });
-      },
-      theme: {
-        color: "#07a291db",
-      },
+    const apiData = {
+      manager_email: user.manager_email,
+      building_name: user.building_name,
+      tenant_mobile: user.mobile,
+      tenant_name: user.username,
+      tenant_email: user.email,
+      date: new Date().toISOString().split("T")[0],
+      type: "1",
+      month: monthMapping[formData.month],
+      year: formData.year,
+      income_amount: formData.income_amount,
+      comments: formData.comments,
+      razorpay_payment_id: "N/A"  // Setting a dummy payment ID since we are skipping Razorpay
     };
 
-    var pay = new window.Razorpay(options);
-    pay.open();
+    axios.post("https://iiiqbets.com/pg-management/razorpay-orderID-tenant-fee-pay-update-API.php", apiData)
+      .then((response) => {
+        console.log("API response", response.data);
+
+        // Send email notification
+        sendEmailNotification(apiData);
+
+        setFormData({
+          month: "",
+          year: "",
+          income_amount: "",
+          comments: "",
+        });
+        onClose(); 
+        alert("Payment successful!");
+        navigate("/payments");
+      })
+      .catch((error) => {
+        console.error("API error", error);
+      });
   };
 
   return (
@@ -136,8 +113,10 @@ const Payment = ({ onClose }) => {
               name="month"
               value={formData.month}
               onChange={handleChange}
-              placeholder="Select your payment month...">
-              <option value="" disabled hidden>Select your payment month...
+              placeholder="Select your payment month..."
+            >
+              <option value="" disabled hidden>
+                Select your payment month...
                 <span className="dropdown-symbol">&#9660;</span>
               </option>
               <option value="January">January</option>
@@ -164,14 +143,13 @@ const Payment = ({ onClose }) => {
               name="year"
               value={formData.year}
               onChange={handleChange}
-              placeholder="Select your payment month..."
-
+              placeholder="Select your payment year..."
             >
-              <option value="" disabled hidden>Select your payment year...
+              <option value="" disabled hidden>
+                Select your payment year...
                 <span className="dropdown-symbol">&#9660;</span>
               </option>
               <option value="2024">2024</option>
-
             </select>
           </div>
           <div className="form-group">
